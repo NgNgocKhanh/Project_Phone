@@ -14,7 +14,7 @@ public class Register extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Register.class.getResource("registet.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 520, 462);
-        stage.setTitle("Register!");
+        stage.setTitle("Register form application !");
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
