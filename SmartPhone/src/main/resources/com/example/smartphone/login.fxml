@@ -11,8 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smartphone.SceneController">
    <left>
       <AnchorPane prefHeight="407.0" prefWidth="228.0" style="-fx-background-color: #263F73;" BorderPane.alignment="CENTER">
          <children>
@@ -79,7 +78,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button layoutX="35.0" layoutY="296.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="221.0" style="-fx-background-color: #263F73;" text="Register" textFill="WHITE">
+            <Button layoutX="35.0" layoutY="296.0" mnemonicParsing="false" onAction="#SwitchToRegister" prefHeight="29.0" prefWidth="221.0" style="-fx-background-color: #263F73;" text="Register" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>

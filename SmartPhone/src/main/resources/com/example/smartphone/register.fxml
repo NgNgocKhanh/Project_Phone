@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="462.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smartphone.Register">
+<AnchorPane prefHeight="462.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smartphone.RegisterController">
    <children>
       <AnchorPane prefHeight="70.0" prefWidth="520.0" style="-fx-background-color: #263F73;">
          <children>
@@ -54,7 +53,7 @@
             <Font size="13.0" />
          </font>
       </Button>
-      <Button layoutX="92.0" layoutY="402.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="336.0" style="-fx-background-color: #263F73;" text="Close" textFill="WHITE">
+      <Button layoutX="92.0" layoutY="402.0" mnemonicParsing="false" onAction="#handleExitButton" prefHeight="25.0" prefWidth="336.0" style="-fx-background-color: #263F73;" text="Close" textFill="WHITE">
          <font>
             <Font size="13.0" />
          </font>
