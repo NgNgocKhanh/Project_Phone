@@ -15,6 +15,7 @@ public class Register extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Register.class.getResource("registet.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 520, 462);
         stage.setTitle("Register!");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
