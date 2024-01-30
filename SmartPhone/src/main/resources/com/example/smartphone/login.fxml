@@ -42,7 +42,7 @@
          </children>
       </AnchorPane>
    </left>
-   <right>
+   <center>
       <AnchorPane prefHeight="400.0" prefWidth="332.0" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" layoutX="28.0" layoutY="45.0" prefHeight="17.0" prefWidth="226.0" text="Login Store" textFill="#3d3d3d">
@@ -85,5 +85,5 @@
             </Button>
          </children>
       </AnchorPane>
-   </right>
+   </center>
 </BorderPane>

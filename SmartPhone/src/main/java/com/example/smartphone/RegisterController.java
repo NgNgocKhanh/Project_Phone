@@ -17,11 +17,8 @@ public class RegisterController {
     @FXML
     private Button exitButton;
 
-    // ...
-
     @FXML
     private void handleExitButton(ActionEvent event) {
-        // Gọi phương thức exit() khi nút Exit được nhấn
         Platform.exit();
     }
 }

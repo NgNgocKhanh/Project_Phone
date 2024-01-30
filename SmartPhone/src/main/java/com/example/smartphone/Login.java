@@ -13,7 +13,7 @@ public class Login extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 520, 400);
         stage.setResizable(false);
-        stage.setTitle("Login !");
+        stage.setTitle("Login form application !");
         stage.setScene(scene);
         stage.show();
     }
