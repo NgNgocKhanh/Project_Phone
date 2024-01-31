@@ -83,6 +83,11 @@
                   <Font size="14.0" />
                </font>
             </Button>
+            <Label alignment="CENTER" layoutX="69.0" layoutY="91.0" prefHeight="44.0" prefWidth="177.0" textFill="#1212c9">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </center>

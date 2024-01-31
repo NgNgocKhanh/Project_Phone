@@ -30,8 +30,9 @@ public class SceneController {
             e.printStackTrace();
         }
     }
+    @FXML
     public void loginButtonOnAction(ActionEvent event){
-            loginMessageLabel.setText("You try to login !");
+        loginMessageLabel.setText("You try to login !");
     }
     
 }
