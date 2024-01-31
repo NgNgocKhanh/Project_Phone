@@ -33,5 +33,5 @@ public class SceneController {
     public void loginButtonOnAction(ActionEvent event){
             loginMessageLabel.setText("You try to login !");
     }
-
+    
 }
