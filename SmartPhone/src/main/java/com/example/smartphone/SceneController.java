@@ -26,11 +26,12 @@ public class SceneController implements Initializable {
     private Parent root;
     @FXML
     private Label loginMessageLabel;
+
     public void SwitchToRegister(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("register.fxml"));
             root = fxmlLoader.load();
-            stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -38,13 +39,16 @@ public class SceneController implements Initializable {
             e.printStackTrace();
         }
     }
+
     @FXML
     public void loginButtonOnAction(ActionEvent event) throws SQLException {
         login();
     }
+
     public TextField tname;
     public PasswordField tpass;
     public Button btnCon;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         btnCon.setOnAction(actionEvent -> {
@@ -55,6 +59,7 @@ public class SceneController implements Initializable {
             }
         });
     }
+
     public void login() throws SQLException {
         PreparedStatement preparedStatement = null;
         ResultSet rs = null;
@@ -64,10 +69,10 @@ public class SceneController implements Initializable {
             preparedStatement.setString(1, tname.getText());
             preparedStatement.setString(2, tpass.getText());
             rs = preparedStatement.executeQuery();
-            if (rs.next()){
+            if (rs.next()) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Login Successfully !", ButtonType.OK);
                 alert.show();
-            }else {
+            } else {
                 Alert alert = new Alert(Alert.AlertType.WARNING, "Login Failed !", ButtonType.OK);
                 alert.show();
             }
@@ -75,6 +80,4 @@ public class SceneController implements Initializable {
             throw new RuntimeException(e);
         }
     }
-
-
 }
