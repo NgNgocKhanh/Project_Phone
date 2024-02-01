@@ -11,4 +11,5 @@ public class LoginController {
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to Store Phone !");
     }
+
 }
