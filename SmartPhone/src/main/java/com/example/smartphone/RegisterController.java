@@ -12,7 +12,7 @@ public class RegisterController {
 
     @FXML
     protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+        welcomeText.setText("Welcome to Store Phone !");
     }
     @FXML
     private Button exitButton;
