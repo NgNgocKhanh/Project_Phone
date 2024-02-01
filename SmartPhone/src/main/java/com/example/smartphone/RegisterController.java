@@ -72,8 +72,8 @@ public class RegisterController implements Initializable {
                 preparedStatement = con.prepareStatement("INSERT INTO admin (firstName, lastName ,username, password) VALUES (?, ?, ?, ?)");
                 preparedStatement.setString(1, ftname.getText());
                 preparedStatement.setString(2, flname.getText());
-                preparedStatement.setString(3, fpass.getText());
-                preparedStatement.setString(4, fusername.getText());
+                preparedStatement.setString(3, fusername.getText());
+                preparedStatement.setString(4, fpass.getText());
                 int rowsAffected = preparedStatement.executeUpdate();
 
                 if (rowsAffected > 0) {
