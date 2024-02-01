@@ -78,14 +78,14 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="registerButton" layoutX="35.0" layoutY="296.0" mnemonicParsing="false" onAction="#SwitchToRegister" prefHeight="29.0" prefWidth="221.0" style="-fx-background-color: #263F73;" text="Register" textFill="WHITE">
+            <Button layoutX="35.0" layoutY="296.0" mnemonicParsing="false" onAction="#SwitchToRegister" prefHeight="29.0" prefWidth="221.0" style="-fx-background-color: #263F73;" text="Register" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Label fx:id="loginMessageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="36.0" layoutY="109.0" prefHeight="18.0" prefWidth="214.0" textAlignment="JUSTIFY" textFill="#0500ff">
+            <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="69.0" layoutY="91.0" prefHeight="44.0" prefWidth="177.0" textFill="#1212c9">
                <font>
-                  <Font name="Arial" size="14.0" />
+                  <Font size="20.0" />
                </font>
             </Label>
          </children>

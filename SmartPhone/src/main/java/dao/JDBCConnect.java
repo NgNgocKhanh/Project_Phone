@@ -1,7 +1,6 @@
 package dao;
 
 import common.IDBConfig;
-
 import java.sql.*;
 
 public class JDBCConnect {

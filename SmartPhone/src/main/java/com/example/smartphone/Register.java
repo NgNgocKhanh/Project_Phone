@@ -13,6 +13,7 @@ public class Register extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Register.class.getResource("register.fxml"));
+
         Scene scene = new Scene(fxmlLoader.load(), 520, 400);
         stage.setTitle("Register form application !");
         stage.setResizable(false);
