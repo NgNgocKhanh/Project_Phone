@@ -63,17 +63,17 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="usernamefield" layoutX="94.0" layoutY="148.0" promptText="Username">
+            <TextField fx:id="tname" layoutX="94.0" layoutY="148.0" promptText="Username">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="passwordfield" layoutX="94.0" layoutY="194.0" promptText="Password">
+            <PasswordField fx:id="tpass" layoutX="94.0" layoutY="194.0" promptText="Password">
                <font>
                   <Font size="14.0" />
                </font>
             </PasswordField>
-            <Button fx:id="loginButton" layoutX="34.0" layoutY="258.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="29.0" prefWidth="221.0" style="-fx-background-color: #263F73;" text="Login" textFill="WHITE">
+            <Button fx:id="btnCon" layoutX="34.0" layoutY="258.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="29.0" prefWidth="221.0" style="-fx-background-color: #263F73;" text="Login" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
