@@ -70,13 +70,18 @@ public class SceneController implements Initializable {
             preparedStatement.setString(2, tpass.getText());
             rs = preparedStatement.executeQuery();
             if (rs.next()) {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Login Successfully !", ButtonType.OK);
-                alert.show();
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home.fxml"));
+                Parent root = fxmlLoader.load();
+                Scene scene = new Scene(root, 520, 400);
+                Stage stage = (Stage) tname.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+
             } else {
                 Alert alert = new Alert(Alert.AlertType.WARNING, "Login Failed !", ButtonType.OK);
                 alert.show();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
     }
