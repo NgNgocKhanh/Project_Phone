@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>-->
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -15,22 +16,26 @@
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
-                <Label prefHeight="60.0" prefWidth="224.0" text="Black Mobile" textFill="#ff5056">
-                    <font>
-                        <Font name="Edwardian Script ITC" size="38.0" />
-                    </font>
-                </Label>
                 <Separator maxHeight="-Infinity" orientation="VERTICAL" prefHeight="39.0" prefWidth="5.0" />
-                <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="35.0" prefWidth="450.0">
+                <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="30.0" prefWidth="29.0">
                     <children>
-                        <TextField prefHeight="26.0" prefWidth="426.0" promptText="Search" style="-fx-background-radius: 50;" />
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../../../../../../../img/11.png" />
                             </image>
                         </ImageView>
+                        <FontAwesomeIconView fontSmoothingType="LCD" glyphName="OUTDENT" size="30" wrappingWidth="45.30000019073486" />
                     </children>
                 </HBox>
+                <TextField fx:id="loggedInTextField" prefHeight="31.0" prefWidth="177.0">
+                    <font>
+                        <Font name="Arial" size="17.0" />
+                    </font></TextField>
+                <Label alignment="CENTER" prefHeight="53.0" prefWidth="434.0" text="Quản lí cửa hàng điện thoại">
+                    <font>
+                        <Font name="Arial Bold" size="25.0" />
+                    </font>
+                </Label>
             </children>
         </HBox>
     </top>
@@ -50,7 +55,7 @@
                                         <Insets left="30.0" />
                                     </HBox.margin>
                                 </ImageView>
-                                <Label fx:id="price" text="Home">
+                                <Label fx:id="home" text="Home">
                                     <font>
                                         <Font name="Berlin Sans FB" size="18.0" />
                                     </font>
@@ -60,7 +65,7 @@
                                 </Label>
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                        <HBox fx:id="phone" alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                             <children>
                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -90,7 +95,7 @@
                                         <Insets left="30.0" />
                                     </HBox.margin>
                                 </ImageView>
-                                <Label fx:id="price11" text="Accessory">
+                                <Label fx:id="accessory" text="Accessory">
                                     <font>
                                         <Font name="Berlin Sans FB" size="18.0" />
                                     </font>
@@ -113,7 +118,7 @@
                                         <Insets left="30.0" />
                                     </HBox.margin>
                                 </ImageView>
-                                <Label fx:id="price12" text="Statistical">
+                                <Label fx:id="statistical" text="Statistical">
                                     <font>
                                         <Font name="Berlin Sans FB" size="18.0" />
                                     </font>
@@ -133,14 +138,6 @@
                                         <Insets left="30.0" />
                                     </HBox.margin>
                                 </ImageView>
-                                <Label fx:id="price13" text="Log Out">
-                                    <font>
-                                        <Font name="Berlin Sans FB" size="18.0" />
-                                    </font>
-                                    <HBox.margin>
-                                        <Insets left="10.0" />
-                                    </HBox.margin>
-                                </Label>
                             </children>
                         </HBox>
                     </children></VBox>
