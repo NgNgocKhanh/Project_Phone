@@ -53,22 +53,22 @@
                   <DropShadow />
                </effect>
             </Label>
-            <Label layoutX="18.0" layoutY="154.0" prefHeight="20.0" prefWidth="72.0" text="Username">
+            <Label layoutX="19.0" layoutY="115.0" prefHeight="21.0" prefWidth="75.0" text="Email">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="20.0" layoutY="211.0" prefHeight="19.0" prefWidth="70.0" text="Password">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="20.0" layoutY="201.0" prefHeight="19.0" prefWidth="70.0" text="Password">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <TextField fx:id="tname" layoutX="94.0" layoutY="148.0" promptText="Username">
+            <TextField fx:id="tfEmailLogin" layoutX="94.0" layoutY="110.0" promptText="Email">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="tpass" layoutX="94.0" layoutY="194.0" promptText="Password">
+            <PasswordField fx:id="tfPasswordLogin" layoutX="94.0" layoutY="206.0" promptText="Password">
                <font>
                   <Font size="14.0" />
                </font>
@@ -83,9 +83,19 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="69.0" layoutY="91.0" prefHeight="44.0" prefWidth="177.0" textFill="#1212c9">
+            <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="58.0" layoutY="66.0" prefHeight="44.0" prefWidth="177.0" textFill="#1212c9">
                <font>
                   <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tfUsernameLogin" layoutX="94.0" layoutY="160.0" promptText="Username">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Label layoutX="19.0" layoutY="165.0" prefHeight="20.0" prefWidth="72.0" text="Username">
+               <font>
+                  <Font size="14.0" />
                </font>
             </Label>
          </children>

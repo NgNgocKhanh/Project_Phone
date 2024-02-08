@@ -24,11 +24,11 @@ public class RegisterController implements Initializable {
 
     @FXML
     private Button exitButton;
-    public TextField ftname;
-    public TextField flname;
-    public TextField fusername;
-    public PasswordField fpass;
-    public PasswordField fconfirmpass;
+    public TextField tfEmail;
+    public TextField tfUsername;
+    public TextField tfPhone;
+    public PasswordField tfPassword;
+    public PasswordField tfConfirmPassword;
     public Button btnConRegister;
 
     @FXML
@@ -52,28 +52,33 @@ public class RegisterController implements Initializable {
     }
 
     public void register() throws SQLException {
-            if (fusername.getText().isEmpty() || fpass.getText().isEmpty()) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Registration Failed!\", \"Both username and password must be provided.", ButtonType.OK);
-                alert.show();
-                return;
-            }if (!isPasswordConfirmed()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Registration Failed!\", \"Password and Confirm Password do not match.", ButtonType.OK);
+        if (!isPasswordConfirmed()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Registration Failed!\", \"Password and Confirm Password do not match.", ButtonType.OK);
             alert.show();
             return;
         }
         if (!isUsernameConfirmed()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Registration Failed!\", \"Username have 4 character and the first not number and character special.", ButtonType.OK);
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Username Must be greater than 4", ButtonType.OK);
+            alert.show();
+            return;
+        }
+        if (!isCheckEmail()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Invalid Email Format", ButtonType.OK);
+            alert.show();
+            return;
+        }
+        if (!isCheckPhoneNumber()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Invalid Phone Number", ButtonType.OK);
             alert.show();
             return;
         }
             PreparedStatement preparedStatement = null;
             Connection con = JDBCConnect.getJDBCConnection();
             try {
-                preparedStatement = con.prepareStatement("INSERT INTO admin (firstName, lastName ,username, password) VALUES (?, ?, ?, ?)");
-                preparedStatement.setString(1, ftname.getText());
-                preparedStatement.setString(2, flname.getText());
-                preparedStatement.setString(3, fusername.getText());
-                preparedStatement.setString(4, fpass.getText());
+                preparedStatement = con.prepareStatement("INSERT INTO user (username, email ,password) VALUES (?, ?, ?)");
+                preparedStatement.setString(1, tfUsername.getText());
+                preparedStatement.setString(2, tfEmail.getText());
+                preparedStatement.setString(3, tfPassword.getText());
                 int rowsAffected = preparedStatement.executeUpdate();
 
                 if (rowsAffected > 0) {
@@ -94,9 +99,18 @@ public class RegisterController implements Initializable {
         }
         private boolean isPasswordConfirmed () {
             // Kiểm tra xem mật khẩu và xác nhận mật khẩu giống nhau hay không
-            return fpass.getText().equals(fconfirmpass.getText());
+            return tfPassword.getText().equals(tfConfirmPassword.getText());
         }
         private boolean isUsernameConfirmed(){
-            return fusername.getText().matches("^[a-zA-Z][a-zA-Z0-9]{4,}$");
+            return tfUsername.getText().matches("^[a-zA-Z][a-zA-Z0-9]{4,}$");
         }
+    private boolean isCheckEmail() {
+        // Kiểm tra định dạng email
+        return tfEmail.getText().matches("^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\\.[a-zA-Z.]{2,18}$");
+    }
+
+    private boolean isCheckPhoneNumber() {
+        // Kiểm tra định dạng số điện thoại
+        return tfPhone.getText().matches("^(0[1-9]\\d{8}|84[1-9]\\d{7})$");
+    }
     }

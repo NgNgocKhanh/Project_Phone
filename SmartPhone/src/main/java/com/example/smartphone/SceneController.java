@@ -44,9 +44,10 @@ public class SceneController implements Initializable {
     public void loginButtonOnAction(ActionEvent event) throws SQLException {
         login();
     }
+    public TextField tfEmailLogin;
 
-    public TextField tname;
-    public PasswordField tpass;
+    public TextField tfUsernameLogin;
+    public PasswordField tfPasswordLogin;
     public Button btnCon;
 
     @Override
@@ -65,15 +66,16 @@ public class SceneController implements Initializable {
         ResultSet rs = null;
         Connection con = JDBCConnect.getJDBCConnection();
         try {
-            preparedStatement = con.prepareStatement("SELECT * FROM  admin WHERE username = ? AND password = ?");
-            preparedStatement.setString(1, tname.getText());
-            preparedStatement.setString(2, tpass.getText());
+            preparedStatement = con.prepareStatement("SELECT * FROM  user WHERE email = ? AND  username = ? AND password = ?");
+            preparedStatement.setString(1, tfEmailLogin.getText());
+            preparedStatement.setString(2, tfUsernameLogin.getText());
+            preparedStatement.setString(3, tfPasswordLogin.getText());
             rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home.fxml"));
                 Parent root = fxmlLoader.load();
                 Scene scene = new Scene(root, 520, 400);
-                Stage stage = (Stage) tname.getScene().getWindow();
+                Stage stage = (Stage) tfUsernameLogin.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
 
