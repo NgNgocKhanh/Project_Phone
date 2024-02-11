@@ -9,11 +9,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.InputEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,12 +33,12 @@ public class SceneController implements Initializable {
 
     public void SwitchToRegister(ActionEvent event) {
         try {
-            String fxmlFileName = "register.fxml";
-            File fxmlFile = new File("src/main/resources/com/example/SmartPhone/" + fxmlFileName);
-
-            String absolutePath = fxmlFile.getAbsolutePath();
-            Parent root = FXMLLoader.load(new File(absolutePath).toURI().toURL());
-            stage.initStyle(StageStyle.TRANSPARENT);
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            InputStream inputStream = getClass().getResourceAsStream("/com/example/smartphone/register.fxml");
+            if (inputStream == null) {
+                throw new IOException("FXML file not found");
+            }
+            root = fxmlLoader.load(inputStream);
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
@@ -45,6 +47,8 @@ public class SceneController implements Initializable {
             e.printStackTrace();
         }
     }
+
+
 
     @FXML
     public void loginButtonOnAction(ActionEvent event) throws SQLException {
@@ -78,19 +82,30 @@ public class SceneController implements Initializable {
             preparedStatement.setString(3, tfPasswordLogin.getText());
             rs = preparedStatement.executeQuery();
             if (rs.next()) {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home.fxml"));
+                // Load the new FXML file
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/smartphone/home.fxml"));
                 Parent root = fxmlLoader.load();
                 Scene scene = new Scene(root, 520, 400);
                 Stage stage = (Stage) tfUsernameLogin.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
-
             } else {
                 Alert alert = new Alert(Alert.AlertType.WARNING, "Login Failed !", ButtonType.OK);
                 alert.show();
             }
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
+        } finally {
+            // Close resources
+            if (rs != null) {
+                rs.close();
+            }
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (con != null) {
+                con.close();
+            }
         }
     }
 }
