@@ -1,4 +1,4 @@
-package com.example.smartphone;
+package com.example.smartphone.model;
 
 import dao.JDBCConnect;
 import javafx.event.ActionEvent;
