@@ -1,6 +1,6 @@
-package com.example.smartphone.model;
+package com.example.smartphone.controller;
 
-import com.example.smartphone.Phone;
+import com.example.smartphone.model.Phone;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;

@@ -1,4 +1,4 @@
-package com.example.smartphone;
+package com.example.smartphone.model;
 
 public class Phone {
     private String phoneName;

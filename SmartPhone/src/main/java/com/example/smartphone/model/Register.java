@@ -1,4 +1,4 @@
-package com.example.smartphone;
+package com.example.smartphone.model;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

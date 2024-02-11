@@ -1,4 +1,4 @@
-package com.example.smartphone.model;
+package com.example.smartphone.controller;
 
 import dao.JDBCConnect;
 import javafx.application.Platform;
