@@ -10,7 +10,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -29,8 +31,12 @@ public class SceneController implements Initializable {
 
     public void SwitchToRegister(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("register.fxml"));
-            root = fxmlLoader.load();
+            String fxmlFileName = "register.fxml";
+            File fxmlFile = new File("src/main/resources/com/example/SmartPhone/" + fxmlFileName);
+
+            String absolutePath = fxmlFile.getAbsolutePath();
+            Parent root = FXMLLoader.load(new File(absolutePath).toURI().toURL());
+            stage.initStyle(StageStyle.TRANSPARENT);
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);

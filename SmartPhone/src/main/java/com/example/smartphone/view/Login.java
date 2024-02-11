@@ -2,19 +2,27 @@ package com.example.smartphone.view;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.File;
 import java.io.IOException;
 
 public class Login extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("login.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 520, 400);
-        stage.setResizable(false);
-        stage.setTitle("Login form application !");
-        stage.setScene(scene);
+        String fxmlFileName = "login.fxml";
+
+        // Create a File object for the FXML file
+        File fxmlFile = new File("src/main/resources/com/example/SmartPhone/" + fxmlFileName);
+
+        // Get the absolute path of the FXML file
+        String absolutePath = fxmlFile.getAbsolutePath();
+        Parent root = FXMLLoader.load(new File(absolutePath).toURI().toURL());
+        stage.setScene(new Scene(root));
+        stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
     }
 
