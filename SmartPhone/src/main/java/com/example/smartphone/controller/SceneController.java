@@ -49,7 +49,7 @@ public class SceneController {
     }
 
     @FXML
-    public void loginButtonOnAction() {
+    public void loginButtonOnAction(ActionEvent event) {
         try {
             login();
         } catch (SQLException | IOException e) {
