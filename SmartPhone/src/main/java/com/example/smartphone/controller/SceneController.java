@@ -63,7 +63,6 @@ public class SceneController {
         Connection con = JDBCConnect.getJDBCConnection();
 
         try {
-            con = JDBCConnect.getJDBCConnection();
             preparedStatement = con.prepareStatement("SELECT * FROM user WHERE email = ? AND username = ? AND password = ?");
             preparedStatement.setString(1, tfEmailLogin.getText());
             preparedStatement.setString(2, tfUsernameLogin.getText());
@@ -73,7 +72,7 @@ public class SceneController {
                 // Load the new FXML file
                 Parent root = FXMLLoader.load(getClass().getResource("/com/example/smartphone/home.fxml"));
                 Scene scene = new Scene(root, 520, 400);
-                Stage stage = (Stage) tfUsernameLogin.getScene().getWindow();
+                Stage stage = (Stage).getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
             } else {
