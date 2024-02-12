@@ -11,6 +11,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class Login extends Application {
+    private double xOffset = 0;
+    private double yOffset = 0;
     @Override
     public void start(Stage stage) throws IOException {
         String fxmlFileName = "login.fxml";
@@ -23,6 +25,16 @@ public class Login extends Application {
         Parent root = FXMLLoader.load(new File(absolutePath).toURI().toURL());
         stage.setScene(new Scene(root));
         stage.initStyle(StageStyle.TRANSPARENT);
+        root.setOnMousePressed(event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        });
+
+        // Mouse dragged event handler
+        root.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
+        });
         stage.show();
     }
 

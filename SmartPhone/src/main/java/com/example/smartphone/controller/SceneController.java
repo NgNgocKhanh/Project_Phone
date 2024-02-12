@@ -30,7 +30,7 @@ public class SceneController implements Initializable {
     private Parent root;
     @FXML
     private Label loginMessageLabel;
-
+    @FXML
     public void SwitchToRegister(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -54,6 +54,7 @@ public class SceneController implements Initializable {
     public void loginButtonOnAction(ActionEvent event) throws SQLException {
         login();
     }
+    @FXML
     public TextField tfEmailLogin;
 
     public TextField tfUsernameLogin;
@@ -70,7 +71,7 @@ public class SceneController implements Initializable {
             }
         });
     }
-
+    @FXML
     public void login() throws SQLException {
         PreparedStatement preparedStatement = null;
         ResultSet rs = null;
