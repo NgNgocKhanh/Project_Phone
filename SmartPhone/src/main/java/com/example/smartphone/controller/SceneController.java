@@ -28,17 +28,13 @@ public class SceneController {
     @FXML
     private Label loginMessageLabel;
 
-    public SceneController(TextField tfEmailLogin) {
-        this.tfEmailLogin = tfEmailLogin;
-    }
-
     @FXML
     public void initialize() {
         btnCon.setOnAction(event -> {
             try {
                 login();
             } catch (SQLException | IOException e) {
-                e.printStackTrace();
+                showErrorAlert("An error occurred during login: " + e.getMessage());
             }
         });
     }
@@ -53,12 +49,21 @@ public class SceneController {
     }
 
     @FXML
-    public void login() throws SQLException, IOException {
-        Connection con = JDBCConnect.getJDBCConnection();
+    public void loginButtonOnAction() {
+        try {
+            login();
+        } catch (SQLException | IOException e) {
+            showErrorAlert("An error occurred during login: " + e.getMessage());
+        }
+    }
+
+    private void login() throws SQLException, IOException {
+        Connection con = null;
         PreparedStatement preparedStatement = null;
         ResultSet rs = null;
 
         try {
+            con = JDBCConnect.getJDBCConnection();
             preparedStatement = con.prepareStatement("SELECT * FROM user WHERE email = ? AND username = ? AND password = ?");
             preparedStatement.setString(1, tfEmailLogin.getText());
             preparedStatement.setString(2, tfUsernameLogin.getText());
@@ -87,5 +92,10 @@ public class SceneController {
                 con.close();
             }
         }
+    }
+
+    private void showErrorAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR, message, ButtonType.OK);
+        alert.show();
     }
 }
