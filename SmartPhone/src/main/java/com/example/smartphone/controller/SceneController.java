@@ -58,9 +58,9 @@ public class SceneController {
     }
 
     private void login() throws SQLException, IOException {
-        Connection con = null;
         PreparedStatement preparedStatement = null;
         ResultSet rs = null;
+        Connection con = JDBCConnect.getJDBCConnection();
 
         try {
             con = JDBCConnect.getJDBCConnection();
