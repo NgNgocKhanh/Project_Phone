@@ -65,6 +65,8 @@ public class SceneController {
             preparedStatement.setString(3, tfPasswordLogin.getText());
             rs = preparedStatement.executeQuery();
             if (rs.next()) {
+                String username = rs.getString("username"); // Lấy tên người dùng từ ResultSet
+                HomeController.setUsername(username);
                 // Load the new FXML file
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/smartphone/home.fxml"));
                 Parent root = loader.load();
