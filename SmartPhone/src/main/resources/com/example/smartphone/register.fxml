@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="462.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smartphone.RegisterController">
+<AnchorPane prefHeight="462.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smartphone.controller.RegisterController">
    <children>
       <AnchorPane prefHeight="70.0" prefWidth="520.0" style="-fx-background-color: #263F73;">
          <children>
@@ -18,45 +18,50 @@
             </Label>
          </children>
       </AnchorPane>
-      <Label layoutX="92.0" layoutY="93.0" prefHeight="19.0" prefWidth="67.0" text="Firstname">
+      <Label layoutX="92.0" layoutY="93.0" prefHeight="19.0" prefWidth="67.0">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="ftname" layoutX="92.0" layoutY="112.0" prefHeight="25.0" prefWidth="336.0" />
-      <Label layoutX="92.0" layoutY="145.0" prefHeight="19.0" prefWidth="67.0" text="Lastname">
+      <Label layoutX="92.0" layoutY="84.0" prefHeight="19.0" prefWidth="67.0" text="Email">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="flname" layoutX="92.0" layoutY="165.0" prefHeight="25.0" prefWidth="336.0" />
-      <Label layoutX="92.0" layoutY="198.0" prefHeight="19.0" prefWidth="67.0" text="Username">
+      <TextField fx:id="tfEmail" layoutX="92.0" layoutY="103.0" prefHeight="25.0" prefWidth="336.0" />
+      <Label layoutX="92.0" layoutY="139.0" prefHeight="19.0" prefWidth="67.0" text="Username">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="fusername" layoutX="92.0" layoutY="218.0" prefHeight="25.0" prefWidth="336.0" />
-      <Label layoutX="92.0" layoutY="252.0" prefHeight="19.0" prefWidth="67.0" text="Password">
+      <Label layoutX="92.0" layoutY="246.0" prefHeight="19.0" prefWidth="111.0" text="Password">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <PasswordField fx:id="fpass" layoutX="92.0" layoutY="271.0" prefHeight="25.0" prefWidth="336.0" />
-      <Label layoutX="92.0" layoutY="303.0" prefHeight="19.0" prefWidth="111.0" text="Confirm Password">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Label>
-      <PasswordField fx:id="fconfirmpass" layoutX="92.0" layoutY="322.0" prefHeight="25.0" prefWidth="336.0" />
+      <PasswordField fx:id="tfPassword" layoutX="92.0" layoutY="265.0" prefHeight="25.0" prefWidth="336.0" />
       <Button fx:id="btnConRegister" layoutX="92.0" layoutY="363.0" mnemonicParsing="false" onAction="#registerButtonOnAction" prefHeight="25.0" prefWidth="336.0" style="-fx-background-color: #263F73;" text="Register" textFill="WHITE">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Button layoutX="92.0" layoutY="402.0" mnemonicParsing="false" onAction="#handleExitButton" prefHeight="25.0" prefWidth="336.0" style="-fx-background-color: #263F73;" text="Close" textFill="WHITE">
+      <Button layoutX="92.0" layoutY="399.0" mnemonicParsing="false" onAction="#handleExitButton" prefHeight="25.0" prefWidth="336.0" style="-fx-background-color: #263F73;" text="Close" textFill="WHITE">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
+      <TextField fx:id="tfUsername" layoutX="92.0" layoutY="158.0" prefHeight="25.0" prefWidth="336.0" />
+      <Label layoutX="92.0" layoutY="192.0" prefHeight="19.0" prefWidth="67.0" text="Phone">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="tfConfirmPassword" layoutX="92.0" layoutY="321.0" prefHeight="25.0" prefWidth="336.0" />
+      <Label layoutX="92.0" layoutY="302.0" prefHeight="19.0" prefWidth="111.0" text="Confirm Password">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfPhone" layoutX="92.0" layoutY="211.0" prefHeight="25.0" prefWidth="336.0" />
    </children>
 </AnchorPane>
