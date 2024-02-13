@@ -26,8 +26,8 @@ public class Login extends Application {
         stage.setScene(new Scene(root));
         stage.initStyle(StageStyle.TRANSPARENT);
         root.setOnMousePressed(event -> {
-            xOffset = event.    getSceneX();
-            yOffset = event.getSceneY();
+            xOffset = event.getSceneX();
+            yOffset =  event.getSceneY();
         });
 
         // Mouse dragged event handler

@@ -32,9 +32,9 @@ public class SceneController {
     public void initialize() {
         btnCon.setOnAction(event -> {
             try {
-                login();
+                login(event);
             } catch (SQLException | IOException e) {
-                showErrorAlert("An error occurred during login: " + e.getMessage());
+                e.printStackTrace();
             }
         });
     }
@@ -49,19 +49,15 @@ public class SceneController {
     }
 
     @FXML
-    public void loginButtonOnAction(ActionEvent event) {
-        try {
-            login();
-        } catch (SQLException | IOException e) {
-            showErrorAlert("An error occurred during login: " + e.getMessage());
-        }
+    public void loginButtonOnAction(ActionEvent event) throws SQLException, IOException {
+        login(event);
     }
 
-    private void login() throws SQLException, IOException {
+    @FXML
+    public void login(ActionEvent event) throws SQLException, IOException {
+        Connection con = JDBCConnect.getJDBCConnection();
         PreparedStatement preparedStatement = null;
         ResultSet rs = null;
-        Connection con = JDBCConnect.getJDBCConnection();
-
         try {
             preparedStatement = con.prepareStatement("SELECT * FROM user WHERE email = ? AND username = ? AND password = ?");
             preparedStatement.setString(1, tfEmailLogin.getText());
@@ -70,11 +66,17 @@ public class SceneController {
             rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 // Load the new FXML file
-                Parent root = FXMLLoader.load(getClass().getResource("/com/example/smartphone/home.fxml"));
-                Scene scene = new Scene(root, 520, 400);
-                Stage stage = (Stage).getScene().getWindow();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/smartphone/home.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
+                stage.setFullScreen(true);
                 stage.show();
+
+                // Nếu cần truyền dữ liệu qua controller của FXML mới:
+                HomeController homeController = loader.getController();
+                // Thực hiện các hoạt động cần thiết trên homeController
             } else {
                 Alert alert = new Alert(Alert.AlertType.WARNING, "Login Failed !", ButtonType.OK);
                 alert.show();
@@ -92,7 +94,6 @@ public class SceneController {
             }
         }
     }
-
     private void showErrorAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR, message, ButtonType.OK);
         alert.show();
