@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,17 +30,21 @@ public class HomeController {
     @FXML
     private Button logoutButton;
 
-    @FXML
-    private void handleLogout(ActionEvent event) {
+    private void loadPage(String page) {
+        Parent root = null;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("logout.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) logoutButton.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
+            // Create a File object for the FXML file
+            File fxmlFile = new File("src/main/resources/com/example/demojavafxproject/" + page + ".fxml");
+
+            // Get the absolute path of the FXML file
+            String absolutePath = fxmlFile.getAbsolutePath();
+
+            root = FXMLLoader.load(new File(absolutePath).toURI().toURL());
+        } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("Cannot navigate page");
         }
+        fullBorderPane.setCenter(root);
+    }
     }
 }
