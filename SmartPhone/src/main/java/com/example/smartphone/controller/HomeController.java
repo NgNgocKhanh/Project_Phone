@@ -48,7 +48,7 @@ public class HomeController {
     private Button iventoryButton;
     @FXML
     private Button logOutButton;
-
+    private Button activeButton;
     @FXML
     void logoutClick(MouseEvent event) {
         ButtonType resultConfirm = GetData.showConfirmationAlert("Confirmation message", "Are you sure you want to logout?");
@@ -71,6 +71,10 @@ public class HomeController {
                 e.printStackTrace();
             }
         }
+    }
+    void phonePage(MouseEvent event){
+        loadPage("phone-view");
+        setActiveButton(phoneButton);
     }
     private void loadPage(String page) {
         Parent root = null;
