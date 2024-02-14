@@ -55,12 +55,12 @@ public class HomeController {
         // if user confirm delete then delete
         if (resultConfirm.equals(ButtonType.OK)) {
             // Close the main app window
-            Stage mainAppStage = (Stage) fullBorderPane.getScene().getWindow();
-            mainAppStage.close();
+            Stage HomeAppStage = (Stage) fullBorderPane.getScene().getWindow();
+            HomeAppStage.close();
 
             // Open the login window
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demojavafxproject/login.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/smartphone/login.fxml"));
                 Parent root = loader.load();
 
                 Stage loginStage = new Stage();
@@ -84,8 +84,18 @@ public class HomeController {
     }
     @FXML
     void eventPage(MouseEvent event) {
-        loadPage("login");
-        setActiveButton(distributorButton);
+        loadPage("event-view");
+        setActiveButton(eventButton);
+    }
+    @FXML
+    void addOrderPage(MouseEvent event) {
+        loadPage("add-order-view");
+        setActiveButton(addOderButton);
+    }
+    @FXML
+    void iventoryPage(MouseEvent event) {
+        loadPage("iventory-view");
+        setActiveButton(iventoryButton);
     }
     private void loadPage(String page) {
         Parent root = null;
