@@ -88,4 +88,11 @@ public class HomeController {
         }
         fullBorderPane.setCenter(root);
     }
+    private void setActiveButton(Button button) {
+        if (activeButton != null) {
+            activeButton.setStyle("-fx-background-color: transparent;");
+        }
+        button.setStyle("-fx-background-color: #515151;");
+        activeButton = button;
+    }
 }
