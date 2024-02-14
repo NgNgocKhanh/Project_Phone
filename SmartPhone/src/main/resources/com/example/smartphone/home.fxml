@@ -30,7 +30,7 @@
                     </Label>
                 </Pane>
                 <Line endX="120.09288024902344" endY="1.9303560839034617E-4" startX="-100.0" stroke="WHITE" />
-                <Button fx:id="phone" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="119.0" styleClass="sideBar-button" stylesheets="@style.css" text="Phone">
+                <Button fx:id="phone" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#phoneButton" prefHeight="54.0" prefWidth="119.0" styleClass="sideBar-button" stylesheets="@style.css" text="Phone">
                     <graphic>
                         <ImageView fitHeight="25.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                             <Image url="@image/phone_white.png" />

@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -29,7 +31,11 @@ public class HomeController {
     }
     @FXML
     private Button logoutButton;
-
+    @FXML
+    public BorderPane fullBorderPane;
+    @FXML
+    private phoneButton;
+    @FXML
     private void loadPage(String page) {
         Parent root = null;
         try {
