@@ -34,7 +34,18 @@ public class HomeController {
     @FXML
     public BorderPane fullBorderPane;
     @FXML
-    private phoneButton;
+    private Button phoneButton;
+    @FXML
+    private Button distributorButton;
+    @FXML
+    private Button eventButton;
+    @FXML
+    private  Button addOderButton;
+    @FXML
+    private Button iventoryButton;
+    @FXML
+    private Button logOutButton;
+
     @FXML
     private void loadPage(String page) {
         Parent root = null;
