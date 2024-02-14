@@ -72,15 +72,26 @@ public class HomeController {
             }
         }
     }
+    @FXML
     void phonePage(MouseEvent event){
         loadPage("phone-view");
         setActiveButton(phoneButton);
+    }
+    @FXML
+    void distributorPage(MouseEvent event) {
+        loadPage("distributor-view");
+        setActiveButton(distributorButton);
+    }
+    @FXML
+    void eventPage(MouseEvent event) {
+        loadPage("login");
+        setActiveButton(distributorButton);
     }
     private void loadPage(String page) {
         Parent root = null;
         try {
             // Create a File object for the FXML file
-            File fxmlFile = new File("src/main/resources/com/example/demojavafxproject/" + page + ".fxml");
+            File fxmlFile = new File("src/main/resources/com/example/smartphone/" + page + ".fxml");
 
             // Get the absolute path of the FXML file
             String absolutePath = fxmlFile.getAbsolutePath();
