@@ -1,5 +1,6 @@
 package com.example.smartphone.controller;
 
+import com.example.smartphone.model.MyPageManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.Pagination;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
@@ -21,9 +23,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class HomeController {
-    private static String username; // Biến static để lưu trữ tên người dùng
+    @FXML
+    private Pagination pagination;
+    private MyPageManager pageManager;
 
-    // Phương thức để thiết lập tên người dùng
+
+    private static String username;
     public static void setUsername(String username) {
         HomeController.username = username;
     }
@@ -31,6 +36,8 @@ public class HomeController {
     private Label usernameLabel;
     public void initialize() {
         usernameLabel.setText(username);
+        pageManager = new MyPageManager(10); // 10 là số mục mỗi trang
+        pagination.setPageFactory(pageManager::createPage);
     }
     @FXML
     private Button logoutButton;
@@ -43,9 +50,9 @@ public class HomeController {
     @FXML
     private Button eventButton;
     @FXML
-    private  Button addOderButton;
+    private Button addOrderButton;
     @FXML
-    private Button iventoryButton;
+    private Button inventoryButton;
     @FXML
     private Button logOutButton;
     private Button activeButton;
@@ -90,12 +97,12 @@ public class HomeController {
     @FXML
     void addOrderPage(MouseEvent event) {
         loadPage("add-order-view");
-        setActiveButton(addOderButton);
+        setActiveButton(addOrderButton);
     }
     @FXML
-    void iventoryPage(MouseEvent event) {
+    void inventoryPage(MouseEvent event) {
         loadPage("iventory-view");
-        setActiveButton(iventoryButton);
+        setActiveButton(inventoryButton);
     }
     private void loadPage(String page) {
         Parent root = null;
