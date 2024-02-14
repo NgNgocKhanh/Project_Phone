@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -12,128 +13,128 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="fullBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="803.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smartphone.controller.HomeController">
-        <left>
-            <VBox prefHeight="800.0" prefWidth="220.0" styleClass="background-blue" stylesheets="@style.css" BorderPane.alignment="CENTER">
-                <Line endX="120.89286804199219" endY="0.09289475530385971" startX="-100.0" stroke="WHITE" />
-                <Pane prefHeight="71.0" prefWidth="212.0">
-                    <VBox.margin>
-                        <Insets bottom="5.0" top="5.0" />
-                    </VBox.margin>
-                    <ImageView fitHeight="40.0" fitWidth="51.0" layoutX="24.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@image/user.png" />
+    <left>
+        <VBox prefHeight="800.0" prefWidth="220.0" styleClass="background-blue" stylesheets="@style.css" BorderPane.alignment="CENTER">
+            <Line endX="120.89286804199219" endY="0.09289475530385971" startX="-100.0" stroke="WHITE" />
+            <Pane prefHeight="71.0" prefWidth="212.0">
+                <VBox.margin>
+                    <Insets bottom="5.0" top="5.0" />
+                </VBox.margin>
+                <ImageView fitHeight="40.0" fitWidth="51.0" layoutX="24.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@image/user.png" />
+                </ImageView>
+                <Label fx:id="usernameLabel" graphicTextGap="15.0" layoutX="69.0" layoutY="21.0" prefHeight="24.0" prefWidth="129.0" textFill="WHITE">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+            </Pane>
+            <Line endX="120.09288024902344" endY="1.9303560839034617E-4" startX="-100.0" stroke="WHITE" />
+            <Button fx:id="phoneButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#phonePage" prefHeight="54.0" prefWidth="119.0" styleClass="sideBar-button" stylesheets="@style.css" text="Phone">
+                <graphic>
+                    <ImageView fitHeight="25.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@image/phone_white.png" />
                     </ImageView>
-                    <Label fx:id="usernameLabel" graphicTextGap="15.0" layoutX="69.0" layoutY="21.0" prefHeight="24.0" prefWidth="129.0" textFill="WHITE">
-                        <font>
-                            <Font size="15.0" />
-                        </font>
-                    </Label>
-                </Pane>
-                <Line endX="120.09288024902344" endY="1.9303560839034617E-4" startX="-100.0" stroke="WHITE" />
-                <Button fx:id="phoneButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#phonePage" prefHeight="54.0" prefWidth="119.0" styleClass="sideBar-button" stylesheets="@style.css" text="Phone">
-                    <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                            <Image url="@image/phone_white.png" />
-                        </ImageView>
-                    </graphic>
-                    <padding>
-                        <Insets left="25.0" />
-                    </padding>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                    <font>
-                        <Font size="15.0" />
-                    </font>
-                </Button>
-                <Button fx:id="distributorButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#distributorPage" prefHeight="50.0" prefWidth="139.0" styleClass="sideBar-button" stylesheets="@style.css" text="Distributor">
-                    <font>
-                        <Font size="15.0" />
-                    </font>
-                    <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
-                            <Image url="@image/truck-gray.png" />
-                        </ImageView>
-                    </graphic>
-                    <padding>
-                        <Insets left="25.0" />
-                    </padding>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </Button>
-                <Button fx:id="eventButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#eventPage" prefHeight="50.0" prefWidth="110.0" styleClass="sideBar-button" stylesheets="@style.css" text="Event">
-                    <font>
-                        <Font size="15.0" />
-                    </font>
-                    <graphic>
-                        <ImageView fitHeight="34.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                            <Image url="@image/event-white.png" />
-                        </ImageView>
-                    </graphic>
-                    <padding>
-                        <Insets left="25.0" />
-                    </padding>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </Button>
-                <Button fx:id="#addOrderButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#addOrderPage" prefHeight="50.0" prefWidth="133.0" styleClass="sideBar-button" stylesheets="@style.css" text="Add Order">
-                    <font>
-                        <Font size="15.0" />
-                    </font>
-                    <graphic>
-                        <ImageView fitHeight="28.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                            <Image url="@image/add-cart-white.png" />
-                        </ImageView>
-                    </graphic>
-                    <padding>
-                        <Insets left="25.0" />
-                    </padding>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </Button>
-                <Button fx:id="#inventoryButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#inventoryPage" prefHeight="50.0" prefWidth="129.0" styleClass="sideBar-button" stylesheets="@style.css" text="Inventory">
-                    <font>
-                        <Font size="15.0" />
-                    </font>
-                    <graphic>
-                        <ImageView fitHeight="34.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                            <Image url="@image/warehouse-white.png" />
-                        </ImageView>
-                    </graphic>
-                    <padding>
-                        <Insets left="25.0" />
-                    </padding>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </Button>
-                <Line endX="121.69291687011719" endY="2.2137164705782197E-5" startX="-100.0" stroke="WHITE">
-                    <VBox.margin>
-                        <Insets />
-                    </VBox.margin>
-                </Line>
-                <Button fx:id="logoutButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#logoutClick" prefHeight="55.0" prefWidth="115.0" styleClass="sideBar-button" stylesheets="@style.css" text="Logout">
-                    <font>
-                        <Font size="15.0" />
-                    </font>
-                    <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                            <Image url="@image/sign-out-white.png" />
-                        </ImageView>
-                    </graphic>
-                    <padding>
-                        <Insets left="25.0" />
-                    </padding>
-                    <VBox.margin>
-                        <Insets />
-                    </VBox.margin>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </Button>
-            </VBox>
-        </left>
+                </graphic>
+                <padding>
+                    <Insets left="25.0" />
+                </padding>
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Button>
+            <Button fx:id="distributorButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#distributorPage" prefHeight="50.0" prefWidth="139.0" styleClass="sideBar-button" stylesheets="@style.css" text="Distributor">
+                <font>
+                    <Font size="15.0" />
+                </font>
+                <graphic>
+                    <ImageView fitHeight="24.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@image/truck-gray.png" />
+                    </ImageView>
+                </graphic>
+                <padding>
+                    <Insets left="25.0" />
+                </padding>
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+            </Button>
+            <Button fx:id="eventButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#eventPage" prefHeight="50.0" prefWidth="110.0" styleClass="sideBar-button" stylesheets="@style.css" text="Event">
+                <font>
+                    <Font size="15.0" />
+                </font>
+                <graphic>
+                    <ImageView fitHeight="34.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@image/event-white.png" />
+                    </ImageView>
+                </graphic>
+                <padding>
+                    <Insets left="25.0" />
+                </padding>
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+            </Button>
+            <Button fx:id="addOrderButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#addOrderPage" prefHeight="50.0" prefWidth="133.0" styleClass="sideBar-button" stylesheets="@style.css" text="Add Order">
+                <font>
+                    <Font size="15.0" />
+                </font>
+                <graphic>
+                    <ImageView fitHeight="28.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@image/add-cart-white.png" />
+                    </ImageView>
+                </graphic>
+                <padding>
+                    <Insets left="25.0" />
+                </padding>
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+            </Button>
+            <Button fx:id="inventoryButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#inventoryPage" prefHeight="50.0" prefWidth="129.0" styleClass="sideBar-button" stylesheets="@style.css" text="Inventory">
+                <font>
+                    <Font size="15.0" />
+                </font>
+                <graphic>
+                    <ImageView fitHeight="34.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@image/warehouse-white.png" />
+                    </ImageView>
+                </graphic>
+                <padding>
+                    <Insets left="25.0" />
+                </padding>
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+            </Button>
+            <Line endX="121.69291687011719" endY="2.2137164705782197E-5" startX="-100.0" stroke="WHITE">
+                <VBox.margin>
+                    <Insets />
+                </VBox.margin>
+            </Line>
+            <Button fx:id="logoutButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#logoutClick" prefHeight="55.0" prefWidth="115.0" styleClass="sideBar-button" stylesheets="@style.css" text="Logout">
+                <font>
+                    <Font size="15.0" />
+                </font>
+                <graphic>
+                    <ImageView fitHeight="24.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@image/sign-out-white.png" />
+                    </ImageView>
+                </graphic>
+                <padding>
+                    <Insets left="25.0" />
+                </padding>
+                <VBox.margin>
+                    <Insets />
+                </VBox.margin>
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+            </Button>
+        </VBox>
+    </left>
 
-    </BorderPane>
+</BorderPane>

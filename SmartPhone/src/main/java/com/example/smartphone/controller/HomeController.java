@@ -36,6 +36,7 @@ public class HomeController {
     private Label usernameLabel;
     public void initialize() {
         usernameLabel.setText(username);
+        pagination = new Pagination();
         pageManager = new MyPageManager(10); // 10 là số mục mỗi trang
         pagination.setPageFactory(pageManager::createPage);
     }
@@ -122,7 +123,7 @@ public class HomeController {
     }
     private void setActiveButton(Button button) {
         if (activeButton != null) {
-            activeButton.setStyle("-fx-background-color: transparent;");
+            activeButton.setStyle("-fx-background-color: white;");
         }
         button.setStyle("-fx-background-color: #515151;");
         activeButton = button;

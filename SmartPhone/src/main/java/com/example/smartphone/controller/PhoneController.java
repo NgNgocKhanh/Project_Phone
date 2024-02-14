@@ -12,6 +12,7 @@ public class PhoneController {
     @FXML
     private Label usernameLabel;
     public void initialize() {
+        pagination = new Pagination();
         pageManager = new MyPageManager(10); // 10 là số mục mỗi trang
         pagination.setPageFactory(pageManager::createPage);
     }
