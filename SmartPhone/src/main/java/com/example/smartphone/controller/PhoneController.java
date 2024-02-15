@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 
 public class PhoneController {
     @FXML
@@ -18,10 +19,19 @@ public class PhoneController {
     @FXML
     private Button backButton;
 
+    @FXML
+    private Pane currentPane;
+
+    @FXML
+    private Pane newPane;
+
     public void initialize() {
         ObservableList<String> items = getData(); // Lấy dữ liệu từ nguồn dữ liệu của bạn
-        pageManager = new MyPageManager(10, items);
+        pageManager = new MyPageManager(8, items);
         pagination.setPageFactory(pageManager::createPage);
+
+        // In trang đầu tiên
+        pagination.setCurrentPageIndex(0);
     }
 
     private ObservableList<String> getData() {
@@ -38,6 +48,10 @@ public class PhoneController {
         if (currentPageIndex < totalPages - 1) {
             pagination.setCurrentPageIndex(currentPageIndex + 1);
         }
+
+        // Thay đổi pane hiện tại sang newPane
+        currentPane.getChildren().clear();
+        currentPane.getChildren().add(newPane);
     }
 
     // Xử lý sự kiện khi người dùng nhấp vào nút Back
@@ -47,5 +61,9 @@ public class PhoneController {
         if (currentPageIndex > 0) {
             pagination.setCurrentPageIndex(currentPageIndex - 1);
         }
+
+        // Thay đổi pane hiện tại sang newPane
+        currentPane.getChildren().clear();
+        currentPane.getChildren().add(newPane);
     }
 }

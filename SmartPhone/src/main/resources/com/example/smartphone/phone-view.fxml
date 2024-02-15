@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="695.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="695.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smartphone.controller.PhoneController">
    <children>
       <Pane accessibleRole="BUTTON" layoutX="30.0" layoutY="17.0" prefHeight="281.0" prefWidth="202.0" style="-fx-background-color: White;">
          <children>
-            <ImageView accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: White;">
+            <ImageView accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@image_phone/iphone-15.png" />
                </image>
@@ -40,7 +40,7 @@
       </Pane>
       <Pane accessibleRole="BUTTON" layoutX="259.0" layoutY="17.0" prefHeight="281.0" prefWidth="202.0" style="-fx-background-color: White;">
          <children>
-            <ImageView accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: White;">
+            <ImageView accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@image_phone/iphone-15.png" />
                </image>
@@ -69,7 +69,7 @@
       </Pane>
       <Pane accessibleRole="BUTTON" layoutX="490.0" layoutY="17.0" prefHeight="281.0" prefWidth="202.0" style="-fx-background-color: White;">
          <children>
-            <ImageView accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: White;">
+            <ImageView accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@image_phone/iphone-15-plus.jpg" />
                </image>
@@ -98,7 +98,7 @@
       </Pane>
       <Pane accessibleRole="BUTTON" layoutX="721.0" layoutY="17.0" prefHeight="281.0" prefWidth="202.0" style="-fx-background-color: White;">
          <children>
-            <ImageView accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: White;">
+            <ImageView accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@image_phone/iphone-15-pink.jpg" />
                </image>
@@ -127,7 +127,7 @@
       </Pane>
       <Pane accessibleRole="BUTTON" layoutX="30.0" layoutY="332.0" prefHeight="281.0" prefWidth="202.0" style="-fx-background-color: White;">
          <children>
-            <ImageView accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: White;">
+            <ImageView accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@image_phone/samsung_galaxy_s24_5g.jpg" />
                </image>
@@ -156,7 +156,7 @@
       </Pane>
       <Pane accessibleRole="BUTTON" layoutX="259.0" layoutY="332.0" prefHeight="281.0" prefWidth="202.0" style="-fx-background-color: White;">
          <children>
-            <ImageView accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: White;">
+            <ImageView accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@image_phone/samsung_galaxy_s24_5g_noplus.jpg" />
                </image>
@@ -185,7 +185,7 @@
       </Pane>
       <Pane accessibleRole="BUTTON" layoutX="490.0" layoutY="332.0" prefHeight="281.0" prefWidth="202.0" style="-fx-background-color: White;">
          <children>
-            <ImageView accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: White;">
+            <ImageView accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@image_phone/oppo_reno11_5g.jpg" />
                </image>
@@ -214,7 +214,7 @@
       </Pane>
       <Pane accessibleRole="BUTTON" layoutX="721.0" layoutY="332.0" prefHeight="281.0" prefWidth="202.0" style="-fx-background-color: White;">
          <children>
-            <ImageView accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: White;">
+            <ImageView accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@image_phone/xiaomi_redminote13.jpg" />
                </image>
@@ -241,16 +241,16 @@
             </Button>
          </children>
       </Pane>
-      <Button fx:id="nextButton" layoutX="508.0" layoutY="647.0" mnemonicParsing="false" style="-fx-background-color: #ddd;">
+      <Button fx:id="#nextButton" layoutX="508.0" layoutY="647.0" mnemonicParsing="false" onAction="#handleNextButton">
          <graphic>
-            <ImageView fx:id="" fitHeight="25.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="25.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@image_icons/next_page.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="backButton" layoutX="461.0" layoutY="648.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" style="-fx-background-color: #ddd;">
+      <Button fx:id="backButton" layoutX="461.0" layoutY="648.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="25.0" prefWidth="28.0">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
