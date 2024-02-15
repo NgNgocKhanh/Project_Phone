@@ -123,7 +123,7 @@ public class HomeController {
     }
     private void setActiveButton(Button button) {
         if (activeButton != null) {
-            activeButton.setStyle("-fx-background-color: transparent;");
+            activeButton.setStyle("-fx-background-color:  transparent;");
         }
         button.setStyle("-fx-background-color: #515151;");
         activeButton = button;
