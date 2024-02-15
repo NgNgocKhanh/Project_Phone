@@ -25,7 +25,6 @@ import java.util.ResourceBundle;
 public class HomeController {
     @FXML
     private Pagination pagination;
-    private MyPageManager pageManager;
 
 
     private static String username;
@@ -36,9 +35,6 @@ public class HomeController {
     private Label usernameLabel;
     public void initialize() {
         usernameLabel.setText(username);
-        pagination = new Pagination();
-        pageManager = new MyPageManager(10); // 10 là số mục mỗi trang
-        pagination.setPageFactory(pageManager::createPage);
     }
     @FXML
     private Button logoutButton;
@@ -54,8 +50,6 @@ public class HomeController {
     private Button addOrderButton;
     @FXML
     private Button inventoryButton;
-    @FXML
-    private Button logOutButton;
     private Button activeButton;
     @FXML
     void logoutClick(MouseEvent event) {
@@ -102,7 +96,7 @@ public class HomeController {
     }
     @FXML
     void inventoryPage(MouseEvent event) {
-        loadPage("iventory-view");
+        loadPage("inventory-view");
         setActiveButton(inventoryButton);
     }
     private void loadPage(String page) {
