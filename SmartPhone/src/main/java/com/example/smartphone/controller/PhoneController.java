@@ -1,25 +1,22 @@
 package com.example.smartphone.controller;
 
-import com.example.smartphone.model.Phone;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.Button;
 
 public class PhoneController {
-    @FXML
-    private ImageView phoneImg;
 
     @FXML
-    private Label phoneName;
+    private Button priceButton;
 
-    @FXML
-    private Label price;
-    public void setData(Phone phone){
-        Image image =new Image(getClass().getResourceAsStream(phone.getImg()));
-        phoneImg.setImage(image);
-        phoneName.setText(phone.getPhoneName());
-        price.setText(phone.getPrice());
+    // Phương thức này được gọi khi controller được khởi tạo
+    public void initialize() {
+        // Thêm sự kiện cho nút
+        priceButton.setOnAction(event -> handleButtonClick());
+    }
 
+    // Xử lý sự kiện khi nút được nhấn
+    private void handleButtonClick() {
+        // In ra "trang phone"
+        System.out.println("Trang phone");
     }
 }
