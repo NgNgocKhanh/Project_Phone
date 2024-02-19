@@ -1,64 +1,47 @@
 package com.example.smartphone.controller;
 
 import com.example.smartphone.model.Order;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class OrderController {
 
     @FXML
-    private Label idLabel;
+    private TableView<Order> productTableView;
 
     @FXML
-    private Label productNameLabel;
+    private TableColumn<Order, Integer> phoneIdModelView;
 
     @FXML
-    private Label priceLabel;
+    private TableColumn<Order, String> phoneProductNameView;
 
     @FXML
-    private Label dateLabel;
+    private TableColumn<Order, Double> phonePriceModelView;
 
     @FXML
-    private Label statusLabel;
+    private TableColumn<Order, Integer> phoneStatusModelView;
 
     @FXML
-    private Label successLabel;
-
-    @FXML
-    private Button completeButton;
-
-    private Order order;
+    private TableColumn<Order, String> phoneDateModelView;
 
     public void initialize() {
-        if (order != null) {
-            // Cập nhật thông tin của đơn hàng
-            idLabel.setText("ID: " + order.getOrder_id());
-            productNameLabel.setText("Tên sản phẩm: " + order.getProductName());
-            priceLabel.setText("Giá tiền: " + order.getPrice() + "Đ");
-            dateLabel.setText("Ngày order: " + formatDate(order.getDate_order()));
-            statusLabel.setText("Trạng thái: " + order.getStatus());
-        }
-    }
-
-    private String formatDate(LocalDateTime date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-        return date.format(formatter);
-    }
-
-    @FXML
-    private void completeOrder() {
-        // Thực hiện các hành động khi hoàn thành đơn hàng
-
-        // Hiển thị thông báo "Success"
-        successLabel.setVisible(true);
-        // Ẩn nút "Hoàn thành"
-        completeButton.setVisible(false);
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
+        // Thiết lập cột của TableView
+        phoneIdModelView.setCellValueFactory(new PropertyValueFactory<>("order_id"));
+        phoneProductNameView.setCellValueFactory(new PropertyValueFactory<>("productName"));
+        phonePriceModelView.setCellValueFactory(new PropertyValueFactory<>("price"));
+        phoneStatusModelView.setCellValueFactory(new PropertyValueFactory<>("status"));
+        phoneDateModelView.setCellValueFactory(new PropertyValueFactory<>("date_order"));
 }
+    public void updateOrderTableView(Order order) {
+        ObservableList<Order> items = productTableView.getItems();
+        items.add(order);
+        productTableView.setItems(items);
+    }}
+

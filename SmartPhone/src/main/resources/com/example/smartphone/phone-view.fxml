@@ -32,7 +32,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Button fx:id="priceButton" layoutX="22.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#handleProductClick" prefHeight="16.0" prefWidth="168.0" style="-fx-background-color: White;" text="31.990.000Đ" textFill="RED">
+            <Button layoutX="22.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#handleTextClick" prefHeight="16.0" prefWidth="168.0" style="-fx-background-color: White;" text="31.990.000Đ" textFill="RED">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -41,7 +41,7 @@
       </Pane>
       <Pane accessibleRole="BUTTON" layoutX="259.0" layoutY="17.0" prefHeight="281.0" prefWidth="202.0" style="-fx-background-color: White;">
          <children>
-            <ImageView fx:id="iphone15pro" accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" onMouseClicked="#handleProductClick" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="iphone15pro" accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@image_phone/iphone-15.png" />
                </image>
@@ -61,7 +61,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Button layoutX="22.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#handleProductClick" prefHeight="16.0" prefWidth="168.0" style="-fx-background-color: White;" text="27.990.000Đ" textFill="RED">
+            <Button layoutX="22.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#handleTextClick" prefHeight="16.0" prefWidth="168.0" style="-fx-background-color: White;" text="27.990.000Đ" textFill="RED">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -90,7 +90,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Button layoutX="22.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#handleProductClick" prefHeight="16.0" prefWidth="168.0" style="-fx-background-color: White;" text="24.990.000Đ" textFill="RED">
+            <Button layoutX="22.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#handleTextClick" prefHeight="16.0" prefWidth="168.0" style="-fx-background-color: White;" text="24.990.000Đ" textFill="RED">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -119,7 +119,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Button layoutX="22.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#handleProductClick" prefHeight="16.0" prefWidth="168.0" style="-fx-background-color: White;" text="21.990.000Đ" textFill="RED">
+            <Button layoutX="22.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#handleTextClick" prefHeight="16.0" prefWidth="168.0" style="-fx-background-color: White;" text="21.990.000Đ" textFill="RED">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -148,7 +148,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Button layoutX="22.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#handleProductClick" prefHeight="16.0" prefWidth="168.0" style="-fx-background-color: White;" text="22.490.000Đ" textFill="RED">
+            <Button layoutX="22.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#handleTextClick" prefHeight="16.0" prefWidth="168.0" style="-fx-background-color: White;" text="22.490.000Đ" textFill="RED">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -177,7 +177,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Button layoutX="22.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#handleProductClick" prefHeight="16.0" prefWidth="168.0" style="-fx-background-color: White;" text="28.090.000Đ" textFill="RED">
+            <Button layoutX="22.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#handleTextClick" prefHeight="16.0" prefWidth="168.0" style="-fx-background-color: White;" text="28.090.000Đ" textFill="RED">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -206,7 +206,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Button layoutX="22.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#handleProductClick" prefHeight="16.0" prefWidth="168.0" style="-fx-background-color: White;" text="10.990.000Đ" textFill="RED">
+            <Button layoutX="22.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#handleTextClick" prefHeight="16.0" prefWidth="168.0" style="-fx-background-color: White;" text="10.990.000Đ" textFill="RED">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -235,7 +235,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Button layoutX="22.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#handleProductClick" prefHeight="16.0" prefWidth="168.0" style="-fx-background-color: White;" text="4.990.000Đ" textFill="RED">
+            <Button layoutX="22.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#handleTextClick" prefHeight="16.0" prefWidth="168.0" style="-fx-background-color: White;" text="4.990.000Đ" textFill="RED">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

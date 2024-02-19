@@ -2,22 +2,31 @@ package com.example.smartphone.model;
 
 import java.time.LocalDateTime;
 
-public class Order {
+public class Order { private int user_id;
     private int order_id;
-    private int user_id;
     private int status_id;
     private LocalDateTime date_order;
     private String productName;
-    private int status;
     private double price;
 
-    public Order(int order_id, int user_id, int status_id, LocalDateTime date_order, String productName, int status, double price) {
+    public int getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(int order_id) {
         this.order_id = order_id;
+    }
+
+    public Order(int order_id) {
+        this.order_id = order_id;
+    }
+
+    public Order(int user_id, int status_id, LocalDateTime date_order, String productName, int status, double price) {
         this.user_id = user_id;
         this.status_id = status_id;
         this.date_order = date_order;
         this.productName = productName;
-        this.status = status;
+        this.status_id = status;
         this.price = price;
     }
 
@@ -29,25 +38,9 @@ public class Order {
         this.price = price;
     }
 
-    public Order(int order_id, int user_id, int status_id, LocalDateTime date_order, String productName, int status) {
-        this.order_id = order_id;
-        this.user_id = user_id;
-        this.status_id = status_id;
-        this.date_order = date_order;
-        this.productName = productName;
-        this.status = status;
-    }
-
     public Order() {
     }
 
-    public int getOrder_id() {
-        return order_id;
-    }
-
-    public void setOrder_id(int order_id) {
-        this.order_id = order_id;
-    }
 
     public int getUser_id() {
         return user_id;
@@ -81,11 +74,4 @@ public class Order {
         this.productName = productName;
     }
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
 }
