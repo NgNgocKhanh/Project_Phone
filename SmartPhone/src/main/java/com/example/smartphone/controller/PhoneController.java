@@ -68,7 +68,7 @@ public class PhoneController {
         double price = Double.parseDouble(priceStr);
 
         // Tạo một đối tượng Order mới và thiết lập thông tin sản phẩm
-        Order order = new Order(1, 1, LocalDateTime.now(), "Product 1", 1, 100.0);
+        Order order = new Order();
         order.setDate_order(LocalDate.now().atStartOfDay());
         order.setProductName(productName);
         order.setPrice(price);
