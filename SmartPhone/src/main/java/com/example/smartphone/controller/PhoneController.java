@@ -1,6 +1,7 @@
 package com.example.smartphone.controller;
 
 import com.example.smartphone.model.Order;
+import com.example.smartphone.util.UserUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -114,4 +115,14 @@ public class PhoneController {
 
         return userId;
     }
+
+    public static void main(String[] args) {
+        try {
+            String username = HomeController.
+            System.out.println("Username: " + username);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

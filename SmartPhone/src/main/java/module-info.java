@@ -11,4 +11,6 @@ module com.example.smartphone {
     opens com.example.smartphone.controller to javafx.fxml;
     exports com.example.smartphone.view;
     opens com.example.smartphone.view to javafx.fxml;
+    exports com.example.smartphone.util;
+    opens com.example.smartphone.util to javafx.fxml;
 }

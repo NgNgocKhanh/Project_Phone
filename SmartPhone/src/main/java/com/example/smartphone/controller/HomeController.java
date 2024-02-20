@@ -21,6 +21,11 @@ public class HomeController {
 
 
     private static String username;
+
+    public String getUsername() {
+        return usernameLabel.getText();
+    }
+
     public static void setUsername(String username) {
         HomeController.username = username;
     }
