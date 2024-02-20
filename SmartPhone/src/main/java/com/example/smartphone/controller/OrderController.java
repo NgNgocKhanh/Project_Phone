@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -35,10 +36,11 @@ public class OrderController {
 
     public void initialize() {
         // Set up columns
-        orderIdColumn.setCellValueFactory(data -> data.getValue().setOrder_id();
-        priceColumn.setCellValueFactory(data -> data.getValue().priceProperty().asObject());
-        statusColumn.setCellValueFactory(data -> data.getValue().status_idProperty().asObject());
-        dateColumn.setCellValueFactory(data -> data.getValue().date_orderProperty().asString());
+        orderIdColumn.setCellValueFactory(new PropertyValueFactory<>("order_id"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status_id"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date_order"));
+
 
         // Set column formatting
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -75,7 +77,9 @@ public class OrderController {
                 double price = resultSet.getDouble("price");
                 int statusId = resultSet.getInt("status_id");
 
-                orders.add(new Order(orderId, dateOrder, productName, price, statusId));
+                Order order = new Order(orderId, dateOrder, productName, statusId, Double.valueOf(price));
+
+
             }
         } catch (SQLException e) {
             e.printStackTrace();

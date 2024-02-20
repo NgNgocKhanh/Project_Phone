@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class PhoneController {
 
@@ -36,10 +37,14 @@ public class PhoneController {
                 Connection connection = DriverManager.getConnection(url, dbUsername, dbPassword);
                 PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         ) {
-            statement.setInt(1, 1); // Mặc định status_id là 1
-            statement.setString(2, order.getProductName());
-            statement.setDouble(3, order.getPrice());
-            statement.setObject(4, order.getDate_order());
+            LocalDateTime dateTime = LocalDateTime.now();
+            String formattedDateTime = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            statement.setString(1, formattedDateTime);
+
+            statement.setInt(2, 1); // Mặc định status_id là 1
+            statement.setString(3, order.getProductName());
+            statement.setDouble(4, order.getPrice());
+
             // Thực thi PreparedStatement để chèn order vào cơ sở dữ liệu
             int affectedRows = statement.executeUpdate();
 
