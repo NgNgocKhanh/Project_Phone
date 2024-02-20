@@ -1,8 +1,6 @@
 package com.example.smartphone.controller;
 
 import com.example.smartphone.model.Order;
-import com.example.smartphone.util.UserUtil;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,7 +8,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.util.Random;
+import java.time.LocalDateTime;
 
 public class PhoneController {
 
@@ -31,29 +29,21 @@ public class PhoneController {
         String url = "jdbc:mysql://localhost:3306/e_project2";
         String dbUsername = "root";
         String dbPassword = "";
-
-        // Get user_id from username
-        int userId = getUserIdFromUsername(username);
-
         // SQL query to insert the order into the database
-        String sql = "INSERT INTO orderr (user_id, date_order, status_id, ProductName, price) VALUES (?, ?, ?, ?, ?)";
-
+        String sql = "INSERT INTO orderr (date, status_id, ProductName, price) " +
+                "VALUES (?, ?, ?, ?)";
         try (
-                // Create a connection to the database
                 Connection connection = DriverManager.getConnection(url, dbUsername, dbPassword);
-                // Create a PreparedStatement object for the SQL query
                 PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         ) {
-            // Set values for the PreparedStatement parameters
-            statement.setInt(1, userId);
-            statement.setObject(2, order.getDate_order());
-            statement.setInt(3, 1); // Mặc định status_id là 1
-            statement.setString(4, order.getProductName());
-            statement.setDouble(5, order.getPrice());
-
-            // Execute the PreparedStatement to insert the order into the database
+            statement.setInt(1, 1); // Mặc định status_id là 1
+            statement.setString(2, order.getProductName());
+            statement.setDouble(3, order.getPrice());
+            statement.setObject(4, order.getDate_order());
+            // Thực thi PreparedStatement để chèn order vào cơ sở dữ liệu
             int affectedRows = statement.executeUpdate();
 
+            // Xử lý kết quả
             if (affectedRows == 0) {
                 throw new SQLException("Creating order failed, no rows affected.");
             }
@@ -78,7 +68,7 @@ public class PhoneController {
         double price = Double.parseDouble(priceStr);
 
         // Tạo một đối tượng Order mới và thiết lập thông tin sản phẩm
-        Order order = new Order();
+        Order order = new Order(1, 1, LocalDateTime.now(), "Product 1", 1, 100.0);
         order.setDate_order(LocalDate.now().atStartOfDay());
         order.setProductName(productName);
         order.setPrice(price);
@@ -91,38 +81,5 @@ public class PhoneController {
         insertOrderIntoDatabase(order, username);
     }
 
-    private int getUserIdFromUsername(String username) {
-        int userId = -1; // Giá trị mặc định nếu không tìm thấy user
-
-        String url = "jdbc:mysql://localhost:3306/e_project2";
-        String dbUsername = "root";
-        String dbPassword = "";
-        String sql = "SELECT id FROM user WHERE username = ?";
-
-        try (
-                Connection connection = DriverManager.getConnection(url, dbUsername, dbPassword);
-                PreparedStatement statement = connection.prepareStatement(sql);
-        ) {
-            statement.setString(1, username);
-            ResultSet resultSet = statement.executeQuery();
-
-            if (resultSet.next()) {
-                userId = resultSet.getInt("id");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return userId;
-    }
-
-    public static void main(String[] args) {
-        try {
-            String username = HomeController.
-            System.out.println("Username: " + username);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
 }
