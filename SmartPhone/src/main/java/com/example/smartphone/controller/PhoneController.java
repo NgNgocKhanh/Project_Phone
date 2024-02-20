@@ -61,25 +61,29 @@ public class PhoneController {
     }
     @FXML
     private void handleTextClick(MouseEvent event) {
-        // Trích xuất thông tin sản phẩm từ các label
-        String productName = ((Button) event.getSource()).getText(); // Lấy text của nút được click
-        String priceStr = ((Button) event.getSource()).getText().replace("Đ", "").replace(",", "");
+        // Trích xuất thông tin sản phẩm từ nút được nhấp
+        Button clickedButton = (Button) event.getSource();
+        String productName = clickedButton.getText(); // Lấy nội dung của button được nhấp
+
+        // Trích xuất giá sản phẩm từ nội dung của button
+        String priceStr = productName.replace("Đ", "").replace(",", "");
         priceStr = priceStr.replace(".", ""); // Loại bỏ các dấu chấm thừa
         double price = Double.parseDouble(priceStr);
 
         // Tạo một đối tượng Order mới và thiết lập thông tin sản phẩm
         Order order = new Order();
-        order.setDate_order(LocalDate.now().atStartOfDay());
+        order.setDate_order(LocalDateTime.now());
         order.setProductName(productName);
         order.setPrice(price);
         order.setStatus_id(1);
 
         // Lấy tên người dùng từ đâu đó, chẳng hạn từ một trường nhập liệu
-        String username = System.getProperty("user.name");; // Thay bằng tên người dùng thực tế
+        String username = System.getProperty("user.name"); // Thay bằng tên người dùng thực tế
 
         // Thêm đối tượng Order vào cơ sở dữ liệu
         insertOrderIntoDatabase(order, username);
     }
+
 
 
 }

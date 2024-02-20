@@ -35,7 +35,7 @@ public class OrderController {
 
     public void initialize() {
         // Set up columns
-        orderIdColumn.setCellValueFactory(data -> data.getValue().order_idProperty().asObject());
+        orderIdColumn.setCellValueFactory(data -> data.getValue().setOrder_id();
         priceColumn.setCellValueFactory(data -> data.getValue().priceProperty().asObject());
         statusColumn.setCellValueFactory(data -> data.getValue().status_idProperty().asObject());
         dateColumn.setCellValueFactory(data -> data.getValue().date_orderProperty().asString());
