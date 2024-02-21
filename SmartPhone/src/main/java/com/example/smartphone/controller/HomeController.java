@@ -48,7 +48,18 @@ public class HomeController {
     private Button addOrderButton;
     @FXML
     private Button inventoryButton;
+    @FXML
     private Button activeButton;
+    @FXML
+    private Button dashboardButton;
+    @FXML
+    private Button customerButton;
+    @FXML
+    private Button employeeButton;
+    @FXML
+    private Button orderViewButton;
+    @FXML
+    private Button orderHistoryButton;
     @FXML
     void logoutClick(MouseEvent event) {
         ButtonType resultConfirm = GetData.showConfirmationAlert("Confirmation message", "Are you sure you want to logout?");
