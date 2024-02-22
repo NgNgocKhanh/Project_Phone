@@ -21,6 +21,11 @@ public class HomeController {
 
 
     private static String username;
+
+    public String getUsername() {
+        return usernameLabel.getText();
+    }
+
     public static void setUsername(String username) {
         HomeController.username = username;
     }
@@ -43,7 +48,18 @@ public class HomeController {
     private Button addOrderButton;
     @FXML
     private Button inventoryButton;
+    @FXML
     private Button activeButton;
+    @FXML
+    private Button dashboardButton;
+    @FXML
+    private Button customerButton;
+    @FXML
+    private Button employeeButton;
+    @FXML
+    private Button orderViewButton;
+    @FXML
+    private Button orderHistoryButton;
     @FXML
     void logoutClick(MouseEvent event) {
         ButtonType resultConfirm = GetData.showConfirmationAlert("Confirmation message", "Are you sure you want to logout?");
@@ -68,9 +84,24 @@ public class HomeController {
         }
     }
     @FXML
+    void dashboardPage(MouseEvent event){
+        loadPage("dashboard-view");
+        setActiveButton(dashboardButton);
+    }
+    @FXML
     void phonePage(MouseEvent event){
         loadPage("phone-view");
         setActiveButton(phoneButton);
+    }
+    @FXML
+    void customerPage(MouseEvent event){
+        loadPage("customer-view");
+        setActiveButton(customerButton);
+    }
+    @FXML
+    void employeePage(MouseEvent event){
+        loadPage("employee-view");
+        setActiveButton(employeeButton);
     }
     @FXML
     void distributorPage(MouseEvent event) {
@@ -81,6 +112,16 @@ public class HomeController {
     void eventPage(MouseEvent event) {
         loadPage("event-view");
         setActiveButton(eventButton);
+    }
+    @FXML
+    void orderViewPage(MouseEvent event){
+        loadPage("order-view");
+        setActiveButton(orderViewButton);
+    }
+    @FXML
+    void orderHistoryPage(MouseEvent event){
+        loadPage("order-history-view");
+        setActiveButton(orderHistoryButton);
     }
     @FXML
     void addOrderPage(MouseEvent event) {
@@ -115,4 +156,5 @@ public class HomeController {
         button.setStyle("-fx-background-color: #515151;");
         activeButton = button;
     }
+
 }
