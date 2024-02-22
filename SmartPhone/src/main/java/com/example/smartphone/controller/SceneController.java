@@ -59,7 +59,7 @@ public class SceneController {
         PreparedStatement preparedStatement = null;
         ResultSet rs = null;
         try {
-            preparedStatement = con.prepareStatement("SELECT * FROM user WHERE email = ? AND username = ? AND password = ?");
+            preparedStatement = con.prepareStatement("SELECT * FROM admin WHERE email = ? AND username = ? AND password = ?");
             preparedStatement.setString(1, tfEmailLogin.getText());
             preparedStatement.setString(2, tfUsernameLogin.getText());
             preparedStatement.setString(3, tfPasswordLogin.getText());
