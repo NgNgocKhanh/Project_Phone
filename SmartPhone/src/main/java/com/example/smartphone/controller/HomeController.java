@@ -84,9 +84,24 @@ public class HomeController {
         }
     }
     @FXML
+    void dashboardPage(MouseEvent event){
+        loadPage("dashboard-view");
+        setActiveButton(dashboardButton);
+    }
+    @FXML
     void phonePage(MouseEvent event){
         loadPage("phone-view");
         setActiveButton(phoneButton);
+    }
+    @FXML
+    void customerPage(MouseEvent event){
+        loadPage("customer-view");
+        setActiveButton(customerButton);
+    }
+    @FXML
+    void employeePage(MouseEvent event){
+        loadPage("employee-view");
+        setActiveButton(employeeButton);
     }
     @FXML
     void distributorPage(MouseEvent event) {
@@ -97,6 +112,16 @@ public class HomeController {
     void eventPage(MouseEvent event) {
         loadPage("event-view");
         setActiveButton(eventButton);
+    }
+    @FXML
+    void orderViewPage(MouseEvent event){
+        loadPage("order-view");
+        setActiveButton(orderViewButton);
+    }
+    @FXML
+    void orderHistoryPage(MouseEvent event){
+        loadPage("order-history-view");
+        setActiveButton(orderHistoryButton);
     }
     @FXML
     void addOrderPage(MouseEvent event) {

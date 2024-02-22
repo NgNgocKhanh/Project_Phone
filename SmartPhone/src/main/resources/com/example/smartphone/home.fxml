@@ -187,6 +187,24 @@
                     <Cursor fx:constant="HAND" />
                 </cursor>
             </Button>
+         <Button fx:id="distributorButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#distributorPage" prefHeight="50.0" prefWidth="178.0" styleClass="sideBar-button" stylesheets="@style.css" text="Distributor">
+            <font>
+               <Font size="15.0" />
+            </font>
+            <graphic>
+               <ImageView fitHeight="24.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@image_icons/truck-gray.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+            <padding>
+               <Insets left="25.0" />
+            </padding>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </Button>
             <Line endX="121.69291687011719" endY="2.2137164705782197E-5" startX="-100.0" stroke="WHITE">
                 <VBox.margin>
                     <Insets />
