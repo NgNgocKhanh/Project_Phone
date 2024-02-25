@@ -1,63 +1,88 @@
 package com.example.smartphone.model;
+import lombok.*;
+
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.scene.control.CheckBox;
 
 import java.time.LocalDateTime;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+
 public class Order {
-    private int order_id;
-    private LocalDateTime date_order;
-    private String productName;
-    private int status_id;
-    private  Double price;
+    private int orderId;
+    private int customerId;
+    private String customerName;
+    private String orderDate;
+    private double totalAmount;
+    private int statusId;
+    private String orderStatus;
+    private int employeeId;
+    private String employeeName;
+    private int carId;
+    private String make;
+    private String model;
+    private double carPrice;
+    private double carTax;
+    private int orderQuantity;
+    private int paymentId;
+    private String paymentType;
+    private int paymentStatusId;
+    private String paymentStatus;
 
-    public Order() {
+    private CheckBox selectCheckBox;
+
+
+    public Order(int orderId, String orderDate, double totalAmount, String orderStatus) {
+        this.orderId = orderId;
+        this.orderDate = orderDate;
+        this.totalAmount = totalAmount;
+        this.orderStatus = orderStatus;
     }
 
-    public Order(int order_id, LocalDateTime date_order, String productName, int status_id, Double price) {
-        this.order_id = order_id;
-        this.date_order = date_order;
-        this.productName = productName;
-        this.status_id = status_id;
-        this.price = price;
+    public Order(int orderId, int customerId, String customerName, String orderDate, double totalAmount, int statusId, String orderStatus, int employeeId, String employeeName, int carId, String make, String model, double carPrice, double carTax, int orderQuantity, int paymentId, String paymentType, int paymentStatusId, String paymentStatus) {
+        this.orderId = orderId;
+        this.customerId = customerId;
+        this.customerName = customerName;
+        this.orderDate = orderDate;
+        this.totalAmount = totalAmount;
+        this.statusId = statusId;
+        this.orderStatus = orderStatus;
+        this.employeeId = employeeId;
+        this.employeeName = employeeName;
+        this.carId = carId;
+        this.make = make;
+        this.model = model;
+        this.carPrice = carPrice;
+        this.carTax = carTax;
+        this.orderQuantity = orderQuantity;
+        this.paymentId = paymentId;
+        this.paymentType = paymentType;
+        this.paymentStatusId = paymentStatusId;
+        this.paymentStatus = paymentStatus;
     }
 
-    public int getOrder_id() {
-        return order_id;
+    private final BooleanProperty selected = new SimpleBooleanProperty(false);
+
+    public Order(int orderId, LocalDateTime dateOrder, String productName, int statusId, Double valueOf) {
+
     }
 
-    public void setOrder_id(int order_id) {
-        this.order_id = order_id;
+    public boolean isSelected() {
+        return selected.get();
     }
 
-    public LocalDateTime getDate_order() {
-        return date_order;
+    public BooleanProperty selectedProperty() {
+        return selected;
     }
 
-    public void setDate_order(LocalDateTime date_order) {
-        this.date_order = date_order;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public int getStatus_id() {
-        return status_id;
-    }
-
-    public void setStatus_id(int status_id) {
-        this.status_id = status_id;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setSelected(boolean selected) {
+        this.selected.set(selected);
     }
 }
 
