@@ -2,6 +2,7 @@ module com.example.smartphone {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires lombok;
 
 
     opens com.example.smartphone to javafx.fxml;
