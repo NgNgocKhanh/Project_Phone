@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -75,7 +74,7 @@ public class PhoneController {
         double price = Double.parseDouble(priceStr);
 
         // Tạo một đối tượng Order mới và thiết lập thông tin sản phẩm
-        Order order = new Order();
+        Order order = new Order(orderId, dateOrder, productName, statusId, Double.valueOf(price));
         order.setDate_order(LocalDateTime.now());
         order.setProductName(ProductName);
         order.setPrice(price);

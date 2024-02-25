@@ -8,16 +8,13 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-public class Event {
+
+public class Distributor {
     private int id;
     private String name;
-    private double discount;
-    private String start_date;
-    private String start_time;
-
-    private String end_date;
-    private String end_time;
+    private String phone;
+    private String email;
     private String address;
-
+    private String birthday;
 
 }
