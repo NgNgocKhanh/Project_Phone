@@ -1,5 +1,7 @@
 package com.example.smartphone.controller;
 
+import com.example.smartphone.controller.GetData;
+import com.example.smartphone.controller.LoginController;
 import dao.JDBCConnect;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,8 +22,6 @@ import java.util.Map;
 
 public class SceneController {
     @FXML
-    public static int roleIdReset;
-    @FXML
     private TextField tfUsernameLogin;
     @FXML
     private PasswordField tfPasswordLogin;
@@ -31,16 +31,7 @@ public class SceneController {
     private Label loginMessageLabel;
     @FXML
     private ComboBox<String> roleComboBox;
-    @FXML
-    public void initialize() {
-        btnCon.setOnAction(event -> {
-            try {
-                login(event);
-            } catch (SQLException | IOException e) {
-                e.printStackTrace();
-            }
-        });
-    }
+
     private Map<Integer, String> getRoleMap() {
         Connection con = JDBCConnect.getJDBCConnection();
         PreparedStatement preparedStatement = null;
@@ -62,10 +53,25 @@ public class SceneController {
         }
         return roleMap;
     }
+
     private void addRoleToComboBox() {
         Map<Integer, String> roleMap = getRoleMap();
         roleComboBox.getItems().addAll(roleMap.values());
     }
+
+    @FXML
+    public void initialize() {
+        addRoleToComboBox();
+
+        btnCon.setOnAction(event -> {
+            try {
+                login(event);
+            } catch (SQLException | IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
     @FXML
     public void SwitchToRegister(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/smartphone/register.fxml"));
@@ -94,32 +100,32 @@ public class SceneController {
 
                 preparedStatement.setInt(2, selectedId);
 
-
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
-                    GetData.empId = resultSet.getInt("employeeId");
+                    int empId = resultSet.getInt("employeeId");
 
                     String storedHashedPassword = getHashedPassword(tfUsernameLogin.getText(), selectedId);
                     String enteredPassword = tfPasswordLogin.getText();
 
                     if (storedHashedPassword != null && compareHashes(enteredPassword, storedHashedPassword)) {
-                        GetData.username = usernameTextField.getText();
+                        GetData.username = tfUsernameLogin.getText();
                         GetData.role = roleComboBox.getValue();
-                        GetData.showSuccessAlert("Login", "Login Successfully");
-                        loginButton.getScene().getWindow().hide();
+                        GetData.showConfirmationAlert("Login", "Login Successfully");
+                        btnCon.getScene().getWindow().hide();
 
-                        // Open the main app window
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demojavafxproject/home.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/smartphone/home.fxml"));
                         Parent root = loader.load();
-                        LoginController loginControllerr = loader.getController();
-                        loginController.initialize();  // Initialize the main app controller
+                        HomeController homeController = loader.getController();
 
-                        Stage logincontroller = new Stage();
-                        logincontroller.setScene(new Scene(root));
-                        logincontroller.initStyle(StageStyle.TRANSPARENT);
-                        logincontroller.show();
+                        Stage homeStage = new Stage();
+                        homeStage.setScene(new Scene(root));
+                        homeStage.initStyle(StageStyle.TRANSPARENT);
+                        homeStage.show();
+
+// Đóng cửa sổ đăng nhập
+                        ((Node)(event.getSource())).getScene().getWindow().hide();
                     } else {
-                        GetData.showConfirmationAlert("Login failed!", "Username or password is wrong");
+                        GetData.showErrorAlert("Login failed!", "Username or password is wrong");
                     }
                 }
             } catch (Exception e) {
@@ -129,8 +135,9 @@ public class SceneController {
     }
 
     private String getHashedPassword(String username, int roleId) throws SQLException {
+        Connection con = JDBCConnect.getJDBCConnection();
         String sql = "SELECT password FROM employee WHERE username = ? AND roleId = ?";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        PreparedStatement preparedStatement = con.prepareStatement(sql);
         preparedStatement.setString(1, username);
         preparedStatement.setInt(2, roleId);
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -142,7 +149,8 @@ public class SceneController {
     }
 
     private boolean compareHashes(String input, String storedHash) throws NoSuchAlgorithmException {
-        MessageDigest md = MessageDigest.getInstance("SHA-256");/-strong/-heart:>:o:-((:-hbyte[] inputHashBytes = md.digest(input.getBytes());
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        byte[] inputHashBytes = md.digest(input.getBytes());
 
         StringBuilder inputHash = new StringBuilder();
         for (byte b : inputHashBytes) {
@@ -151,53 +159,21 @@ public class SceneController {
 
         return inputHash.toString().equals(storedHash);
     }
-    }
-    private void showErrorAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR, message, ButtonType.OK);
-        alert.show();
-    }
-private String getHashedPassword(String username, int roleId) throws SQLException {
-    Connection con = JDBCConnect.getJDBCConnection();
-    ResultSet rs = null;
 
-    String sql = "SELECT password FROM employee WHERE username = ? AND roleId = ?";
-    PreparedStatement preparedStatement = con.prepareStatement(sql);
-    preparedStatement.setString(1, username);
-    preparedStatement.setInt(2, roleId);
-    ResultSet resultSet = preparedStatement.executeQuery();
-
-    if (resultSet.next()) {
-        return resultSet.getString("password");
-    }
-    return null;
-}
-
-private boolean compareHashes(String input, String storedHash) throws NoSuchAlgorithmException {
-    MessageDigest md = MessageDigest.getInstance("SHA-256");
-    byte[] inputHashBytes = md.digest(input.getBytes());
-
-    StringBuilder inputHash = new StringBuilder();
-    for (byte b : inputHashBytes) {
-        inputHash.append(String.format("%02x", b));
-    }
-
-    return inputHash.toString().equals(storedHash);
-}
-private int getKeyFromValue(Map<Integer, String> map, String value) {
-    // iterate over the entries of the map object
-    for (Map.Entry<Integer, String> entry : map.entrySet()) {
-        // check if entry of the map equal with the value param of ComboBox then return the key
-        if (entry.getValue().equals(value)) {
-            return entry.getKey();
+    private int getKeyFromValue(Map<Integer, String> map, String value) {
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
+            if (entry.getValue().equals(value)) {
+                return entry.getKey();
+            }
         }
+        return -1;
     }
-    return -1;
-}
+
     private boolean isFilledFields() {
         if (tfUsernameLogin.getText().isEmpty()
                 || roleComboBox.getValue() == null
                 || tfPasswordLogin.getText().isEmpty()) {
-            GetData.showConfirmationAlert("Warning message", "Please fill all required fields!");
+            GetData.showWarningAlert("Warning message", "Please fill all required fields!");
             return false;
         } else {
             return true;
