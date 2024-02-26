@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
@@ -179,3 +180,4 @@
       <ComboBox fx:id="searchComboBox" layoutX="995.0" layoutY="298.0" prefHeight="27.0" prefWidth="111.0" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
    </children>
 </AnchorPane>
+
