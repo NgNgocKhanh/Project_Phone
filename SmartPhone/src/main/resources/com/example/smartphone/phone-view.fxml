@@ -1,247 +1,181 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="page1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="695.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smartphone.controller.PhoneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1130.0" style="-fx-background-color: #ddd;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smartphone.controller.PhoneController">
    <children>
-      <Pane accessibleRole="BUTTON" layoutX="30.0" layoutY="17.0" prefHeight="281.0" prefWidth="202.0" style="-fx-background-color: White;">
+      <Pane prefHeight="62.0" prefWidth="1130.0" style="-fx-background-color: #fff;">
          <children>
-            <ImageView fx:id="iphone15promax" accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image_phone/iphone-15.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="33.0" layoutY="164.0" prefHeight="34.0" prefWidth="146.0" text="iPhone 15 Pro Max">
+            <Label layoutY="14.0" prefHeight="35.0" prefWidth="238.0" text="Phones">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
             </Label>
-            <Label layoutX="31.0" layoutY="193.0" prefHeight="34.0" prefWidth="28.0" style="-fx-background-color: #ddd;" text="6.7&quot;">
+            <Button fx:id="close" layoutX="1090.0" mnemonicParsing="false" onAction="#close" prefHeight="23.0" prefWidth="40.0" styleClass="closeButton" stylesheets="style.css" text="X">
                <font>
-                  <Font size="15.0" />
+                  <Font name=".VnArial" size="12.0" />
                </font>
-            </Label>
-            <Label layoutX="65.0" layoutY="193.0" prefHeight="34.0" prefWidth="120.0" style="-fx-background-color: #ddd;" text="Super Retina XDR">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="minimizeButton" layoutX="1050.0" mnemonicParsing="false" onAction="#minimize" prefHeight="23.0" prefWidth="40.0" styleClass="minimizeButton" stylesheets="@style.css" text="─">
                <font>
-                  <Font size="15.0" />
+                  <Font name=".VnArial" size="12.0" />
                </font>
-            </Label>
-            <Button layoutX="22.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#handleTextClick" prefHeight="16.0" prefWidth="168.0" style="-fx-background-color: White;" text="31.990.000Đ" textFill="RED">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
       </Pane>
-      <Pane accessibleRole="BUTTON" layoutX="259.0" layoutY="17.0" prefHeight="281.0" prefWidth="202.0" style="-fx-background-color: White;">
+      <AnchorPane layoutX="20.0" layoutY="73.0" prefHeight="215.0" prefWidth="1087.0" style="-fx-background-color: #fff;">
          <children>
-            <ImageView fx:id="iphone15pro" accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image_phone/iphone-15.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="33.0" layoutY="164.0" prefHeight="34.0" prefWidth="146.0" text="iPhone 15 Pro">
+            <Label fx:id="actionStatusLabel" layoutX="21.0" layoutY="14.0" text="Adding New Phone">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="31.0" layoutY="193.0" prefHeight="34.0" prefWidth="28.0" style="-fx-background-color: #ddd;" text="6.1&quot;">
+            <TextField fx:id="idTextField" editable="false" layoutX="86.0" layoutY="161.0" prefHeight="26.0" prefWidth="230.0" visible="false" />
+            <TextField fx:id="nameTextField" layoutX="111.0" layoutY="54.0" prefHeight="26.0" prefWidth="230.0" />
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="55.0" layoutY="57.0" prefHeight="18.0" prefWidth="40.0" text="Name">
                <font>
-                  <Font size="15.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="65.0" layoutY="193.0" prefHeight="34.0" prefWidth="120.0" style="-fx-background-color: #ddd;" text="Super Retina XDR">
+            <Label fx:id="price" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="441.0" layoutY="57.0" prefHeight="20.0" prefWidth="90.0" text="Original Price">
                <font>
-                  <Font size="15.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
-            <Button layoutX="22.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#handleTextClick" prefHeight="16.0" prefWidth="168.0" style="-fx-background-color: White;" text="27.990.000Đ" textFill="RED">
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="25.0" layoutY="120.0" prefHeight="20.0" prefWidth="69.0" text="Distributor">
                <font>
-                  <Font name="System Bold" size="16.0" />
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="priceTextField" layoutX="557.0" layoutY="53.0" prefHeight="26.0" prefWidth="230.0" />
+            <TextField fx:id="sellingPriceTextField" editable="false" layoutX="557.0" layoutY="117.0" prefHeight="26.0" prefWidth="230.0" />
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="441.0" layoutY="120.0" prefHeight="20.0" prefWidth="90.0" text="Selling Price">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="distributorComboBox" layoutX="111.0" layoutY="116.0" prefHeight="26.0" prefWidth="230.0" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
+            <Button fx:id="chooseImageButton" layoutX="302.0" layoutY="160.0" mnemonicParsing="false" onMouseClicked="#chooseFileImage" prefHeight="26.0" prefWidth="230.0" stylesheets="@style.css" text="Choose image">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image_icons/image-white.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <StackPane layoutX="769.0" layoutY="15.0" prefHeight="146.0" prefWidth="290.0">
+               <children>
+                  <ImageView fx:id="carImageView" fitHeight="145.0" fitWidth="287.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </StackPane>
+            <Button fx:id="addButton" alignment="CENTER" layoutX="865.0" layoutY="167.0" mnemonicParsing="false" onAction="#addCarToDatabase" prefHeight="35.0" prefWidth="90.0" styleClass="button-add" stylesheets="@style.css" text="Add" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image_icons/plus-white.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" layoutX="762.0" layoutY="167.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="35.0" prefWidth="90.0" styleClass="button-clean" stylesheets="@style.css" text="Reset" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image_icons/rotate-white.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="updateButton" alignment="CENTER" layoutX="967.0" layoutY="167.0" mnemonicParsing="false" onAction="#updateCarToDatabase" prefHeight="35.0" prefWidth="99.0" styleClass="button-update" stylesheets="@style.css" text="Update" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image_icons/pen-to-square-white.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Button>
          </children>
-      </Pane>
-      <Pane accessibleRole="BUTTON" layoutX="490.0" layoutY="17.0" prefHeight="281.0" prefWidth="202.0" style="-fx-background-color: White;">
+      </AnchorPane>
+      <VBox layoutX="20.0" layoutY="333.0" prefHeight="465.0" prefWidth="1087.0">
          <children>
-            <ImageView fx:id="iphone15plus" accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image_phone/iphone-15-plus.jpg" />
-               </image>
-            </ImageView>
-            <Label layoutX="33.0" layoutY="164.0" prefHeight="34.0" prefWidth="146.0" text="iPhone 15 Plus">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="31.0" layoutY="193.0" prefHeight="34.0" prefWidth="28.0" style="-fx-background-color: #ddd;" text="6.7&quot;">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="65.0" layoutY="193.0" prefHeight="34.0" prefWidth="120.0" style="-fx-background-color: #ddd;" text="Super Retina XDR">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Button layoutX="22.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#handleTextClick" prefHeight="16.0" prefWidth="168.0" style="-fx-background-color: White;" text="24.990.000Đ" textFill="RED">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Button>
+            <TableView fx:id="carTableView" prefHeight="417.0" prefWidth="1087.0" stylesheets="@style.css">
+               <columns>
+                  <TableColumn fx:id="orderNumberTableColumn" prefWidth="36.800018310546875" text="#" />
+                  <TableColumn fx:id="nameTableColumn" prefWidth="400.0" text="Phone Name" />
+                  <TableColumn fx:id="priceTableColumn" prefWidth="165.0" text="Original Price" />
+                  <TableColumn fx:id="sellingPriceTableColumn" prefWidth="163.0" text="Selling Price" />
+                  <TableColumn fx:id="distributorTableColumn" prefWidth="245.0" text="Distributor" />
+                  <TableColumn fx:id="deleteTableColumn" prefWidth="71.199951171875" text="Action" />
+               </columns>
+            </TableView>
+            <Pagination fx:id="paginationPagination" prefHeight="37.0" prefWidth="1087.0" />
          </children>
-      </Pane>
-      <Pane accessibleRole="BUTTON" layoutX="721.0" layoutY="17.0" prefHeight="281.0" prefWidth="202.0" style="-fx-background-color: White;">
-         <children>
-            <ImageView fx:id="iphone15" accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image_phone/iphone-15-pink.jpg" />
-               </image>
-            </ImageView>
-            <Label layoutX="33.0" layoutY="164.0" prefHeight="34.0" prefWidth="146.0" text="iPhone 15">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="31.0" layoutY="193.0" prefHeight="34.0" prefWidth="28.0" style="-fx-background-color: #ddd;" text="6.1&quot;">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="65.0" layoutY="193.0" prefHeight="34.0" prefWidth="120.0" style="-fx-background-color: #ddd;" text="Super Retina XDR">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Button layoutX="22.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#handleTextClick" prefHeight="16.0" prefWidth="168.0" style="-fx-background-color: White;" text="21.990.000Đ" textFill="RED">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Button>
-         </children>
-      </Pane>
-      <Pane accessibleRole="BUTTON" layoutX="30.0" layoutY="332.0" prefHeight="281.0" prefWidth="202.0" style="-fx-background-color: White;">
-         <children>
-            <ImageView fx:id="samsunggalaxys24" accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image_phone/samsung_galaxy_s24_5g.jpg" />
-               </image>
-            </ImageView>
-            <Label layoutX="10.0" layoutY="164.0" prefHeight="35.0" prefWidth="183.0" text="Samsung Galaxy S24+ 5G">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="31.0" layoutY="193.0" prefHeight="34.0" prefWidth="28.0" style="-fx-background-color: #ddd;" text="6.7&quot;">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="65.0" layoutY="193.0" prefHeight="34.0" prefWidth="120.0" style="-fx-background-color: #ddd;" text="Quad HD+(2K+)">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Button layoutX="22.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#handleTextClick" prefHeight="16.0" prefWidth="168.0" style="-fx-background-color: White;" text="22.490.000Đ" textFill="RED">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Button>
-         </children>
-      </Pane>
-      <Pane accessibleRole="BUTTON" layoutX="259.0" layoutY="332.0" prefHeight="281.0" prefWidth="202.0" style="-fx-background-color: White;">
-         <children>
-            <ImageView fx:id="samsunggalaxys24u" accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image_phone/samsung_galaxy_s24_5g_noplus.jpg" />
-               </image>
-            </ImageView>
-            <Label layoutX="1.0" layoutY="164.0" prefHeight="35.0" prefWidth="210.0" text="Samsung Galaxy S24 Ultra 5G">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="31.0" layoutY="193.0" prefHeight="34.0" prefWidth="28.0" style="-fx-background-color: #ddd;" text="6.8&quot;">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="68.0" layoutY="193.0" prefHeight="34.0" prefWidth="120.0" style="-fx-background-color: #ddd;" text="Quad HD+(2K+)">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Button layoutX="22.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#handleTextClick" prefHeight="16.0" prefWidth="168.0" style="-fx-background-color: White;" text="28.090.000Đ" textFill="RED">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Button>
-         </children>
-      </Pane>
-      <Pane accessibleRole="BUTTON" layoutX="490.0" layoutY="332.0" prefHeight="281.0" prefWidth="202.0" style="-fx-background-color: White;">
-         <children>
-            <ImageView accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image_phone/oppo_reno11_5g.jpg" />
-               </image>
-            </ImageView>
-            <Label layoutX="33.0" layoutY="164.0" prefHeight="34.0" prefWidth="146.0" text="OPPO Reno11 5G">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="50.0" layoutY="193.0" prefHeight="34.0" prefWidth="28.0" style="-fx-background-color: #ddd;" text="6.7&quot;">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="87.0" layoutY="193.0" prefHeight="34.0" prefWidth="62.0" style="-fx-background-color: #ddd;" text="Full HD+">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Button layoutX="22.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#handleTextClick" prefHeight="16.0" prefWidth="168.0" style="-fx-background-color: White;" text="10.990.000Đ" textFill="RED">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Button>
-         </children>
-      </Pane>
-      <Pane accessibleRole="BUTTON" layoutX="721.0" layoutY="332.0" prefHeight="281.0" prefWidth="202.0" style="-fx-background-color: White;">
-         <children>
-            <ImageView accessibleRole="BUTTON" fitHeight="150.0" fitWidth="172.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image_phone/xiaomi_redminote13.jpg" />
-               </image>
-            </ImageView>
-            <Label layoutX="31.0" layoutY="164.0" prefHeight="35.0" prefWidth="168.0" text="Xiaomi Redmi Note13">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="39.0" layoutY="193.0" prefHeight="34.0" prefWidth="40.0" style="-fx-background-color: #ddd;" text="6.67&quot;">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="84.0" layoutY="193.0" prefHeight="34.0" prefWidth="62.0" style="-fx-background-color: #ddd;" text="Full Hd+">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Button layoutX="22.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#handleTextClick" prefHeight="16.0" prefWidth="168.0" style="-fx-background-color: White;" text="4.990.000Đ" textFill="RED">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Button>
-         </children>
-      </Pane>
-      <Pagination fx:id="paginationButton" layoutX="399.0" layoutY="627.0" maxPageIndicatorCount="8" pageCount="4" prefHeight="66.0" prefWidth="231.0" />
+      </VBox>
+      <TextField fx:id="searchKeywordTextField" layoutX="774.0" layoutY="298.0" prefHeight="26.0" prefWidth="221.0" promptText="Search keyword..." style="-fx-background-color: #fff; -fx-border-color: #ddd;">
+         <padding>
+            <Insets left="30.0" />
+         </padding>
+      </TextField>
+      <ImageView fitHeight="20.0" fitWidth="25.0" layoutX="784.0" layoutY="301.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image_icons/search-black.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="totalLabel" layoutX="580.0" layoutY="298.0" prefHeight="26.0" prefWidth="127.0" text="Total: 10000">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="714.0" layoutY="298.0" prefHeight="26.0" prefWidth="60.0" text="Search">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="searchComboBox" layoutX="995.0" layoutY="298.0" prefHeight="27.0" prefWidth="111.0" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
    </children>
-</Pane>
+</AnchorPane>
