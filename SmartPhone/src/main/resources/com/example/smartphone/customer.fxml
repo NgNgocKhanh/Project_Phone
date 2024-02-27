@@ -29,14 +29,14 @@
                         <Insets left="30.0" />
                     </padding>
                 </Label>
-                <Button fx:id="close" layoutX="1090.0" mnemonicParsing="false" onAction="#close" prefHeight="23.0" prefWidth="40.0" styleClass="closeButton" stylesheets="@style.css" text="X">
+                <Button fx:id="close" layoutX="1250.0" layoutY="2.0" mnemonicParsing="false" onAction="#close" prefHeight="23.0" prefWidth="40.0" styleClass="closeButton" stylesheets="@style.css" text="X">
                     <font>
                         <Font name=".VnArial" size="12.0" />
                     </font>
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor></Button>
-                <Button fx:id="minimizeButton" layoutX="1050.0" mnemonicParsing="false" onAction="#minimize" prefHeight="23.0" prefWidth="40.0" styleClass="minimizeButton" stylesheets="@style.css" text="─">
+                <Button fx:id="minimizeButton" layoutX="1210.0" layoutY="2.0" mnemonicParsing="false" onAction="#minimize" prefHeight="23.0" prefWidth="40.0" styleClass="minimizeButton" stylesheets="@style.css" text="─">
                     <font>
                         <Font name=".VnArial" size="12.0" />
                     </font>
@@ -46,14 +46,14 @@
                 </Button>
             </children>
         </Pane>
-        <AnchorPane layoutX="-1.0" layoutY="74.0" prefHeight="219.0" prefWidth="1298.0" style="-fx-background-color: #fff;">
+        <AnchorPane layoutX="52.0" layoutY="86.0" prefHeight="194.0" prefWidth="1199.0" style="-fx-background-color: #fff;">
             <children>
                 <Label fx:id="actionStatusLabel" layoutX="21.0" layoutY="14.0" text="Adding New Customer">
                     <font>
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Label>
-                <Button fx:id="addButton" alignment="CENTER" layoutX="814.0" layoutY="165.0" mnemonicParsing="false" onAction="#addCustomerToDatabase" prefHeight="35.0" prefWidth="90.0" styleClass="button-add" stylesheets="@style.css" text="Add" textFill="WHITE">
+                <Button fx:id="addButton" alignment="CENTER" layoutX="987.0" layoutY="132.0" mnemonicParsing="false" onAction="#addCustomerToDatabase" prefHeight="35.0" prefWidth="90.0" styleClass="button-add" stylesheets="@style.css" text="Add" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -68,7 +68,7 @@
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Button>
-                <Button alignment="CENTER" layoutX="711.0" layoutY="165.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="35.0" prefWidth="90.0" styleClass="button-clean" stylesheets="@style.css" text="Reset" textFill="WHITE">
+                <Button alignment="CENTER" layoutX="881.0" layoutY="132.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="35.0" prefWidth="90.0" styleClass="button-clean" stylesheets="@style.css" text="Reset" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -83,7 +83,7 @@
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Button>
-                <Button fx:id="updateButton" alignment="CENTER" layoutX="916.0" layoutY="165.0" mnemonicParsing="false" onAction="#updateCustomerToDatabase" prefHeight="35.0" prefWidth="98.0" styleClass="button-update" stylesheets="@style.css" text="Update" textFill="WHITE">
+                <Button fx:id="updateButton" alignment="CENTER" layoutX="1087.0" layoutY="132.0" mnemonicParsing="false" onAction="#updateCustomerToDatabase" prefHeight="35.0" prefWidth="98.0" styleClass="button-update" stylesheets="@style.css" text="Update" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -100,40 +100,40 @@
                 </Button>
                 <TextField fx:id="idTextField" editable="false" layoutX="777.0" layoutY="14.0" prefHeight="26.0" prefWidth="230.0" visible="false" />
                 <TextField fx:id="nameTextField" layoutX="82.0" layoutY="53.0" prefHeight="26.0" prefWidth="230.0" />
-                <DatePicker fx:id="dobDatePicker" layoutX="82.0" layoutY="88.0" prefHeight="26.0" prefWidth="230.0" />
+                <DatePicker fx:id="dobDatePicker" layoutX="82.0" layoutY="98.0" prefHeight="26.0" prefWidth="230.0" />
                 <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="31.0" layoutY="57.0" prefHeight="18.0" prefWidth="40.0" text="Name">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="phoneTextField" layoutX="448.0" layoutY="52.0" prefHeight="26.0" prefWidth="230.0" />
-                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="397.0" layoutY="56.0" prefHeight="18.0" prefWidth="40.0" text="Phone">
+                <TextField fx:id="phoneTextField" layoutX="547.0" layoutY="52.0" prefHeight="26.0" prefWidth="230.0" />
+                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="472.0" layoutY="56.0" prefHeight="18.0" prefWidth="40.0" text="Phone">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="addressTextField" layoutX="449.0" layoutY="87.0" prefHeight="26.0" prefWidth="230.0" />
-                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="376.0" layoutY="91.0" prefHeight="20.0" prefWidth="62.0" text="Address">
+                <TextField fx:id="addressTextField" layoutX="547.0" layoutY="98.0" prefHeight="26.0" prefWidth="230.0" />
+                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="461.0" layoutY="104.0" prefHeight="20.0" prefWidth="62.0" text="Address">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="emailTextField" layoutX="777.0" layoutY="51.0" prefHeight="26.0" prefWidth="230.0" />
-                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="726.0" layoutY="55.0" prefHeight="18.0" prefWidth="40.0" text="Email">
+                <TextField fx:id="emailTextField" layoutX="917.0" layoutY="54.0" prefHeight="26.0" prefWidth="230.0" />
+                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="861.0" layoutY="57.0" prefHeight="18.0" prefWidth="40.0" text="Email">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="31.0" layoutY="91.0" prefHeight="18.0" prefWidth="40.0" text="DOB">
+                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="31.0" layoutY="101.0" prefHeight="18.0" prefWidth="40.0" text="DOB">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Label>
             </children>
         </AnchorPane>
-        <VBox layoutX="20.0" layoutY="334.0" prefHeight="464.0" prefWidth="1086.0">
+        <VBox layoutX="20.0" layoutY="334.0" prefHeight="542.0" prefWidth="1280.0">
             <children>
-                <TableView fx:id="customerTableView" prefHeight="526.0" prefWidth="1164.0" stylesheets="@style.css">
+                <TableView fx:id="customerTableView" prefHeight="403.0" prefWidth="1208.0" stylesheets="@style.css">
                     <columns>
                         <TableColumn fx:id="orderNumberTableColumn" prefWidth="36.800018310546875" text="#" />
                         <TableColumn fx:id="idTableColumn" prefWidth="70.0" text="ID" visible="false" />
