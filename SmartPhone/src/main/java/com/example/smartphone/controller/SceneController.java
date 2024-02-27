@@ -62,14 +62,6 @@ public class SceneController {
     @FXML
     public void initialize() {
         addRoleToComboBox();
-
-        btnCon.setOnAction(event -> {
-            try {
-                login(event);
-            } catch (SQLException | IOException e) {
-                e.printStackTrace();
-            }
-        });
     }
 
     @FXML
