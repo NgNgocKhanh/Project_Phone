@@ -20,16 +20,7 @@ public class GetData {
     public static int orderId;
     public static String randomCode;
     public static void showSuccessAlert(String title, String contentText) {
-        // create an ImageView with the absolute image path
-        String imageName = "success-icon-green.png";
-
-        // Create a File object for the FXML file
-        File imageFile = new File("src/main/resources/com/example/demojavafxproject/images/" + imageName);
-
-        // Get the absolute path of the FXML file
-        String imagePath = imageFile.getAbsolutePath();
-
-        Image iconSuccessImage = new Image(imagePath);
+        Image iconSuccessImage = new Image(GetData.class.getResourceAsStream("/com/example/smartphone/image_icons/success-icon-green.png"));
         ImageView iconSuccessImageView = new ImageView(iconSuccessImage);
         iconSuccessImageView.setFitHeight(64);
         iconSuccessImageView.setFitWidth(64);
@@ -114,7 +105,6 @@ public class GetData {
         alertStage.getIcons().add(iconConfirmationImage);
         alertStage.initModality(Modality.NONE);
         alertStage.setAlwaysOnTop(true);
-
         StackPane iconContainer = new StackPane(iconConfirmationImageView);
         alert.getDialogPane().setGraphic(iconContainer);
 

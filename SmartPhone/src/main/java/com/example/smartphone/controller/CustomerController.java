@@ -357,30 +357,32 @@ public class CustomerController {
      * @param id The ID of the customer record to be deleted.
      */
     private void deleteCustomerFromDatabase(int id) {
-        String updateOrderQuery = "UPDATE `order` SET customerId = NULL WHERE customerId = " + id;
-
         try {
-            Statement updateOrderStatement = connection.createStatement();
-            int rowUpdateOrderAffected = updateOrderStatement.executeUpdate(updateOrderQuery);
+            // Xóa tất cả các đơn hàng liên quan đến khách hàng
+            String deleteOrdersQuery = "DELETE FROM `order` WHERE customerId = " + id;
+            Statement deleteOrdersStatement = connection.createStatement();
+            int rowsDeleted = deleteOrdersStatement.executeUpdate(deleteOrdersQuery);
 
-            if (rowUpdateOrderAffected > 0) {
-                String sql = "DELETE FROM customer WHERE customerId = " + id;
+            // Sau khi xóa đơn hàng, xóa khách hàng
+            if (rowsDeleted > 0) {
+                String deleteCustomerQuery = "DELETE FROM customer WHERE customerId = " + id;
+                Statement deleteCustomerStatement = connection.createStatement();
+                int rowsAffected = deleteCustomerStatement.executeUpdate(deleteCustomerQuery);
 
-                Statement statement = connection.createStatement();
-                int rowAffected = statement.executeUpdate(sql);
-
-                if (rowAffected > 0) {
+                if (rowsAffected > 0) {
                     GetData.showSuccessAlert("Success message", "Deleted successfully!");
-
                     setupTable();
                     resetForm();
                 }
+            } else {
+                GetData.showErrorAlert("Error message", "Customer has orders and cannot be deleted!");
             }
         } catch (Exception e) {
             GetData.showErrorAlert("Error message", "Cannot delete!");
             e.printStackTrace();
         }
     }
+
 
     /**
      * Sets the next available customerId in the ID TextField for adding a new customer record.
