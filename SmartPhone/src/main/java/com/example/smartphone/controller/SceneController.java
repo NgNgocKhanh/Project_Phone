@@ -62,14 +62,6 @@ public class SceneController {
     @FXML
     public void initialize() {
         addRoleToComboBox();
-
-        btnCon.setOnAction(event -> {
-            try {
-                login(event);
-            } catch (SQLException | IOException e) {
-                e.printStackTrace();
-            }
-        });
     }
 
     @FXML
@@ -116,14 +108,14 @@ public class SceneController {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/smartphone/home.fxml"));
                         Parent root = loader.load();
                         HomeController homeController = loader.getController();
+                        homeController.initialize();  // Initialize the main app controller
 
-                        Stage homeStage = new Stage();
-                        homeStage.setScene(new Scene(root));
-                        homeStage.initStyle(StageStyle.TRANSPARENT);
-                        homeStage.show();
+                        Stage homeControllerr = new Stage();
+                        homeControllerr.setScene(new Scene(root));
+                        homeControllerr.initStyle(StageStyle.TRANSPARENT);
+                        homeControllerr.setMaximized(true);
+                        homeControllerr.show();
 
-// Đóng cửa sổ đăng nhập
-                        ((Node)(event.getSource())).getScene().getWindow().hide();
                     } else {
                         GetData.showErrorAlert("Login failed!", "Username or password is wrong");
                     }

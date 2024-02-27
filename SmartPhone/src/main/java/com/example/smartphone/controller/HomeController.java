@@ -135,6 +135,7 @@ public class HomeController {
     }
     private void loadPage(String page) {
         Parent root = null;
+
         try {
             // Create a File object for the FXML file
             File fxmlFile = new File("src/main/resources/com/example/smartphone/" + page + ".fxml");

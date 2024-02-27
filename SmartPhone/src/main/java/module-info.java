@@ -3,7 +3,6 @@ module com.example.smartphone {
     requires javafx.fxml;
     requires java.sql;
     requires lombok;
-    requires java.mail;
 
 
     opens com.example.smartphone to javafx.fxml;
