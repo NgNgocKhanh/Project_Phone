@@ -1,116 +1,189 @@
 package com.example.smartphone.controller;
 
+import com.example.smartphone.controller.GetData;
 import dao.JDBCConnect;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
+import java.sql.*;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
-public class RegisterController implements Initializable {
+
+public class RegisterController {
     @FXML
-    private Label welcomeText;
+    private TextField usernameTextField;
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to Store Phone !");
+    private TextField passwordTextField;
+
+    @FXML
+    private TextField fullNameTextField;
+    @FXML
+    private TextField emailTextField;
+    @FXML
+    private TextArea addressTextArea;
+
+    @FXML
+    private TextField phoneTextField;
+
+    @FXML
+    private ComboBox<String> roleComboBox;
+
+    @FXML
+    private Button registerButton;
+
+
+
+    @FXML
+    private Button close;
+
+    @FXML
+    private Button loginButton;
+
+    @FXML
+    private Button minimizeButton;
+    Connection connection = JDBCConnect.getJDBCConnection();
+    private double xOffset = 0;
+    private double yOffset = 0;
+
+    @FXML
+    private void initialize() {
+        addRoleToComboBox();
     }
 
-    @FXML
-    private Button exitButton;
-    public TextField tfEmail;
-    public TextField tfUsername;
-    public TextField tfPhone;
-    public PasswordField tfPassword;
-    public PasswordField tfConfirmPassword;
-    public Button btnConRegister;
+    /**
+     * Registers a new employee by inserting their details into the database.
+     * Checks if all required fields are filled before performing the registration.
+     */
 
     @FXML
-    private void handleExitButton(ActionEvent event) {
-        Platform.exit();
-    }
+    void registerEmp() {
+        Map<Integer, String> roleMap = getRoleMap();
+        String selectedRole = roleComboBox.getValue();
+        int selectedId = getKeyFromValue(roleMap, selectedRole);
 
-    public void registerButtonOnAction(ActionEvent event) throws SQLException {
-        register();
-    }
+        String joinDate = LocalDate.now().toString();
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        btnConRegister.setOnAction(actionEvent -> {
+        if (isFilledFields()) {
             try {
-                register();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        });
-    }
+                String sql = "INSERT INTO employee(employeeName, phoneNumber, email, roleId, password, username, address,joinDate,salary) " +
+                        "VALUES (?,?,?,?,SHA2(?, 256),?,?,?,?)";
 
-    public void register() throws SQLException {
-        if (!isPasswordConfirmed()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Registration Failed!\", \"Password and Confirm Password do not match.", ButtonType.OK);
-            alert.show();
-            return;
-        }
-        if (!isUsernameConfirmed()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Username Must be greater than 4", ButtonType.OK);
-            alert.show();
-            return;
-        }
-        if (!isCheckEmail()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Invalid Email Format", ButtonType.OK);
-            alert.show();
-            return;
-        }
-        if (!isCheckPhoneNumber()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Invalid Phone Number", ButtonType.OK);
-            alert.show();
-            return;
-        }
-            PreparedStatement preparedStatement = null;
-            Connection con = JDBCConnect.getJDBCConnection();
-            try {
-                preparedStatement = con.prepareStatement("INSERT INTO user (username, email ,password) VALUES (?, ?, ?)");
-                preparedStatement.setString(1, tfUsername.getText());
-                preparedStatement.setString(2, tfEmail.getText());
-                preparedStatement.setString(3, tfPassword.getText());
-                int rowsAffected = preparedStatement.executeUpdate();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-                if (rowsAffected > 0) {
-                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "User registered successfully!", ButtonType.OK);
-                    alert.show();
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.WARNING, "Failed to register user!", ButtonType.OK);
-                    alert.show();
+                preparedStatement.setString(1, fullNameTextField.getText());
+                preparedStatement.setString(2, phoneTextField.getText());
+                preparedStatement.setString(3, emailTextField.getText());
+                preparedStatement.setInt(4, selectedId);
+                preparedStatement.setString(5, passwordTextField.getText());
+                preparedStatement.setString(6, usernameTextField.getText());
+                preparedStatement.setString(7, addressTextArea.getText());
+                preparedStatement.setString(8, joinDate);
+
+                if (selectedId == 1) {
+                    preparedStatement.setDouble(9, 20000);
+                } else if (selectedId == 2) {
+                    preparedStatement.setDouble(9, 3000);
                 }
+
+                preparedStatement.executeUpdate();
+
+                GetData.showSuccessAlert("Success message", "Register successfully!");
+
+                preparedStatement.close();
+                resetForm();
             } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } finally {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-                con.close();
+                e.printStackTrace();
             }
         }
-        private boolean isPasswordConfirmed () {
-            // Kiểm tra xem mật khẩu và xác nhận mật khẩu giống nhau hay không
-            return tfPassword.getText().equals(tfConfirmPassword.getText());
-        }
-        private boolean isUsernameConfirmed(){
-            return tfUsername.getText().matches("^[a-zA-Z][a-zA-Z0-9]{4,}$");
-        }
-    private boolean isCheckEmail() {
-        // Kiểm tra định dạng email
-        return tfEmail.getText().matches("^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\\.[a-zA-Z.]{2,18}$");
     }
 
-    private boolean isCheckPhoneNumber() {
-        // Kiểm tra định dạng số điện thoại
-        return tfPhone.getText().matches("^(0[1-9]\\d{8}|84[1-9]\\d{7})$");
+    /**
+     * Checks if all required fields are filled in the registration form.
+     *
+     * @return true if all required fields are filled, false otherwise.
+     */
+    private boolean isFilledFields() {
+        if (fullNameTextField.getText().isEmpty() || usernameTextField.getText().isEmpty() || passwordTextField.getText().isEmpty() || emailTextField.getText().isEmpty() || phoneTextField.getText().isEmpty() || roleComboBox.getValue() == null || addressTextArea.getText().isEmpty()) {
+            GetData.showWarningAlert("Warning message", "Please fill all required fields!");
+            return false;
+        } else {
+            return true;
+        }
     }
+
+    /**
+     * Retrieves a map of role IDs and their corresponding names from the database.
+     *
+     * @return A map containing role IDs as keys and role names as values.
+     */
+    private Map<Integer, String> getRoleMap() {
+        Map<Integer, String> roleMap = new HashMap<>();
+        String sql = "SELECT *FROM `role` WHERE roleId = 1 OR roleId = 2";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                int roleId = resultSet.getInt("roleId");
+                String roleName = resultSet.getString("roleName");
+
+                roleMap.put(roleId, roleName);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return roleMap;
     }
+
+    /**
+     * Adds role names to the role ComboBox.
+     */
+    private void addRoleToComboBox() {
+        Map<Integer, String> roleMap = getRoleMap();
+        roleComboBox.getItems().addAll(roleMap.values());
+    }
+
+    /**
+     * Gets the key from a map based on the given value.
+     *
+     * @param map   The map to search in.
+     * @param value The value to search for.
+     * @return The key corresponding to the given value, or -1 if not found.
+     */
+    private int getKeyFromValue(Map<Integer, String> map, String value) {
+        // iterate over the entries of the map object
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
+            // check if entry of the map equal with the value param of ComboBox then return the key
+            if (entry.getValue().equals(value)) {
+                return entry.getKey();
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Resets the registration form to its initial state.
+     */
+    private void resetForm() {
+        fullNameTextField.clear();
+        usernameTextField.clear();
+        passwordTextField.clear();
+        emailTextField.clear();
+        phoneTextField.clear();
+        emailTextField.clear();
+        roleComboBox.setValue(null);
+        addressTextArea.clear();
+    }
+}
