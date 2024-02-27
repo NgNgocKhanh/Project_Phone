@@ -19,7 +19,33 @@ public class GetData {
     public static String path;
     public static int orderId;
     public static String randomCode;
+    public static void showSuccessAlert(String title, String contentText) {
+        Image iconSuccessImage = new Image(GetData.class.getResourceAsStream("/com/example/smartphone/image_icons/success-icon-green.png"));
+        ImageView iconSuccessImageView = new ImageView(iconSuccessImage);
+        iconSuccessImageView.setFitHeight(64);
+        iconSuccessImageView.setFitWidth(64);
 
+        // create an Alert
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setContentText(contentText);
+        alert.setHeaderText(null);
+
+        // set the image icon for the alert
+        Stage alertStage = (Stage) alert.getDialogPane().getScene().getWindow();
+        alertStage.getIcons().add(iconSuccessImage);
+        alertStage.initModality(Modality.NONE);
+        alertStage.setAlwaysOnTop(true);
+
+        // create a StackPane to hold the Imageview
+        StackPane iconContainer = new StackPane(iconSuccessImageView);
+
+        // set teh custom icon container as the graphic for the Alert
+        alert.getDialogPane().setGraphic(iconContainer);
+
+        // show the alert and wait for the user to close it
+        alert.showAndWait();
+    }
     public static void showWarningAlert(String title, String contentText) {
         Image iconWarningImage = new Image(GetData.class.getResourceAsStream("/com/example/smartphone/image_icons/warning-icon-yellow.png"));
         ImageView iconWarningImageView = new ImageView(iconWarningImage);
@@ -79,7 +105,6 @@ public class GetData {
         alertStage.getIcons().add(iconConfirmationImage);
         alertStage.initModality(Modality.NONE);
         alertStage.setAlwaysOnTop(true);
-
         StackPane iconContainer = new StackPane(iconConfirmationImageView);
         alert.getDialogPane().setGraphic(iconContainer);
 
