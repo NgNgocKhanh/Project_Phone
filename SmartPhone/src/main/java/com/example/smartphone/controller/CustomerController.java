@@ -613,7 +613,6 @@ public class CustomerController {
             }
 
             // Inside your sendMailEvent method
-            GetData.handleSendMail(message, subject, mailList);
         } catch (Exception e) {
             e.printStackTrace();
         }

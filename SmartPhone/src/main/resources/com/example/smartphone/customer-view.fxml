@@ -17,9 +17,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="874.0" prefWidth="1298.0" style="-fx-background-color: #ddd;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smartphone.controller.CustomerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1130.0" style="-fx-background-color: #ddd;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smartphone.controller.CustomerController">
     <children>
-        <Pane prefHeight="74.0" prefWidth="1298.0" style="-fx-background-color: #fff;">
+        <Pane prefHeight="62.0" prefWidth="1130.0" style="-fx-background-color: #fff;">
             <children>
                 <Label layoutY="14.0" prefHeight="35.0" prefWidth="238.0" text="CUSTOMERS">
                     <font>
@@ -46,7 +46,7 @@
                 </Button>
             </children>
         </Pane>
-        <AnchorPane layoutX="-1.0" layoutY="74.0" prefHeight="219.0" prefWidth="1298.0" style="-fx-background-color: #fff;">
+        <AnchorPane layoutX="22.0" layoutY="73.0" prefHeight="215.0" prefWidth="1085.0" style="-fx-background-color: #fff;">
             <children>
                 <Label fx:id="actionStatusLabel" layoutX="21.0" layoutY="14.0" text="Adding New Customer">
                     <font>
@@ -133,7 +133,7 @@
         </AnchorPane>
         <VBox layoutX="20.0" layoutY="334.0" prefHeight="464.0" prefWidth="1086.0">
             <children>
-                <TableView fx:id="customerTableView" prefHeight="526.0" prefWidth="1164.0" stylesheets="@style.css">
+                <TableView fx:id="customerTableView" prefHeight="424.0" prefWidth="1086.0" stylesheets="@style.css">
                     <columns>
                         <TableColumn fx:id="orderNumberTableColumn" prefWidth="36.800018310546875" text="#" />
                         <TableColumn fx:id="idTableColumn" prefWidth="70.0" text="ID" visible="false" />
@@ -145,7 +145,7 @@
                         <TableColumn fx:id="deleteTableColumn" minWidth="9.60009765625" prefWidth="75.2000732421875" text="Action" />
                     </columns>
                 </TableView>
-                <Pagination fx:id="paginationPagination" prefHeight="81.0" prefWidth="1166.0" />
+                <Pagination fx:id="paginationPagination" prefHeight="41.0" prefWidth="930.0" />
             </children>
         </VBox>
         <TextField fx:id="searchKeywordTextField" layoutX="776.0" layoutY="297.0" prefHeight="26.0" prefWidth="221.0" promptText="Search keyword..." style="-fx-background-color: #fff; -fx-border-color: #ddd;">
