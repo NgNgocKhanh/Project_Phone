@@ -167,6 +167,34 @@ public class AddOrderViewController {
     private final int itemsPerPage = 15;
     private final int itemsPerCustomerPage = 3;
 //    private int customerId;
+@FXML
+private void handleMinusButton(ActionEvent event) {
+    String currentValue = orderQuantityTextField.getText();
+
+    try {
+        int value = Integer.parseInt(currentValue);
+
+        if (value > 1) {
+            value--;
+        }
+        orderQuantityTextField.setText(Integer.toString(value));
+    } catch (NumberFormatException e) {
+        e.printStackTrace();
+    }
+}
+
+    @FXML
+    private void handlePlusButton(ActionEvent event) {
+        String currentValue = orderQuantityTextField.getText();
+        try {
+            int value = Integer.parseInt(currentValue);
+            value++;
+            orderQuantityTextField.setText(Integer.toString(value));
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @FXML
     private boolean isValidPhoneNumber(String phoneNumber) {

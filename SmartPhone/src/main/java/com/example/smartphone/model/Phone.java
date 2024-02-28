@@ -12,6 +12,15 @@ public class Phone {
     private String img;
     private double price;
     private double sellingPrice;
+    private int quantity;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public int getPhone_id() {
         return phone_id;

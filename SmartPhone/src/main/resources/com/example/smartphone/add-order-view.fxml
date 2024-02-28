@@ -144,10 +144,19 @@
                         <Insets left="35.0" />
                     </padding>
                 </TextField>
+                <ImageView fitHeight="20.0" fitWidth="28.0" layoutX="705.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/search-black.png" />
+                    </image>
+                </ImageView>
                 <ComboBox fx:id="searchCustomerComboBox" layoutX="911.0" layoutY="50.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
                 <Button fx:id="addCustomerButton" alignment="CENTER" layoutX="882.0" layoutY="169.0" mnemonicParsing="false" onMouseClicked="#addNewCustomerPage" prefHeight="35.0" prefWidth="177.0" styleClass="button-export" stylesheets="@style.css" text="Add new customer" textFill="WHITE">
                     <graphic>
-
+                        <ImageView fitHeight="23.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@image_icons/plus-white.png" />
+                            </image>
+                        </ImageView>
                     </graphic>
                     <cursor>
                         <Cursor fx:constant="HAND" />
