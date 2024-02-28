@@ -1,8 +1,4 @@
-package com.example.demojavafxproject.controller;
-
-import com.example.demojavafxproject.model.Car;
-import com.example.demojavafxproject.model.Customer;
-import com.example.demojavafxproject.model.DBConnect;
+package com.example.smartphone.controller;
 import com.example.smartphone.controller.GetData;
 import com.example.smartphone.model.Customer;
 import com.example.smartphone.model.Phone;
@@ -48,7 +44,7 @@ public class AddOrderViewController {
     @FXML
     private AnchorPane orderFormPage;
     @FXML
-    private ImageView carImageView;
+    private ImageView phoneImageView;
 
     @FXML
     private TableColumn<Phone, Integer> orderNumberTableColumn;
@@ -105,10 +101,8 @@ public class AddOrderViewController {
     private Button addButton;
 
     @FXML
-    private TableView<Car> carTableView;
+    private TableView<Phone> phoneTableView;
 
-    @FXML
-    private Button closeButton;
 
     @FXML
     private TableColumn<Phone, String> distributorTableColumn;
@@ -120,13 +114,8 @@ public class AddOrderViewController {
     private TableColumn<Phone, Integer> idTableColumn;
 
     @FXML
-    private TableColumn<Car, String> makeTableColumn;
+    private TableColumn<Phone, String> PhoneTableColumn;
 
-    @FXML
-    private Button minimizeButton;
-
-    @FXML
-    private TableColumn<Car, String> modelTableColumn;
 
     @FXML
     private Label orderDateLabel;
@@ -135,10 +124,8 @@ public class AddOrderViewController {
     private Label orderIdLabel;
 
     @FXML
-    private TextField carIdTextField;
+    private TextField phoneIdTextField;
 
-    @FXML
-    private TextField orderQuantityTextField;
 
     @FXML
     private ComboBox<String> orderStatusComboBox;
@@ -147,13 +134,11 @@ public class AddOrderViewController {
     private Pagination paginationPagination;
 
     @FXML
-    private TableColumn<Car, Double> priceTableColumn;
+    private TableColumn<Phone, Double> priceTableColumn;
 
     @FXML
     private TextField searchKeywordTextField;
 
-    @FXML
-    private TableColumn<Phone, Double> taxTableColumn;
 
     @FXML
     private TextField totalAmoutTextField;
@@ -177,7 +162,7 @@ public class AddOrderViewController {
     private final int currentPage = 1;
     private final int currentCustomerPage = 1;
     Connection connection = JDBCConnect.getJDBCConnection();
-    ObservableList<Phone> carObservableList = FXCollections.observableArrayList();
+    ObservableList<Phone> phoneObservableList = FXCollections.observableArrayList();
     ObservableList<Customer> customerObservableList = FXCollections.observableArrayList();
     private final int itemsPerPage = 15;
     private final int itemsPerCustomerPage = 3;
@@ -206,26 +191,13 @@ public class AddOrderViewController {
         employeeNameLabel.setText("Processing by: " + GetData.username);
 
         // Set the custom row factory
-        carTableView.setRowFactory(tv -> {
+        phoneTableView.setRowFactory(tv -> {
             TableRow<Phone> row = new TableRow<>();
             row.itemProperty().addListener((observable, oldValue, newValue) -> {
-                if (newValue != null && newValue.getQuantity() == 0) {
-                    row.getStyleClass().add("red-row");
-                    row.setDisable(true); // Disable row selection for rows with quantity 0
-                } else {
-                    row.getStyleClass().remove("red-row");
-                    row.setDisable(false); // Enable row selection for other rows
-                }
             });
             return row;
         });
 
-        // Add an event filter to allow only numeric input for phoneTextField
-        orderQuantityTextField.addEventFilter(KeyEvent.KEY_TYPED, event -> {
-            if (!isNumeric(event.getCharacter())) {
-                event.consume(); // Consume the event to prevent non-numeric input
-            }
-        });
     }
 
     private boolean isNumeric(String str) {
@@ -246,11 +218,10 @@ public class AddOrderViewController {
         orderStatusComboBox.setPromptText("Status");
         paymentComboBox.setPromptText("Payment");
         paymentStatusComboBox.setPromptText("Payment Status");
-        orderQuantityTextField.setText("1");
         totalAmoutTextField.clear();
-        carImageView.setImage(null);
+        phoneImageView.setImage(null);
         GetData.path = "";
-        carIdTextField.clear();
+        phoneIdTextField.clear();
 
         addButton.setDisable(false);
     }
@@ -262,9 +233,9 @@ public class AddOrderViewController {
             ResultSet resultSet = statement.executeQuery(sql);
 
             if (resultSet.next()) {
-                int carIdIncrease = resultSet.getInt("orderId") + 1;
-                orderIdLabel.setText("OrderID: " + carIdIncrease);
-                return carIdIncrease;
+                int phoneIdIncrease = resultSet.getInt("orderId") + 1;
+                orderIdLabel.setText("OrderID: " + phoneIdIncrease);
+                return phoneIdIncrease;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -387,7 +358,6 @@ public class AddOrderViewController {
     }
 
     /**
-     * Sets up the car table with data from the database and adds filtering functionality.
      */
     private void setupCustomerTable() {
         customerObservableList = getCustomerList();
@@ -466,37 +436,28 @@ public class AddOrderViewController {
         customerTableView.setItems(FXCollections.observableArrayList(sortedList.subList(fromIndex, toIndex)));
     }
 
-    /**
-     * Retrieves a list of all cars from the database.
-     *
-     * @return An ObservableList containing Car objects.
-     */
-    private ObservableList<Car> getListCar() {
-        ObservableList<Car> observableList = FXCollections.observableArrayList();
-        String sql = "SELECT c.carId, c.make, c.model, c.year, c.price, c.sellingPrice, d.distributorName, c.tax, c.image, i.quantityInStock " +
-                "FROM car AS c " +
+    private ObservableList<Phone> getListPhone() {
+        ObservableList<Phone> observableList = FXCollections.observableArrayList();
+        String sql = "SELECT p.phoneId, p.price, p.sellingPrice, d.distributorName, p.image " +
+                "FROM phone AS p " +
                 "JOIN distributor AS d ON c.distributorId = d.distributorId " +
-                "JOIN car_inventory AS i ON c.carId = i.carId " +
-                "ORDER BY c.make";
+                "JOIN phone_inventory AS i ON p.phone = p.phoneId " +
+                "ORDER BY p.sellingPrice";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
                 // iterate through the resultSet from db and add to list
-                int id = resultSet.getInt("carId");
-                String make = resultSet.getString("make");
-                String model = resultSet.getString("model");
-                int year = resultSet.getInt("year");
+                int id = resultSet.getInt("phoneId");
+                String name = resultSet.getString("phoneName");
                 double price = resultSet.getDouble("price");
                 String distributorName = resultSet.getString("distributorName");
-                double tax = resultSet.getDouble("tax");
                 String image = resultSet.getString("image");
-                int quantity = resultSet.getInt("quantityInStock");
                 double sellingPrice = resultSet.getDouble("sellingPrice");
 
                 // add to list
-                observableList.add(new Phone(id, make, model, year, price, distributorName, tax, image, quantity, sellingPrice));
+                observableList.add(new Phone(id, name, image, price, sellingPrice));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -505,30 +466,24 @@ public class AddOrderViewController {
     }
 
     /**
-     * Sets up the car table with data from the database and adds filtering functionality.
      */
     private void setupTable() {
-        carObservableList = getListCar();
+        phoneObservableList = getListPhone();
         idTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        makeTableColumn.setCellValueFactory(new PropertyValueFactory<>("make"));
-        modelTableColumn.setCellValueFactory(new PropertyValueFactory<>("model"));
+        phoneIdTextField.getCharacters();
         priceTableColumn.setCellValueFactory(new PropertyValueFactory<>("sellingPrice"));
         distributorTableColumn.setCellValueFactory(new PropertyValueFactory<>("distributor"));
-        taxTableColumn.setCellValueFactory(new PropertyValueFactory<>("tax"));
-        orderNumberTableColumn.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(carTableView.getItems().indexOf(param.getValue()) + 1 + (currentPage - 1) * itemsPerPage));
-
-        // create FilteredList to filter and search car by searchKeyword
-        FilteredList<Phone> filteredList = new FilteredList<>(carObservableList, b -> true); // b->true : means all elements in the list will be included in the filteredList
+        FilteredList<Phone> filteredList = new FilteredList<>(phoneObservableList, b -> true); // b->true : means all elements in the list will be included in the filteredList
 
         // listen to changes in the searchKeyword to update the tableView
         searchKeywordTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredList.setPredicate(car -> {
+            filteredList.setPredicate(phone -> {
                 if (newValue == null || newValue.trim().isEmpty()) {
                     return true;
                 }
 
                 String searchKeyword = newValue.toLowerCase();
-                return car.getMake().toLowerCase().contains(searchKeyword);
+                return phone.getPhoneName().toLowerCase().contains(searchKeyword);
             });
             // update pagination
             updatePagination(filteredList);
@@ -539,21 +494,19 @@ public class AddOrderViewController {
     }
 
     /**
-     * Updates the car table data based on the current pagination page.
      *
      * @param pageIndex The index of the current pagination page.
      */
     private void updateTableData(int pageIndex) {
         int fromIndex = pageIndex * itemsPerPage;
-        int toIndex = Math.min(fromIndex + itemsPerPage, carObservableList.size());
-        carTableView.setItems(FXCollections.observableArrayList(carObservableList.subList(fromIndex, toIndex)));
+        int toIndex = Math.min(fromIndex + itemsPerPage, phoneObservableList.size());
+        phoneTableView.setItems(FXCollections.observableArrayList(phoneObservableList.subList(fromIndex, toIndex)));
     }
 
     /**
-     * Sets up the pagination control and links it to the car table.
      */
     private void setupPagination() {
-        int totalPages = (carObservableList.size() / itemsPerPage) + (carObservableList.size() % itemsPerPage > 0 ? 1 : 0);
+        int totalPages = (phoneObservableList.size() / itemsPerPage) + (phoneObservableList.size() % itemsPerPage > 0 ? 1 : 0);
         paginationPagination.setPageCount(totalPages);
 
         paginationPagination.currentPageIndexProperty().addListener((observable, oldValue, newValue) -> {
@@ -562,11 +515,8 @@ public class AddOrderViewController {
     }
 
     /**
-     * Updates the pagination control based on the filtered car list.
-     *
-     * @param filteredList The FilteredList containing the filtered cars.
      */
-    private void updatePagination(FilteredList<Car> filteredList) {
+    private void updatePagination(FilteredList<Phone> filteredList) {
         int totalItems = filteredList.size();
         int pageCount = (totalItems + itemsPerPage - 1) / itemsPerPage;
 
@@ -584,10 +534,10 @@ public class AddOrderViewController {
         int fromIndex = paginationPagination.getCurrentPageIndex() * itemsPerPage;
         int toIndex = Math.min(fromIndex + itemsPerPage, totalItems);
 
-        SortedList<Car> sortedList = new SortedList<>(filteredList);
-        sortedList.comparatorProperty().bind(carTableView.comparatorProperty());
+        SortedList<Phone> sortedList = new SortedList<>(filteredList);
+        sortedList.comparatorProperty().bind(phoneTableView.comparatorProperty());
 
-        carTableView.setItems(FXCollections.observableArrayList(sortedList.subList(fromIndex, toIndex)));
+        phoneTableView.setItems(FXCollections.observableArrayList(sortedList.subList(fromIndex, toIndex)));
     }
 
     /**
@@ -601,7 +551,6 @@ public class AddOrderViewController {
                 orderStatusComboBox.getValue() == null
                         || paymentStatusComboBox.getValue() == null
                         || paymentComboBox.getValue() == null
-                        || orderQuantityTextField.getText().isEmpty()
                         || totalAmoutTextField.getText().isEmpty()
         ) {
             GetData.showWarningAlert("Warning message", "Please fill all required fields!");
@@ -639,18 +588,17 @@ public class AddOrderViewController {
 
         if (isFilledAllField()) {
 
-            String sql = "INSERT INTO `order`(customerId,carId,employeeId,orderDate,totalAmount,quantity,statusId,paymentId,paymentStatusId) VALUES (?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO `order`(customerId,phoneId,employeeId,orderDate,totalAmount,quantity,statusId,paymentId,paymentStatusId) VALUES (?,?,?,?,?,?,?,?,?)";
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setString(1, customerIdTextField.getText());
-                preparedStatement.setString(2, carIdTextField.getText());
+                preparedStatement.setString(2, phoneIdTextField.getText());
                 preparedStatement.setString(3, String.valueOf(GetData.empId));
                 preparedStatement.setString(4, currentDate);
                 preparedStatement.setString(5, totalAmoutTextField.getText());
-                preparedStatement.setString(6, orderQuantityTextField.getText());
-                preparedStatement.setString(7, String.valueOf(selectedStatusId));
-                preparedStatement.setInt(8, selectedPaymentId);
-                preparedStatement.setInt(9, selectedPaymentStatusId);
+                preparedStatement.setString(6, String.valueOf(selectedStatusId));
+                preparedStatement.setInt(7, selectedPaymentId);
+                preparedStatement.setInt(8, selectedPaymentStatusId);
 
                 preparedStatement.executeUpdate();
 
@@ -664,31 +612,30 @@ public class AddOrderViewController {
     }
 
     /**
-     * Listens for the selected car in the car table and updates the carIdTextField and carImageView accordingly.
      */
     private void selectedRecord() {
         // catch select row event
-        carTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Car>() {
+        phoneTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Phone>() {
             @Override
-            public void changed(ObservableValue<? extends Car> observableValue, Car oldValue, Car newValue) {
+            public void changed(ObservableValue<? extends Phone> observableValue, Phone oldValue, Phone newValue) {
                 if (newValue != null) {
-                    carIdTextField.setText(String.valueOf(newValue.getId()));
-                    totalAmoutTextField.setText(String.valueOf((newValue.getSellingPrice() + newValue.getSellingPrice() * newValue.getTax() / 100) * Integer.parseInt(orderQuantityTextField.getText())));
-                    File imageFile = new File(newValue.getImage());
+                    phoneIdTextField.setText(String.valueOf(newValue.getPhone_id()));
+                    totalAmoutTextField.setText(String.valueOf((newValue.getSellingPrice() + newValue.getSellingPrice() ) * 1));
+                    File imageFile = new File(newValue.getImg());
                     Image image = null;
                     try {
                         image = new Image(imageFile.getAbsolutePath());
-                        carImageView.setImage(image);
+                        phoneImageView.setImage(image);
                     } catch (Exception e) {
                         e.printStackTrace();
                         image = null;
-                        carImageView.setImage(null);
+                        phoneImageView.setImage(null);
                         GetData.showWarningAlert("Warning message", "Image not found. \nMake sure that image file exists and try again!");
                     }
                 } else {
-                    carImageView.setImage(null);
+                    phoneImageView.setImage(null);
                     GetData.path = "";
-                    carIdTextField.clear();
+                    phoneIdTextField.clear();
                 }
             }
         });
@@ -710,33 +657,6 @@ public class AddOrderViewController {
         });
     }
 
-    @FXML
-    private void handleMinusButton(ActionEvent event) {
-        String currentValue = orderQuantityTextField.getText();
-
-        try {
-            int value = Integer.parseInt(currentValue);
-
-            if (value > 1) {
-                value--;
-            }
-            orderQuantityTextField.setText(Integer.toString(value));
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void handlePlusButton(ActionEvent event) {
-        String currentValue = orderQuantityTextField.getText();
-        try {
-            int value = Integer.parseInt(currentValue);
-            value++;
-            orderQuantityTextField.setText(Integer.toString(value));
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-    }
 
     @FXML
     private void addNewCustomerPage(MouseEvent event) {
@@ -756,7 +676,7 @@ public class AddOrderViewController {
         orderFormPage.setDisable(true);
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demojavafxproject/add-new-customer-form.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/smartphone/T.fxml"));
             Parent root = loader.load();
 
             Stage addCustomerFormStage = new Stage();
