@@ -18,7 +18,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="orderFormPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1130.0" style="-fx-background-color: #ddd;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smartphone.controller.AddOrderViewController">
+<AnchorPane fx:id="orderFormPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1130.0" style="-fx-background-color: #ddd;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smartphone.controller.AddOrderViewController">
     <children>
         <Pane prefHeight="62.0" prefWidth="1130.0" style="-fx-background-color: #fff;">
             <children>
@@ -30,23 +30,8 @@
                         <Insets left="30.0" />
                     </padding>
                 </Label>
-                <Button fx:id="closeButton" layoutX="1090.0" mnemonicParsing="false" onAction="#close" prefHeight="23.0" prefWidth="40.0" styleClass="closeButton" stylesheets="@css/style.css" text="X">
-                    <font>
-                        <Font name=".VnArial" size="12.0" />
-                    </font>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor></Button>
-                <Button fx:id="minimizeButton" layoutX="1050.0" mnemonicParsing="false" onAction="#minimize" prefHeight="23.0" prefWidth="40.0" styleClass="minimizeButton" stylesheets="@css/style.css" text="─">
-                    <font>
-                        <Font name=".VnArial" size="12.0" />
-                    </font>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </Button>
-                <Label fx:id="employeeNameLabel" alignment="CENTER_RIGHT" layoutX="589.0" layoutY="40.0" prefHeight="17.0" prefWidth="527.0" text="Processing by: Nguyen Thi Thao" />
-                <Label fx:id="orderDateLabel" layoutX="34.0" layoutY="41.0" prefHeight="17.0" prefWidth="150.0" text="Date: 21/3/2004" />
+                <Label fx:id="employeeNameLabel" alignment="CENTER_RIGHT" layoutX="589.0" layoutY="40.0" prefHeight="17.0" prefWidth="527.0" text="Processing by: Ninh Viet Phuong" />
+                <Label fx:id="orderDateLabel" layoutX="34.0" layoutY="41.0" prefHeight="17.0" prefWidth="150.0" text="Date: 03/04/2004" />
                 <Label fx:id="orderIdLabel" layoutX="228.0" layoutY="13.0" text="OrderID: " visible="false">
                     <font>
                         <Font name="System Bold" size="18.0" />
@@ -81,7 +66,7 @@
                 </ImageView>
                 <VBox layoutX="18.0" layoutY="254.0" prefHeight="424.0" prefWidth="670.0">
                     <children>
-                        <TableView fx:id="carTableView" prefHeight="405.0" prefWidth="622.0" stylesheets="@css/style.css">
+                        <TableView fx:id="carTableView" prefHeight="405.0" prefWidth="622.0" stylesheets="@style.css">
                             <columns>
                                 <TableColumn fx:id="idTableColumn" prefWidth="47.199981689453125" text="ID" visible="false" />
                                 <TableColumn fx:id="orderNumberTableColumn" prefWidth="45.0" text="#" />
@@ -115,11 +100,11 @@
                 <TextField fx:id="carIdTextField" layoutX="789.0" layoutY="15.0" visible="false" />
                 <ComboBox fx:id="paymentStatusComboBox" layoutX="888.0" layoutY="576.0" prefHeight="30.0" prefWidth="166.0" promptText="Payment Status" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
                 <ComboBox fx:id="paymentComboBox" layoutX="703.0" layoutY="576.0" prefHeight="30.0" prefWidth="165.0" promptText="Payment" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
-                <Button fx:id="addButton" alignment="CENTER" layoutX="963.0" layoutY="620.0" mnemonicParsing="false" onAction="#addToDatabase" prefHeight="35.0" prefWidth="90.0" styleClass="button-add" stylesheets="@css/style.css" text="Add" textFill="WHITE">
+                <Button fx:id="addButton" alignment="CENTER" layoutX="963.0" layoutY="620.0" mnemonicParsing="false" onAction="#addToDatabase" prefHeight="35.0" prefWidth="90.0" styleClass="button-add" stylesheets="@style.css" text="Add" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@images/plus-white.png" />
+                                <Image url="@image_icons/plus-white.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -130,11 +115,11 @@
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Button>
-                <Button alignment="CENTER" layoutX="860.0" layoutY="620.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="35.0" prefWidth="90.0" styleClass="button-clean" stylesheets="@css/style.css" text="Reset" textFill="WHITE">
+                <Button alignment="CENTER" layoutX="860.0" layoutY="620.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="35.0" prefWidth="90.0" styleClass="button-clean" stylesheets="@style.css" text="Reset" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@images/rotate-white.png" />
+                                <Image url="@image_icons/rotate-white.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -145,11 +130,11 @@
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Button>
-                <Button fx:id="minusButton" layoutX="810.0" layoutY="509.0" mnemonicParsing="false" onAction="#handleMinusButton" prefHeight="26.0" prefWidth="40.0" stylesheets="@css/style.css" text="-" />
-                <Button fx:id="plusButton" layoutX="1016.0" layoutY="509.0" mnemonicParsing="false" onAction="#handlePlusButton" prefHeight="26.0" prefWidth="40.0" stylesheets="@css/style.css" text="+" />
+                <Button fx:id="minusButton" layoutX="810.0" layoutY="509.0" mnemonicParsing="false" onAction="#handleMinusButton" prefHeight="26.0" prefWidth="40.0" stylesheets="@style.css" text="-" />
+                <Button fx:id="plusButton" layoutX="1016.0" layoutY="509.0" mnemonicParsing="false" onAction="#handlePlusButton" prefHeight="26.0" prefWidth="40.0" stylesheets="@style.css" text="+" />
                 <VBox layoutX="24.0" layoutY="48.0" prefHeight="166.0" prefWidth="670.0">
                     <children>
-                        <TableView fx:id="customerTableView" prefHeight="405.0" prefWidth="622.0" stylesheets="@css/style.css">
+                        <TableView fx:id="customerTableView" prefHeight="405.0" prefWidth="622.0" stylesheets="@style.css">
                             <columns>
                                 <TableColumn fx:id="customerIdTableColumn" prefWidth="47.199981689453125" text="ID" visible="false" />
                                 <TableColumn fx:id="customerOrderNumberTableColumn" prefWidth="41.600006103515625" text="#" />
@@ -172,7 +157,7 @@
                     </image>
                 </ImageView>
                 <ComboBox fx:id="searchCustomerComboBox" layoutX="911.0" layoutY="50.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
-                <Button fx:id="addCustomerButton" alignment="CENTER" layoutX="882.0" layoutY="169.0" mnemonicParsing="false" onMouseClicked="#addNewCustomerPage" prefHeight="35.0" prefWidth="177.0" styleClass="button-export" stylesheets="@css/style.css" text="Add new customer" textFill="WHITE">
+                <Button fx:id="addCustomerButton" alignment="CENTER" layoutX="882.0" layoutY="169.0" mnemonicParsing="false" onMouseClicked="#addNewCustomerPage" prefHeight="35.0" prefWidth="177.0" styleClass="button-export" stylesheets="@style.css" text="Add new customer" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                             <image>
