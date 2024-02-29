@@ -109,7 +109,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="updateButton" alignment="CENTER" layoutX="967.0" layoutY="167.0" mnemonicParsing="false" onAction="#updatePhoneToDatabase" prefHeight="35.0" prefWidth="99.0" styleClass="button-update" stylesheets="@style.css" text="Update" textFill="WHITE">
+            <Button fx:id="updateButton" alignment="CENTER" layoutX="967.0" layoutY="167.0" mnemonicParsing="false" onAction="#addPhoneDatabase" prefHeight="35.0" prefWidth="99.0" styleClass="button-update" stylesheets="@style.css" text="Update" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -124,6 +124,12 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
+            <TextField fx:id="quantityTextField" layoutX="111.0" layoutY="159.0" prefHeight="27.0" prefWidth="164.0" />
+            <Label layoutX="25.0" layoutY="155.0" prefHeight="35.0" prefWidth="69.0" text="Quantity">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <VBox layoutX="20.0" layoutY="333.0" prefHeight="465.0" prefWidth="1087.0">
@@ -131,7 +137,7 @@
             <TableView fx:id="phoneTableView" prefHeight="417.0" prefWidth="1087.0" stylesheets="@style.css">
                <columns>
                   <TableColumn fx:id="orderNumberTableColumn" prefWidth="36.800018310546875" text="#" />
-                  <TableColumn fx:id="nameTableColumn" prefWidth="400.0" text="Phone Name" />
+                  <TableColumn fx:id="phoneTableColumn" prefWidth="400.0" text="Phone Name" />
                   <TableColumn fx:id="priceTableColumn" prefWidth="165.0" text="Original Price" />
                   <TableColumn fx:id="sellingPriceTableColumn" prefWidth="163.0" text="Selling Price" />
                   <TableColumn fx:id="distributorTableColumn" prefWidth="245.0" text="Distributor" />

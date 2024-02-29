@@ -487,7 +487,7 @@ private void handleMinusButton(ActionEvent event) {
                 double sellingPrice = resultSet.getDouble("sellingPrice");
 
                 // add to list
-                observableList.add(new Phone(id, name, image, price, sellingPrice));
+                observableList.add(new Phone(id, name, image, price, sellingPrice, distributorName));
             }
         } catch (Exception e) {
             e.printStackTrace();

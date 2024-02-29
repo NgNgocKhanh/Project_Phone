@@ -84,6 +84,8 @@ public class PhoneController {
 
     @FXML
     private TableColumn<Phone, Double> priceTableColumn;
+    @FXML
+    private TableColumn<Phone, String> phoneTableColumn;
 
     @FXML
     private TextField priceTextField;
@@ -164,11 +166,11 @@ public class PhoneController {
 
     private ObservableList<Phone> getListPhone() {
         ObservableList<Phone> observableList = FXCollections.observableArrayList();
-        String sql = "SELECT p.phoneId, p.price,p.sellingPrice, d.distributorName, p.image ,i.quantityInStock " +
-                "FROM phone AS p " +
-                "LEFT JOIN distributor AS d ON p.distributorId = d.distributorId " +
-                "LEFT JOIN phone_inventory AS i ON i.phoneId = p.phoneId " +
-                "ORDER BY p.quantity";
+        String sql = "SELECT p.phoneId, p.price, p.sellingPrice, d.distributorName, p.image, i.quantityInStock, i.phoneName\n" +
+                "FROM phone AS p\n" +
+                "LEFT JOIN distributor AS d ON p.distributorId = d.distributorId\n" +
+                "LEFT JOIN phone_inventory AS i ON i.phoneId = p.phoneId\n" +
+                "ORDER BY p.quantity\n";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -179,11 +181,12 @@ public class PhoneController {
                 double price = resultSet.getDouble("price");
                 String phoneName = resultSet.getString("phoneName");
                 String image = resultSet.getString("image");
+                String distributorComboboxx = resultSet.getString("distributorName");
                 int quantity = resultSet.getInt("quantityInStock");
                 double sellingPrice = resultSet.getDouble("sellingPrice");
 
                 // add to list
-                observableList.add(new Phone(id,  phoneName, image, price, sellingPrice));}
+                observableList.add(new Phone(id,  phoneName, image, price, sellingPrice, distributorComboboxx));}
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -192,8 +195,9 @@ public class PhoneController {
 
     private void setupTable() {
         phoneObservableList = getListPhone();
-        idTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         priceTableColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        phoneTableColumn.setCellFactory(new PropertyValueFactory<>("phoneName"));
+
         distributorTableColumn.setCellValueFactory(new PropertyValueFactory<>("distributor"));
         sellingPriceTableColumn.setCellValueFactory(new PropertyValueFactory<>("sellingPrice"));
         orderNumberTableColumn.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(phoneTableView.getItems().indexOf(param.getValue()) + 1 + (currentPage - 1) * itemsPerPage));
@@ -394,18 +398,14 @@ public class PhoneController {
     }
 
 
-    /**
-     * Populates the distributorComboBox with distributor names from the database.
-     * It calls the getDistributorMap method to fetch the distributor data and adds the names to the ComboBox.
-     */
     private void addDistributorNameToComboBox() {
         Map<Integer, String> distributorMap = getDistributorMap();
         distributorComboBox.getItems().addAll(distributorMap.values());
     }
 
     private void addSearchByToComboBox() {
-        searchComboBox.getItems().addAll("Make", "Model", "Year");
-        searchComboBox.setValue("Make");
+        searchComboBox.getItems().addAll("phoneName");
+        searchComboBox.setValue("phoneName");
     }
 
     @FXML
