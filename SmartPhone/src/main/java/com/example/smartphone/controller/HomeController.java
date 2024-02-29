@@ -100,7 +100,7 @@ public class HomeController {
     }
     @FXML
     void employeePage(MouseEvent event){
-        loadPage("employee-view");
+        loadPage("add-employee-view");
         setActiveButton(employeeButton);
     }
     @FXML

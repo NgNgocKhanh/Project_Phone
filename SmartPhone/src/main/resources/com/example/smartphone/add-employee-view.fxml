@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1130.0" style="-fx-background-color: #ddd;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smartphone.controller.EmployeeController">
+    <children>
+        <Pane prefHeight="62.0" prefWidth="1130.0" style="-fx-background-color: #fff;">
+            <children>
+                <Label layoutY="14.0" prefHeight="35.0" prefWidth="238.0" text="EMPLOYEES">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                    <padding>
+                        <Insets left="30.0" />
+                    </padding>
+                </Label>
+            </children>
+        </Pane>
+        <AnchorPane layoutX="24.0" layoutY="73.0" prefHeight="215.0" prefWidth="1082.0" style="-fx-background-color: #fff;">
+            <children>
+                <Label fx:id="actionStatusLabel" layoutX="21.0" layoutY="14.0" text="Adding New Employee">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="idTextField" editable="false" layoutX="252.0" layoutY="14.0" prefHeight="26.0" prefWidth="230.0" visible="false" />
+                <TextField fx:id="nameTextField" layoutX="90.0" layoutY="52.0" prefHeight="26.0" prefWidth="230.0" />
+                <DatePicker fx:id="birthdayDatePicker" layoutX="90.0" layoutY="123.0" prefHeight="26.0" prefWidth="230.0" />
+                <TextField fx:id="phoneTextField" layoutX="462.0" layoutY="50.0" prefHeight="26.0" prefWidth="230.0" />
+                <TextField fx:id="usernameTextField" layoutX="462.0" layoutY="85.0" prefHeight="26.0" prefWidth="230.0" />
+                <DatePicker fx:id="joinDateDatePicker" layoutX="462.0" layoutY="121.0" prefHeight="26.0" prefWidth="230.0" />
+                <TextField fx:id="emailTextField" layoutX="829.0" layoutY="50.0" prefHeight="26.0" prefWidth="230.0" />
+                <TextField fx:id="salaryTextField" layoutX="829.0" layoutY="86.0" prefHeight="26.0" prefWidth="230.0" />
+                <TextField fx:id="addressTextField" layoutX="829.0" layoutY="120.0" prefHeight="26.0" prefWidth="230.0" />
+                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="39.0" layoutY="56.0" prefHeight="18.0" prefWidth="40.0" text="Name">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="411.0" layoutY="54.0" prefHeight="18.0" prefWidth="40.0" text="Phone">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="756.0" layoutY="124.0" prefHeight="20.0" prefWidth="62.0" text="Address">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="778.0" layoutY="54.0" prefHeight="18.0" prefWidth="40.0" text="Email">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="744.0" layoutY="90.0" prefHeight="20.0" prefWidth="74.0" text="Basic Salary">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="39.0" layoutY="88.0" prefHeight="18.0" prefWidth="40.0" text="Role">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="389.0" layoutY="124.0" prefHeight="20.0" prefWidth="62.0" text="Join Date">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="389.0" layoutY="88.0" prefHeight="20.0" prefWidth="62.0" text="Username">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <ComboBox fx:id="roleComboBox" layoutX="90.0" layoutY="87.0" prefHeight="27.0" prefWidth="230.0" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
+                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="2.0" layoutY="167.0" prefHeight="20.0" prefWidth="74.0" text="Password" visible="false">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="21.0" layoutY="126.0" prefHeight="20.0" prefWidth="60.0" text="Birthday">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Button fx:id="addButton" alignment="CENTER" layoutX="859.0" layoutY="169.0" mnemonicParsing="false" onAction="#addEmployeeToDatabase" prefHeight="35.0" prefWidth="90.0" styleClass="button-add" stylesheets="@style.css" text="Add" textFill="WHITE">
+                    <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@image_icons/plus-white.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Button>
+                <Button alignment="CENTER" layoutX="756.0" layoutY="169.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="35.0" prefWidth="90.0" styleClass="button-clean" stylesheets="@style.css" text="Reset" textFill="WHITE">
+                    <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@image_icons/rotate-white.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Button>
+                <Button fx:id="updateButton" alignment="CENTER" layoutX="961.0" layoutY="169.0" mnemonicParsing="false" onAction="#updateEmployeeToDatabase" prefHeight="35.0" prefWidth="98.0" styleClass="button-update" stylesheets="@style.css" text="Update" textFill="WHITE">
+                    <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@image_icons/pen-to-square-white.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+        <VBox layoutX="20.0" layoutY="336.0" prefHeight="462.0" prefWidth="1082.0">
+            <children>
+                <TableView fx:id="employeeTableView" prefHeight="418.0" prefWidth="1082.0" stylesheets="@style.css">
+                    <columns>
+                        <TableColumn fx:id="orderNumberTableColumn" prefWidth="36.800018310546875" text="#" />
+                        <TableColumn fx:id="idTableColumn" prefWidth="42.39999008178711" text="ID" visible="false" />
+                        <TableColumn fx:id="nameTableColumn" prefWidth="121.60000228881836" text="Name" />
+                        <TableColumn fx:id="usernameTableColumn" prefWidth="114.40000915527344" text="Username" />
+                        <TableColumn fx:id="birthdayTableColumn" prefWidth="99.199951171875" text="Birthday" />
+                        <TableColumn fx:id="roleTableColumn" prefWidth="74.4000244140625" text="Role" />
+                        <TableColumn fx:id="phoneTableColumn" prefWidth="96.0" text="Phone" />
+                        <TableColumn fx:id="emailTableColumn" prefWidth="173.60003662109375" text="Email" />
+                        <TableColumn fx:id="joinDateTableColumn" prefWidth="73.5999755859375" text="JoinDate" />
+                        <TableColumn fx:id="basicSalaryTableColumn" prefWidth="74.39996337890625" text="Basic Salary" />
+                        <TableColumn fx:id="addressTableColumn" prefWidth="144.80010986328125" text="Address" />
+                        <TableColumn fx:id="deleteTableColumn" minWidth="0.0" prefWidth="67.99997558593759" text="Action" />
+                    </columns>
+                </TableView>
+                <Pagination fx:id="paginationPagination" prefHeight="41.0" prefWidth="930.0" />
+            </children>
+        </VBox>
+        <TextField fx:id="searchKeywordTextField" layoutX="774.0" layoutY="299.0" prefHeight="26.0" prefWidth="221.0" promptText="Search keyword..." style="-fx-background-color: #fff; -fx-border-color: #ddd;">
+            <padding>
+                <Insets left="30.0" />
+            </padding>
+        </TextField>
+        <ImageView fitHeight="20.0" fitWidth="25.0" layoutX="781.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@image_icons/search-black.png" />
+            </image>
+        </ImageView>
+        <Label fx:id="totalLabel" layoutX="580.0" layoutY="299.0" prefHeight="26.0" prefWidth="127.0" text="Total: ">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="714.0" layoutY="299.0" prefHeight="26.0" prefWidth="60.0" text="Search">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <ComboBox fx:id="searchComboBox" layoutX="994.0" layoutY="299.0" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
+        <Button fx:id="filterBirthdayButton" alignment="CENTER" layoutX="24.0" layoutY="297.0" mnemonicParsing="false" onAction="#filterByBirthdayAction" prefHeight="32.0" prefWidth="186.0" styleClass="button-filter-birthday" stylesheets="@style.css" text="Birthdays For Today" textFill="WHITE">
+            <graphic>
+                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@image_icons/birthday-white.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Button>
+        <Button fx:id="sendBirthdayMailButton" alignment="CENTER" layoutX="224.0" layoutY="297.0" mnemonicParsing="false" onAction="#sendBirthdayMailAction" prefHeight="31.0" prefWidth="180.0" styleClass="button-send-mail-birthday" stylesheets="@style.css" text="Send Birthday Mail" textFill="WHITE">
+            <graphic>
+                <ImageView fitHeight="21.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@image_icons/mail-white.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Button>
+    </children>
+</AnchorPane>
