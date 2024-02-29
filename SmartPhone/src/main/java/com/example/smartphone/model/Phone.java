@@ -13,6 +13,15 @@ public class Phone {
     private double price;
     private double sellingPrice;
     private int quantity;
+    private String distributorComboBox;
+
+    public String getDistributorComboBox() {
+        return distributorComboBox;
+    }
+
+    public void setDistributorComboBox(String distributorComboBox) {
+        this.distributorComboBox = distributorComboBox;
+    }
 
     public int getQuantity() {
         return quantity;
