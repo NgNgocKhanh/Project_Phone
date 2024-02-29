@@ -87,6 +87,8 @@ public class AddOrderViewController {
 
     @FXML
     private Label customerNameLabel;
+    @FXML
+    private Label orderQuantityTextField;
 
     @FXML
     private Label customerEmailLabel;
