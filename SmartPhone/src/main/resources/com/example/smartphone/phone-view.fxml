@@ -30,14 +30,14 @@
                   <Insets left="30.0" />
                </padding>
             </Label>
-            <Button fx:id="close" layoutX="1090.0" mnemonicParsing="false" onAction="#close" prefHeight="23.0" prefWidth="40.0" styleClass="closeButton" stylesheets="style.css" text="X">
+            <Button fx:id="close" layoutX="1090.0" mnemonicParsing="false" onAction="#close" prefHeight="23.0" prefWidth="40.0" styleClass="closeButton" stylesheets="../../../css/style.css" text="X">
                <font>
                   <Font name=".VnArial" size="12.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button fx:id="minimizeButton" layoutX="1050.0" mnemonicParsing="false" onAction="#minimize" prefHeight="23.0" prefWidth="40.0" styleClass="minimizeButton" stylesheets="@style.css" text="─">
+            <Button fx:id="minimizeButton" layoutX="1050.0" mnemonicParsing="false" onAction="#minimize" prefHeight="23.0" prefWidth="40.0" styleClass="minimizeButton" stylesheets="@../../../css/style.css" text="─">
                <font>
                   <Font name=".VnArial" size="12.0" />
                </font>
@@ -79,7 +79,7 @@
                </font>
             </Label>
             <ComboBox fx:id="distributorComboBox" layoutX="111.0" layoutY="116.0" prefHeight="26.0" prefWidth="230.0" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
-            <Button fx:id="chooseImageButton" layoutX="302.0" layoutY="160.0" mnemonicParsing="false" onMouseClicked="#chooseFileImage" prefHeight="26.0" prefWidth="230.0" stylesheets="@style.css" text="Choose image">
+            <Button fx:id="chooseImageButton" layoutX="302.0" layoutY="160.0" mnemonicParsing="false" onMouseClicked="#chooseFileImage" prefHeight="26.0" prefWidth="230.0" stylesheets="@../../../css/style.css" text="Choose image">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -95,7 +95,7 @@
                   <ImageView fx:id="carImageView" fitHeight="145.0" fitWidth="287.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </StackPane>
-            <Button fx:id="addButton" alignment="CENTER" layoutX="865.0" layoutY="167.0" mnemonicParsing="false" onAction="#addCarToDatabase" prefHeight="35.0" prefWidth="90.0" styleClass="button-add" stylesheets="@style.css" text="Add" textFill="WHITE">
+            <Button fx:id="addButton" alignment="CENTER" layoutX="865.0" layoutY="167.0" mnemonicParsing="false" onAction="#addCarToDatabase" prefHeight="35.0" prefWidth="90.0" styleClass="button-add" stylesheets="@../../../css/style.css" text="Add" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -110,7 +110,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" layoutX="762.0" layoutY="167.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="35.0" prefWidth="90.0" styleClass="button-clean" stylesheets="@style.css" text="Reset" textFill="WHITE">
+            <Button alignment="CENTER" layoutX="762.0" layoutY="167.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="35.0" prefWidth="90.0" styleClass="button-clean" stylesheets="@../../../css/style.css" text="Reset" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -125,7 +125,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="updateButton" alignment="CENTER" layoutX="967.0" layoutY="167.0" mnemonicParsing="false" onAction="#updateCarToDatabase" prefHeight="35.0" prefWidth="99.0" styleClass="button-update" stylesheets="@style.css" text="Update" textFill="WHITE">
+            <Button fx:id="updateButton" alignment="CENTER" layoutX="967.0" layoutY="167.0" mnemonicParsing="false" onAction="#updateCarToDatabase" prefHeight="35.0" prefWidth="99.0" styleClass="button-update" stylesheets="@../../../css/style.css" text="Update" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -144,7 +144,7 @@
       </AnchorPane>
       <VBox layoutX="20.0" layoutY="333.0" prefHeight="465.0" prefWidth="1087.0">
          <children>
-            <TableView fx:id="carTableView" prefHeight="417.0" prefWidth="1087.0" stylesheets="@style.css">
+            <TableView fx:id="carTableView" prefHeight="417.0" prefWidth="1087.0" stylesheets="@../../../css/style.css">
                <columns>
                   <TableColumn fx:id="orderNumberTableColumn" prefWidth="36.800018310546875" text="#" />
                   <TableColumn fx:id="nameTableColumn" prefWidth="400.0" text="Phone Name" />
