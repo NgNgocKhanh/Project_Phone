@@ -49,10 +49,6 @@ public class CustomerController {
 
     @FXML
     private TextField addressTextField;
-
-    @FXML
-    private Button close;
-
     @FXML
     private TableView<Customer> customerTableView;
 
@@ -71,8 +67,6 @@ public class CustomerController {
     @FXML
     private TextField emailTextField;
 
-    @FXML
-    private Button minimizeButton;
 
     @FXML
     private TableColumn<Customer, String> nameTableColumn;
@@ -107,17 +101,7 @@ public class CustomerController {
     @FXML
     private TableColumn<Customer, String> dobTableColumn;
 
-    @FXML
-    void close(ActionEvent event) {
-        Stage stage = (Stage) close.getScene().getWindow();
-        stage.close();
-    }
 
-    @FXML
-    void minimize(ActionEvent event) {
-        Stage stage = (Stage) minimizeButton.getScene().getWindow();
-        stage.setIconified(true);
-    }
 
     private int currentPage = 1;
     Connection connection = JDBCConnect.getJDBCConnection();
