@@ -93,7 +93,7 @@
                     </font>
                 </Label>
                 <Label fx:id="validateFields" layoutX="201.0" layoutY="19.0" />
-                <Button fx:id="addButton" alignment="CENTER" layoutX="852.0" layoutY="156.0" mnemonicParsing="false" onAction="#addToDatabase" prefHeight="35.0" prefWidth="90.0" styleClass="button-add" stylesheets="@style.css" text="Add" textFill="WHITE">
+                <Button fx:id="addButton" alignment="CENTER" layoutX="852.0" layoutY="156.0" mnemonicParsing="false" onAction="#addToDatabase" prefHeight="35.0" prefWidth="90.0" styleClass="button-add" stylesheets="@../../../css/style.css" text="Add" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -108,7 +108,7 @@
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Button>
-                <Button alignment="CENTER" layoutX="749.0" layoutY="156.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="35.0" prefWidth="90.0" styleClass="button-clean" stylesheets="@style.css" text="Reset" textFill="WHITE">
+                <Button alignment="CENTER" layoutX="749.0" layoutY="156.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="35.0" prefWidth="90.0" styleClass="button-clean" stylesheets="@../../../css/style.css" text="Reset" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -123,7 +123,7 @@
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Button>
-                <Button fx:id="updateButton" alignment="CENTER" layoutX="954.0" layoutY="156.0" mnemonicParsing="false" onAction="#updateToDatabase" prefHeight="35.0" prefWidth="97.0" styleClass="button-update" stylesheets="@style.css" text="Update" textFill="WHITE">
+                <Button fx:id="updateButton" alignment="CENTER" layoutX="954.0" layoutY="156.0" mnemonicParsing="false" onAction="#updateToDatabase" prefHeight="35.0" prefWidth="97.0" styleClass="button-update" stylesheets="@../../../css/style.css" text="Update" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -142,7 +142,7 @@
         </AnchorPane>
         <VBox layoutX="20.0" layoutY="340.0" prefHeight="458.0" prefWidth="1087.0">
             <children>
-                <TableView fx:id="eventTableView" prefHeight="422.0" prefWidth="1087.0" stylesheets="@style.css">
+                <TableView fx:id="eventTableView" prefHeight="422.0" prefWidth="1087.0" stylesheets="@../../../css/style.css">
                     <columns>
                         <TableColumn fx:id="orderNumberTableColumn" prefWidth="36.800018310546875" text="#" />
                         <TableColumn fx:id="idTableColumn" prefWidth="41.599971771240234" text="ID" visible="false" />
