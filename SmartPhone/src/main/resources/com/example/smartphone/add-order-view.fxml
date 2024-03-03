@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="orderFormPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1130.0" style="-fx-background-color: #ddd;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smartphone.controller.AddOrderViewController">
+    <children>
+        <Pane prefHeight="62.0" prefWidth="1130.0" style="-fx-background-color: #fff;">
+            <children>
+                <Label layoutY="14.0" prefHeight="35.0" prefWidth="238.0" text="ADD ORDER">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                    <padding>
+                        <Insets left="30.0" />
+                    </padding>
+                </Label>
+                <Label fx:id="employeeNameLabel" alignment="CENTER_RIGHT" layoutX="589.0" layoutY="40.0" prefHeight="17.0" prefWidth="527.0" text="Processing by: Ninh Viet Phuong" />
+                <Label fx:id="orderDateLabel" layoutX="34.0" layoutY="41.0" prefHeight="17.0" prefWidth="150.0" text="Date: 03/04/2004" />
+                <Label fx:id="orderIdLabel" layoutX="228.0" layoutY="13.0" text="OrderID: " visible="false">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+        <AnchorPane layoutX="30.0" layoutY="83.0" prefHeight="678.0" prefWidth="1080.0" style="-fx-background-color: #fff;">
+            <children>
+                <Label layoutX="24.0" layoutY="15.0" prefHeight="23.0" prefWidth="102.0" text="Customer Info">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Label>
+                <Line endX="857.0" layoutX="226.0" layoutY="28.0" startX="-92.59999084472656" />
+                <Label layoutX="18.0" layoutY="213.0" prefHeight="27.0" prefWidth="78.0" text="Phone Info">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Label>
+                <Line endX="858.800048828125" layoutX="226.0" layoutY="227.0" startX="-121.0" />
+                <TextField fx:id="searchKeywordTextField" layoutX="697.0" layoutY="236.0" prefHeight="35.0" prefWidth="363.0" promptText="Searching for car's make" style="-fx-background-color: #f4f4f4;">
+                    <padding>
+                        <Insets left="35.0" />
+                    </padding>
+                </TextField>
+                <TextField fx:id="orderQuantityTextField" alignment="CENTER" layoutX="850.0" layoutY="509.0" prefHeight="26.0" prefWidth="166.0" />
+                <VBox layoutX="18.0" layoutY="254.0" prefHeight="424.0" prefWidth="670.0">
+                    <children>
+                        <TableView fx:id="carTableView" prefHeight="405.0" prefWidth="622.0" stylesheets="@style.css">
+                            <columns>
+                                <TableColumn fx:id="idTableColumn" prefWidth="47.199981689453125" text="ID" visible="false" />
+                                <TableColumn fx:id="orderNumberTableColumn" prefWidth="101.0" text="#" />
+                                <TableColumn fx:id="PhoneTableColumn" prefWidth="189.0" text="Phone Name" />
+                                <TableColumn fx:id="priceTableColumn" prefWidth="192.0" text="SellingPrice" />
+                                <TableColumn fx:id="distributorTableColumn" prefWidth="134.0" text="Distributor" />
+                            </columns>
+                        </TableView>
+                        <Pagination fx:id="paginationPagination" prefHeight="44.0" prefWidth="554.0" />
+                    </children>
+                </VBox>
+                <StackPane layoutX="679.0" layoutY="279.0" prefHeight="216.0" prefWidth="378.0">
+                    <children>
+                        <ImageView fx:id="carImageView" fitHeight="214.0" fitWidth="371.0" pickOnBounds="true" preserveRatio="true" />
+                    </children>
+                </StackPane>
+                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="720.0" layoutY="512.0" prefHeight="20.0" prefWidth="70.0" text="Quantity">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="700.0" layoutY="545.0" prefHeight="20.0" prefWidth="90.0" text="Total Amount">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="totalAmoutTextField" editable="false" layoutX="810.0" layoutY="542.0" prefHeight="26.0" prefWidth="246.0" />
+                <ComboBox fx:id="orderStatusComboBox" layoutX="703.0" layoutY="620.0" prefHeight="35.0" prefWidth="149.0" promptText="Status" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
+                <TextField fx:id="carIdTextField" layoutX="789.0" layoutY="15.0" visible="false" />
+                <ComboBox fx:id="paymentStatusComboBox" layoutX="888.0" layoutY="576.0" prefHeight="30.0" prefWidth="166.0" promptText="Payment Status" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
+                <ComboBox fx:id="paymentComboBox" layoutX="703.0" layoutY="576.0" prefHeight="30.0" prefWidth="165.0" promptText="Payment" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
+                <Button fx:id="addButton" alignment="CENTER" layoutX="963.0" layoutY="620.0" mnemonicParsing="false" onAction="#addToDatabase" prefHeight="35.0" prefWidth="90.0" styleClass="button-add" stylesheets="@style.css" text="Add" textFill="WHITE">
+                    <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@image_icons/plus-white.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Button>
+                <Button alignment="CENTER" layoutX="860.0" layoutY="620.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="35.0" prefWidth="90.0" styleClass="button-clean" stylesheets="@style.css" text="Reset" textFill="WHITE">
+                    <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@image_icons/rotate-white.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Button>
+                <Button fx:id="minusButton" layoutX="810.0" layoutY="509.0" mnemonicParsing="false" onAction="#handleMinusButton" prefHeight="26.0" prefWidth="40.0" stylesheets="@style.css" text="-" />
+                <Button fx:id="plusButton" layoutX="1016.0" layoutY="509.0" mnemonicParsing="false" onAction="#handlePlusButton" prefHeight="26.0" prefWidth="40.0" stylesheets="@style.css" text="+" />
+                <VBox layoutX="24.0" layoutY="48.0" prefHeight="166.0" prefWidth="670.0">
+                    <children>
+                        <TableView fx:id="customerTableView" prefHeight="405.0" prefWidth="622.0" stylesheets="@style.css">
+                            <columns>
+                                <TableColumn fx:id="customerIdTableColumn" prefWidth="47.199981689453125" text="ID" visible="false" />
+                                <TableColumn fx:id="customerOrderNumberTableColumn" prefWidth="41.600006103515625" text="#" />
+                                <TableColumn fx:id="customerNameTableColumn" prefWidth="194.40003967285156" text="Name" />
+                                <TableColumn fx:id="customerPhoneTableColumn" prefWidth="170.39996337890625" text="Phone" />
+                                <TableColumn fx:id="customerEmailTableColumn" prefWidth="262.39996337890625" text="Email" />
+                            </columns>
+                        </TableView>
+                        <Pagination fx:id="paginationCustomerPagination" prefHeight="36.0" prefWidth="462.0" />
+                    </children>
+                </VBox>
+                <TextField fx:id="searchCustomerTextField" layoutX="697.0" layoutY="48.0" prefHeight="35.0" prefWidth="214.0" promptText="Searching for customer" style="-fx-background-color: #f4f4f4;">
+                    <padding>
+                        <Insets left="35.0" />
+                    </padding>
+                </TextField>
+                <ImageView fitHeight="20.0" fitWidth="28.0" layoutX="705.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/search-black.png" />
+                    </image>
+                </ImageView>
+                <ComboBox fx:id="searchCustomerComboBox" layoutX="911.0" layoutY="50.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
+                <Button fx:id="addCustomerButton" alignment="CENTER" layoutX="882.0" layoutY="169.0" mnemonicParsing="false" onMouseClicked="#addNewCustomerPage" prefHeight="35.0" prefWidth="177.0" styleClass="button-export" stylesheets="@style.css" text="Add new customer" textFill="WHITE">
+                    <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@image_icons/plus-white.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Button>
+                <Label fx:id="customerNameLabel" layoutX="709.0" layoutY="92.0" prefHeight="22.0" text="Customer Name:  ">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <Label fx:id="customerPhoneLabel" layoutX="711.0" layoutY="114.0" text="Phone number: ">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <Label fx:id="customerEmailLabel" layoutX="712.0" layoutY="136.0" text="Email: ">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="customerIdTextField" layoutX="704.0" layoutY="174.0" visible="false" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -30,21 +29,6 @@
                   <Insets left="30.0" />
                </padding>
             </Label>
-            <Button fx:id="close" layoutX="1090.0" mnemonicParsing="false" onAction="#close" prefHeight="23.0" prefWidth="40.0" styleClass="closeButton" stylesheets="../../../css/style.css" text="X">
-               <font>
-                  <Font name=".VnArial" size="12.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
-            <Button fx:id="minimizeButton" layoutX="1050.0" mnemonicParsing="false" onAction="#minimize" prefHeight="23.0" prefWidth="40.0" styleClass="minimizeButton" stylesheets="@../../../css/style.css" text="─">
-               <font>
-                  <Font name=".VnArial" size="12.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
          </children>
       </Pane>
       <AnchorPane layoutX="20.0" layoutY="73.0" prefHeight="215.0" prefWidth="1087.0" style="-fx-background-color: #fff;">
@@ -92,10 +76,10 @@
                </cursor></Button>
             <StackPane layoutX="769.0" layoutY="15.0" prefHeight="146.0" prefWidth="290.0">
                <children>
-                  <ImageView fx:id="carImageView" fitHeight="145.0" fitWidth="287.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="phoneImageView" fitHeight="145.0" fitWidth="287.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </StackPane>
-            <Button fx:id="addButton" alignment="CENTER" layoutX="865.0" layoutY="167.0" mnemonicParsing="false" onAction="#addCarToDatabase" prefHeight="35.0" prefWidth="90.0" styleClass="button-add" stylesheets="@../../../css/style.css" text="Add" textFill="WHITE">
+            <Button fx:id="addButton" alignment="CENTER" layoutX="865.0" layoutY="167.0" mnemonicParsing="false" onAction="#addPhoneDatabase" prefHeight="35.0" prefWidth="90.0" styleClass="button-add" stylesheets="@style.css" text="Add" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -125,7 +109,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="updateButton" alignment="CENTER" layoutX="967.0" layoutY="167.0" mnemonicParsing="false" onAction="#updateCarToDatabase" prefHeight="35.0" prefWidth="99.0" styleClass="button-update" stylesheets="@../../../css/style.css" text="Update" textFill="WHITE">
+            <Button fx:id="updateButton" alignment="CENTER" layoutX="967.0" layoutY="167.0" mnemonicParsing="false" onAction="#addPhoneDatabase" prefHeight="35.0" prefWidth="99.0" styleClass="button-update" stylesheets="@style.css" text="Update" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -140,14 +124,21 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
+            <TextField fx:id="quantityTextField" layoutX="111.0" layoutY="159.0" prefHeight="27.0" prefWidth="164.0" />
+            <Label layoutX="25.0" layoutY="155.0" prefHeight="35.0" prefWidth="69.0" text="Quantity">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <VBox layoutX="20.0" layoutY="333.0" prefHeight="465.0" prefWidth="1087.0">
          <children>
-            <TableView fx:id="carTableView" prefHeight="417.0" prefWidth="1087.0" stylesheets="@../../../css/style.css">
+            <TableView fx:id="phoneTableView" prefHeight="417.0" prefWidth="1087.0" stylesheets="@style.css">
+
                <columns>
                   <TableColumn fx:id="orderNumberTableColumn" prefWidth="36.800018310546875" text="#" />
-                  <TableColumn fx:id="nameTableColumn" prefWidth="400.0" text="Phone Name" />
+                  <TableColumn fx:id="phoneTableColumn" prefWidth="400.0" text="Phone Name" />
                   <TableColumn fx:id="priceTableColumn" prefWidth="165.0" text="Original Price" />
                   <TableColumn fx:id="sellingPriceTableColumn" prefWidth="163.0" text="Selling Price" />
                   <TableColumn fx:id="distributorTableColumn" prefWidth="245.0" text="Distributor" />
@@ -180,4 +171,3 @@
       <ComboBox fx:id="searchComboBox" layoutX="995.0" layoutY="298.0" prefHeight="27.0" prefWidth="111.0" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
    </children>
 </AnchorPane>
-
