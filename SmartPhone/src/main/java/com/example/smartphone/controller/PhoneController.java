@@ -24,6 +24,7 @@ import javafx.util.Callback;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
@@ -501,17 +502,24 @@ public class PhoneController {
                     quantityTextField.setText(String.valueOf(newValue.getQuantity()));
                     sellingPriceTextField.setText(String.valueOf(newValue.getSellingPrice()));
                     phoneTextField.setText(String.valueOf(newValue.getPhoneName()));
-                    File imageFile = new File(newValue.getImg());
-                    Image image = null;
-                    try {
-                        image = new Image(imageFile.getAbsolutePath());
-                        phoneImageView.setImage(image);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        image = null;
+                    String imagePath = "/com/example/smartphone/image_phone/" + newValue.getImg();
+                    URL imageUrl = getClass().getResource(imagePath);
+
+                    if (imageUrl != null) {
+                        try {
+                            Image image = new Image(imageUrl.toExternalForm());
+                            phoneImageView.setImage(image);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            phoneImageView.setImage(null);
+                            GetData.showWarningAlert("Warning message", "Failed to load image. Please make sure that the image file exists and try again!");
+                        }
+                    } else {
                         phoneImageView.setImage(null);
-                        GetData.showWarningAlert("Warning message", "Image not found. \nMake sure that image file exists and try again!");
+                        GetData.showWarningAlert("Warning message", "Image not found. Please make sure that the image file exists and try again!");
                     }
+
+
 
                     addButton.setDisable(true);
                     updateButton.setDisable(false);
