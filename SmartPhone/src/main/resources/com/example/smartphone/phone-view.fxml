@@ -63,7 +63,7 @@
                </font>
             </Label>
             <ComboBox fx:id="distributorComboBox" layoutX="111.0" layoutY="116.0" prefHeight="26.0" prefWidth="230.0" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
-            <Button fx:id="chooseImageButton" layoutX="302.0" layoutY="160.0" mnemonicParsing="false" onMouseClicked="#chooseFileImage" prefHeight="26.0" prefWidth="230.0" stylesheets="@style.css" text="Choose image">
+            <Button fx:id="chooseImageButton" layoutX="302.0" layoutY="160.0" mnemonicParsing="false" onMouseClicked="#chooseFileImage" prefHeight="26.0" prefWidth="230.0" stylesheets="@../../../css/style.css" text="Choose image">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -94,7 +94,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" layoutX="762.0" layoutY="167.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="35.0" prefWidth="90.0" styleClass="button-clean" stylesheets="@style.css" text="Reset" textFill="WHITE">
+            <Button alignment="CENTER" layoutX="762.0" layoutY="167.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="35.0" prefWidth="90.0" styleClass="button-clean" stylesheets="@../../../css/style.css" text="Reset" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -135,6 +135,7 @@
       <VBox layoutX="20.0" layoutY="333.0" prefHeight="465.0" prefWidth="1087.0">
          <children>
             <TableView fx:id="phoneTableView" prefHeight="417.0" prefWidth="1087.0" stylesheets="@style.css">
+
                <columns>
                   <TableColumn fx:id="orderNumberTableColumn" prefWidth="36.800018310546875" text="#" />
                   <TableColumn fx:id="phoneTableColumn" prefWidth="400.0" text="Phone Name" />

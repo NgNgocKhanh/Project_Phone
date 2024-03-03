@@ -1,0 +1,43 @@
+
+/* Styling for HBox */
+.custom-car-info-hbox {
+}
+
+/* Styling for buttons */
+.custom-minus-button {
+   -fx-background-color:linear-gradient(to bottom, #494949 50%,  #232323 50%);
+       -fx-text-fill: #fff;
+}
+
+.custom-minus-button:hover {
+   -fx-background-color:  linear-gradient(to bottom, #232323 50%,  #494949 50%);
+      -fx-text-fill: #fff;
+}
+/* Styling for buttons */
+.custom-plus-button {
+  -fx-background-color:linear-gradient(to bottom, #494949 50%,  #232323 50%);
+      -fx-text-fill: #fff;
+}
+
+.custom-plus-button:hover {
+ -fx-background-color:  linear-gradient(to bottom, #232323 50%,  #494949 50%);
+    -fx-text-fill: #fff;
+}
+
+.custom-quantity-textfield{
+    -fx-background-color: #fff;
+    -fx-border-color: #ddd;
+}
+
+.custom-combobox{
+    -fx-background-color: #fff;
+    -fx-border-color: #ddd;
+}
+.custom-update-button{
+    -fx-background-color: linear-gradient(to bottom, #ffa708 50%, #ff8708 50%);
+       -fx-text-fill: #fff;
+}
+
+.custom-update-button:hover{
+   -fx-background-color: linear-gradient(to bottom, #ff8708 50%, #ffa708 50%);
+}
