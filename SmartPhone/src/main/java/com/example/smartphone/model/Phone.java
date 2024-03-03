@@ -15,6 +15,9 @@ public class Phone {
     private int quantity;
     private String distributor;
 
+    public Phone(int id, double price, String distributorName, String image, int quantity, double sellingPrice) {
+    }
+
     public int getQuantity() {
         return quantity;
     }

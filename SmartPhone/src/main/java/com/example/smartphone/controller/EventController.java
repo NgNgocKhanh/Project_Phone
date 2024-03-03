@@ -291,6 +291,7 @@ public class EventController {
         });
 
 
+
         // Modify the existing columnTableCellCallback
         Callback<TableColumn<Event, String>, TableCell<Event, String>> columnTableCellCallback = (param) -> {
             final TableCell<Event, String> actionCell = new TableCell<>() { // create table cell
@@ -538,7 +539,7 @@ public class EventController {
                     discountTextField.setText(String.valueOf(newValue.getDiscount()));
 
                     // Set value for the startDateDatePicker
-                    String startDateString = newValue.getStart_date();
+                    String startDateString = newValue.getStartDate();
                     if (startDateString != null && !startDateString.isEmpty()) {
                         LocalDate startDate = LocalDate.parse(startDateString);
                         startDateDatePicker.setValue(startDate);
@@ -547,7 +548,7 @@ public class EventController {
                     }
 
                     // Set value for the endDateDatePicker
-                    String endDateString = newValue.getEnd_date();
+                    String endDateString = newValue.getEndDate();
                     if (endDateString != null && !endDateString.isEmpty()) {
                         LocalDate endDate = LocalDate.parse(endDateString);
                         endDateDatePicker.setValue(endDate);
@@ -556,7 +557,7 @@ public class EventController {
                     }
 
 
-                    String[] startTimeParts = newValue.getStart_time().split(":");
+                    String[] startTimeParts = newValue.getStartTime().split(":");
                     int startHour = Integer.parseInt(startTimeParts[0]);
                     int startMinute = Integer.parseInt(startTimeParts[1]);
 
@@ -568,7 +569,7 @@ public class EventController {
                     startMinuteComboBox.setValue(startMinute);
                     startTimeNotationComboBox.setValue(startTimeNotation);
 
-                    String[] endTimeParts = newValue.getEnd_time().split(":");
+                    String[] endTimeParts = newValue.getEndTime().split(":");
                     int endHour = Integer.parseInt(endTimeParts[0]);
                     int endMinute = Integer.parseInt(endTimeParts[1]);
 
@@ -732,109 +733,6 @@ public class EventController {
         }
     }
 
-    private void sendMailEvent(String eventName, double discount, String startDate, String startTime, String endDate, String endTime, String eventAddress) {
-        String subject = "Welcome to our event!";
-
-//        String sqlEvent = "SELECT eventName,discount, startDate, endDate, startTime, endTime, address FROM event";
-        String sqlCustomer = "SELECT customerName, email FROM customer";
-
-        try {
-            Statement statement = connection.createStatement();
-
-            SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            SimpleDateFormat outputDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            Date startDates = inputDateFormat.parse(startDate);
-            Date endDates = inputDateFormat.parse(endDate);
-            String formattedStartDate = outputDateFormat.format(startDates);
-            String formattedEndDate = outputDateFormat.format(endDates);
-
-            // Read the message template
-            String message = "<html>" +
-                    "<head>" +
-                    "    <style>" +
-                    "        .container {" +
-                    "            max-width: 600px;" +
-                    "            margin: 0 auto;" +
-                    "            padding: 20px;" +
-                    "            background-color: #ffffff;" +
-                    "            text-align: justify;" +
-                    "        }" +
-                    "        .header {" +
-                    "            background-color: #323232;" +
-                    "            color: #ffffff;" +
-                    "            padding: 2px 0;" +
-                    "            font-size: 35px;" +
-                    "            text-align: center;" +
-                    "            margin-bottom: 20px;" +
-                    "        }" +
-                    "    </style>" +
-                    "</head>" +
-                    "<body>" +
-                    "    <div class='container'>" +
-                    "        <div class='header'>" +
-                    "            <h1>You're invited!</h1>" +
-                    "        </div>" +
-                    "        <div class='content'>" +
-                    "            <b>Dear you,</b>" +
-                    "            <p>We hope this message finds you well. We are thrilled to extend a warm invitation to you for an exclusive" +
-                    "                event, <b>\"{{event_name}}\"</b> that is set to rev up your automotive enthusiasm! As a" +
-                    "                valued member of our community, we would be honored to have you join us for an unforgettable experience" +
-                    "                showcasing the latest and greatest in the world of automobiles.</p>" +
-                    "            <p>The event promises a captivating display of cutting-edge vehicles, groundbreaking technologies, and a" +
-                    "                unique opportunity to connect with fellow enthusiasts and experts in the field. From luxury sedans to" +
-                    "                powerful off-road vehicles, from electric marvels to classic icons, you'll witness a comprehensive" +
-                    "                spectrum of automotive innovation.</p>" +
-                    "            <p>Event Details: <br>" +
-                    "                Date: {{start_date}} (ends {{end_date}}) <br>" +
-                    "                Time: {{start_time}} - {{end_time}} <br>" +
-                    "                Venue: {{event_address}}</p>" +
-                    "            <p>Get a <b>{{discount}}% discount</b> on all purchases made at the event! Just present this email at the" +
-                    "                registration desk.</p>" +
-                    "            <p>Our aim is to provide an engaging and informative environment where you can immerse yourself in the world" +
-                    "                of cars, network with industry professionals, and explore the trends shaping the future of mobility." +
-                    "                Moreover, complimentary refreshments and exciting giveaways await you as a token of our appreciation for" +
-                    "                your continuous support.</p>" +
-                    "            <p>Please RSVP by [RSVP Deadline] to ensure your spot at this exceptional gathering. Kindly respond to this" +
-                    "                email or contact us at [RSVP Contact Information] to confirm your attendance and the number of guests" +
-                    "                you'll be bringing along.</p>" +
-                    "            <p>We look forward to sharing our passion for automobiles with you at this event. Your presence would truly" +
-                    "                make the occasion special. If you have any questions or require additional information, please don't" +
-                    "                hesitate to reach out.</p>" +
-                    "            <p>Thank you for being an essential part of our automotive community. We anticipate your presence at" +
-                    "                <b>\"{{event_name}}\"</b> and look forward to sharing this remarkable experience with you.</p>" +
-                    "            <p>Best regards,</p>" +
-                    "            <p>Car Shop</p>" +
-                    "        </div>" +
-                    "    </div>" +
-                    "</body>" +
-                    "</html>";
-            ResultSet customerResultSet = statement.executeQuery(sqlCustomer);
-            String customizedMessage = "";
-            List<String> mailList = new ArrayList<>();
-            while (customerResultSet.next()) {
-                mailList.add(customerResultSet.getString("email"));
-                // Replace placeholders with actual values
-                customizedMessage = message
-                        .replace("{{event_name}}", eventName)
-                        .replace("{{discount}}", String.valueOf(discount))
-                        .replace("{{start_date}}", formattedStartDate)
-                        .replace("{{end_date}}", formattedEndDate)
-                        .replace("{{start_time}}", startTime)
-                        .replace("{{end_time}}", endTime)
-                        .replace("{{event_address}}", eventAddress);
-            }
-
-            // Inside your sendMailEvent method
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Deletes an event record from the database based on the provided eventId.
-     *
-     * @param id The ID of the event record to be deleted.
-     */
     private void deleteFromDatabase(int id) {
         String sql = "DELETE FROM `event` WHERE eventId = " + id;
         try {
@@ -853,4 +751,4 @@ public class EventController {
     }
 
 }
-
+    

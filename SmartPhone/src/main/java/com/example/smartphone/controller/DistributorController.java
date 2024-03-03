@@ -343,7 +343,7 @@ public class DistributorController {
 
             try {
                 // Xóa tất cả các sản phẩm liên quan đến nhà cung cấp
-                String deleteOrdersQuery = "DELETE FROM `phone` WHERE distributorId = " + id;
+                String deleteOrdersQuery = "UPDATE phone SET distributorId = NULL WHERE distributorId =  " + id;
                 Statement deletePhonesStatement = connection.createStatement();
                 int rowsDeleted = deletePhonesStatement.executeUpdate(deleteOrdersQuery);
 

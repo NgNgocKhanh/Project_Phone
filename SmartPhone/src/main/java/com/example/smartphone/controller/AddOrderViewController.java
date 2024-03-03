@@ -1,4 +1,5 @@
 package com.example.smartphone.controller;
+
 import com.example.smartphone.controller.GetData;
 import com.example.smartphone.model.Customer;
 import com.example.smartphone.model.Phone;
@@ -81,14 +82,14 @@ public class AddOrderViewController {
 
     @FXML
     private TableColumn<Customer, Integer> customerIdTableColumn;
+    @FXML
+    private TableColumn<Phone, String> PhoneTableColumn;
 
     @FXML
     private Button addCustomerButton;
 
     @FXML
     private Label customerNameLabel;
-    @FXML
-    private Label orderQuantityTextField;
 
     @FXML
     private Label customerEmailLabel;
@@ -116,8 +117,10 @@ public class AddOrderViewController {
     private TableColumn<Phone, Integer> idTableColumn;
 
     @FXML
-    private TableColumn<Phone, String> PhoneTableColumn;
+    private TableColumn<Phone, String> makeTableColumn;
 
+    @FXML
+    private TableColumn<Phone, String> modelTableColumn;
 
     @FXML
     private Label orderDateLabel;
@@ -128,6 +131,8 @@ public class AddOrderViewController {
     @FXML
     private TextField phoneIdTextField;
 
+    @FXML
+    private TextField orderQuantityTextField;
 
     @FXML
     private ComboBox<String> orderStatusComboBox;
@@ -141,6 +146,8 @@ public class AddOrderViewController {
     @FXML
     private TextField searchKeywordTextField;
 
+    @FXML
+    private TableColumn<Phone, Double> taxTableColumn;
 
     @FXML
     private TextField totalAmoutTextField;
@@ -169,36 +176,7 @@ public class AddOrderViewController {
     private final int itemsPerPage = 15;
     private final int itemsPerCustomerPage = 3;
 //    private int customerId;
-@FXML
-private void handleMinusButton(ActionEvent event) {
-    String currentValue = orderQuantityTextField.getText();
 
-    try {
-        int value = Integer.parseInt(currentValue);
-
-        if (value > 1) {
-            value--;
-        }
-        orderQuantityTextField.setText(Integer.toString(value));
-    } catch (NumberFormatException e) {
-        e.printStackTrace();
-    }
-}
-
-    @FXML
-    private void handlePlusButton(ActionEvent event) {
-        String currentValue = orderQuantityTextField.getText();
-        try {
-            int value = Integer.parseInt(currentValue);
-            value++;
-            orderQuantityTextField.setText(Integer.toString(value));
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    @FXML
     private boolean isValidPhoneNumber(String phoneNumber) {
         return phoneNumber.matches("\\d{10}");
     }
@@ -224,10 +202,23 @@ private void handleMinusButton(ActionEvent event) {
         phoneTableView.setRowFactory(tv -> {
             TableRow<Phone> row = new TableRow<>();
             row.itemProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue != null && newValue.getQuantity() == 0) {
+                    row.getStyleClass().add("red-row");
+                    row.setDisable(true); // Disable row selection for rows with quantity 0
+                } else {
+                    row.getStyleClass().remove("red-row");
+                    row.setDisable(false); // Enable row selection for other rows
+                }
             });
             return row;
         });
 
+        // Add an event filter to allow only numeric input for phoneTextField
+        orderQuantityTextField.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            if (!isNumeric(event.getCharacter())) {
+                event.consume(); // Consume the event to prevent non-numeric input
+            }
+        });
     }
 
     private boolean isNumeric(String str) {
@@ -248,6 +239,7 @@ private void handleMinusButton(ActionEvent event) {
         orderStatusComboBox.setPromptText("Status");
         paymentComboBox.setPromptText("Payment");
         paymentStatusComboBox.setPromptText("Payment Status");
+        orderQuantityTextField.setText("1");
         totalAmoutTextField.clear();
         phoneImageView.setImage(null);
         GetData.path = "";
@@ -263,9 +255,9 @@ private void handleMinusButton(ActionEvent event) {
             ResultSet resultSet = statement.executeQuery(sql);
 
             if (resultSet.next()) {
-                int phoneIdIncrease = resultSet.getInt("orderId") + 1;
-                orderIdLabel.setText("OrderID: " + phoneIdIncrease);
-                return phoneIdIncrease;
+                int phoneIncrease = resultSet.getInt("orderId") + 1;
+                orderIdLabel.setText("OrderID: " + phoneIncrease);
+                return phoneIncrease;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -388,6 +380,7 @@ private void handleMinusButton(ActionEvent event) {
     }
 
     /**
+     * Sets up the car table with data from the database and adds filtering functionality.
      */
     private void setupCustomerTable() {
         customerObservableList = getCustomerList();
@@ -466,13 +459,20 @@ private void handleMinusButton(ActionEvent event) {
         customerTableView.setItems(FXCollections.observableArrayList(sortedList.subList(fromIndex, toIndex)));
     }
 
+    /**
+     * Retrieves a list of all cars from the database.
+     *
+     * @return An ObservableList containing Car objects.
+     */
     private ObservableList<Phone> getListPhone() {
         ObservableList<Phone> observableList = FXCollections.observableArrayList();
-        String sql = "SELECT p.phoneId, p.price, p.sellingPrice, d.distributorName, p.image " +
-                "FROM phone AS p " +
-                "JOIN distributor AS d ON c.distributorId = d.distributorId " +
-                "JOIN phone_inventory AS i ON p.phone = p.phoneId " +
-                "ORDER BY p.sellingPrice";
+        String sql = "SELECT p.phoneId, p.phoneName, p.image, p.price, p.sellingPrice, d.distributorName, c.email, c.phoneNumber, i.quantityInStock \n" +
+                "FROM phone AS p \n" +
+                "JOIN distributor AS d ON p.distributorId = d.distributorId \n" +
+                "JOIN phone_inventory AS i ON p.phoneId = i.phoneId \n" +
+                "JOIN customer AS c ON p.phoneId = c.customerId \n" +
+                "ORDER BY p.sellingPrice \n" +
+                "LIMIT 0, 1000;\n";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -480,15 +480,15 @@ private void handleMinusButton(ActionEvent event) {
             while (resultSet.next()) {
                 // iterate through the resultSet from db and add to list
                 int id = resultSet.getInt("phoneId");
-                String name = resultSet.getString("phoneName");
                 double price = resultSet.getDouble("price");
-                String distributorName = resultSet.getString("distributorName");
+                String phoneName = resultSet.getString("phoneName");
                 String image = resultSet.getString("image");
+                String distributorComboboxx = resultSet.getString("distributorName");
+                int quantity = resultSet.getInt("quantityInStock");
                 double sellingPrice = resultSet.getDouble("sellingPrice");
 
                 // add to list
-                observableList.add(new Phone(id, name, image, price, sellingPrice, distributorName));
-            }
+                observableList.add(new Phone(id,  phoneName, image, price, sellingPrice, distributorComboboxx));}
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -496,13 +496,30 @@ private void handleMinusButton(ActionEvent event) {
     }
 
     /**
+     * Sets up the car table with data from the database and adds filtering functionality.
      */
     private void setupTable() {
         phoneObservableList = getListPhone();
         idTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        phoneIdTextField.getCharacters();
+        PhoneTableColumn.setCellValueFactory(new PropertyValueFactory<>("phoneName"));
+
+        PhoneTableColumn.setCellFactory(col -> new TableCell<Phone, String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item);
+                }
+            }
+        });
         priceTableColumn.setCellValueFactory(new PropertyValueFactory<>("sellingPrice"));
         distributorTableColumn.setCellValueFactory(new PropertyValueFactory<>("distributor"));
+        orderNumberTableColumn.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(phoneTableView.getItems().indexOf(param.getValue()) + 1 + (currentPage - 1) * itemsPerPage));
+
+        // create FilteredList to filter and search car by searchKeyword
         FilteredList<Phone> filteredList = new FilteredList<>(phoneObservableList, b -> true); // b->true : means all elements in the list will be included in the filteredList
 
         // listen to changes in the searchKeyword to update the tableView
@@ -524,6 +541,7 @@ private void handleMinusButton(ActionEvent event) {
     }
 
     /**
+     * Updates the car table data based on the current pagination page.
      *
      * @param pageIndex The index of the current pagination page.
      */
@@ -534,6 +552,7 @@ private void handleMinusButton(ActionEvent event) {
     }
 
     /**
+     * Sets up the pagination control and links it to the car table.
      */
     private void setupPagination() {
         int totalPages = (phoneObservableList.size() / itemsPerPage) + (phoneObservableList.size() % itemsPerPage > 0 ? 1 : 0);
@@ -545,6 +564,9 @@ private void handleMinusButton(ActionEvent event) {
     }
 
     /**
+     * Updates the pagination control based on the filtered car list.
+     *
+     * @param filteredList The FilteredList containing the filtered cars.
      */
     private void updatePagination(FilteredList<Phone> filteredList) {
         int totalItems = filteredList.size();
@@ -581,6 +603,7 @@ private void handleMinusButton(ActionEvent event) {
                 orderStatusComboBox.getValue() == null
                         || paymentStatusComboBox.getValue() == null
                         || paymentComboBox.getValue() == null
+                        || orderQuantityTextField.getText().isEmpty()
                         || totalAmoutTextField.getText().isEmpty()
         ) {
             GetData.showWarningAlert("Warning message", "Please fill all required fields!");
@@ -626,9 +649,10 @@ private void handleMinusButton(ActionEvent event) {
                 preparedStatement.setString(3, String.valueOf(GetData.empId));
                 preparedStatement.setString(4, currentDate);
                 preparedStatement.setString(5, totalAmoutTextField.getText());
-                preparedStatement.setString(6, String.valueOf(selectedStatusId));
-                preparedStatement.setInt(7, selectedPaymentId);
-                preparedStatement.setInt(8, selectedPaymentStatusId);
+                preparedStatement.setString(6, orderQuantityTextField.getText());
+                preparedStatement.setString(7, String.valueOf(selectedStatusId));
+                preparedStatement.setInt(8, selectedPaymentId);
+                preparedStatement.setInt(9, selectedPaymentStatusId);
 
                 preparedStatement.executeUpdate();
 
@@ -641,8 +665,6 @@ private void handleMinusButton(ActionEvent event) {
         }
     }
 
-    /**
-     */
     private void selectedRecord() {
         // catch select row event
         phoneTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Phone>() {
@@ -650,7 +672,7 @@ private void handleMinusButton(ActionEvent event) {
             public void changed(ObservableValue<? extends Phone> observableValue, Phone oldValue, Phone newValue) {
                 if (newValue != null) {
                     phoneIdTextField.setText(String.valueOf(newValue.getPhone_id()));
-                    totalAmoutTextField.setText(String.valueOf((newValue.getSellingPrice() + newValue.getSellingPrice() ) * 1));
+                    totalAmoutTextField.setText(String.valueOf((newValue.getSellingPrice() + newValue.getSellingPrice() * newValue.getQuantity() / 100) * Integer.parseInt(orderQuantityTextField.getText())));
                     File imageFile = new File(newValue.getImg());
                     Image image = null;
                     try {
@@ -687,6 +709,33 @@ private void handleMinusButton(ActionEvent event) {
         });
     }
 
+    @FXML
+    private void handleMinusButton(ActionEvent event) {
+        String currentValue = orderQuantityTextField.getText();
+
+        try {
+            int value = Integer.parseInt(currentValue);
+
+            if (value > 1) {
+                value--;
+            }
+            orderQuantityTextField.setText(Integer.toString(value));
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handlePlusButton(ActionEvent event) {
+        String currentValue = orderQuantityTextField.getText();
+        try {
+            int value = Integer.parseInt(currentValue);
+            value++;
+            orderQuantityTextField.setText(Integer.toString(value));
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private void addNewCustomerPage(MouseEvent event) {
@@ -706,7 +755,7 @@ private void handleMinusButton(ActionEvent event) {
         orderFormPage.setDisable(true);
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/smartphone/T.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/smartphone/customer-view.fxml"));
             Parent root = loader.load();
 
             Stage addCustomerFormStage = new Stage();
