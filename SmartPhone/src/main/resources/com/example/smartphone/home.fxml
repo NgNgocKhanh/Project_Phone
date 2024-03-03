@@ -14,7 +14,7 @@
 
 <BorderPane fx:id="fullBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="803.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smartphone.controller.HomeController">
     <left>
-        <VBox prefHeight="800.0" prefWidth="220.0" styleClass="background-blue" stylesheets="@style.css" BorderPane.alignment="CENTER">
+        <VBox prefHeight="800.0" prefWidth="220.0" styleClass="background-blue" stylesheets="@../../../css/style.css" BorderPane.alignment="CENTER">
             <Line endX="120.89286804199219" endY="0.09289475530385971" startX="-100.0" stroke="WHITE" />
          <Label alignment="CENTER" prefHeight="32.0" prefWidth="223.0" text="Mobile Shop" textFill="WHITE">
             <font>
@@ -35,7 +35,7 @@
                 </Label>
             </Pane>
             <Line endX="120.09288024902344" endY="1.9303560839034617E-4" startX="-100.0" stroke="WHITE" />
-         <Button fx:id="dashboardButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#dashboardPage" prefHeight="50.0" prefWidth="178.0" styleClass="sideBar-button" stylesheets="@style.css" text="Dashboard">
+         <Button fx:id="dashboardButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#dashboardPage" prefHeight="50.0" prefWidth="178.0" styleClass="sideBar-button" stylesheets="@../../../css/style.css" text="Dashboard">
             <font>
                <Font size="15.0" />
             </font>
@@ -53,7 +53,7 @@
                <Cursor fx:constant="HAND" />
             </cursor>
          </Button>
-            <Button fx:id="phoneButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#phonePage" prefHeight="54.0" prefWidth="140.0" styleClass="sideBar-button" stylesheets="@style.css" text="Phone">
+            <Button fx:id="phoneButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#phonePage" prefHeight="54.0" prefWidth="140.0" styleClass="sideBar-button" stylesheets="@../../../css/style.css" text="Phone">
                 <graphic>
                     <ImageView fitHeight="25.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                         <Image url="@image_icons/phone_white.png" />
@@ -69,7 +69,7 @@
                     <Font size="15.0" />
                 </font>
             </Button>
-            <Button fx:id="customerButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#customerPage" prefHeight="50.0" prefWidth="178.0" styleClass="sideBar-button" stylesheets="@style.css" text="Customer">
+            <Button fx:id="customerButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#customerPage" prefHeight="50.0" prefWidth="178.0" styleClass="sideBar-button" stylesheets="@../../../css/style.css" text="Customer">
                 <font>
                     <Font size="15.0" />
                 </font>
@@ -85,7 +85,7 @@
                     <Cursor fx:constant="HAND" />
                 </cursor>
             </Button>
-         <Button fx:id="employeeButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#employeePage" prefHeight="50.0" prefWidth="178.0" styleClass="sideBar-button" stylesheets="@style.css" text="Employee">
+         <Button fx:id="employeeButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#employeePage" prefHeight="50.0" prefWidth="178.0" styleClass="sideBar-button" stylesheets="@../../../css/style.css" text="Employee">
             <font>
                <Font size="15.0" />
             </font>
@@ -103,7 +103,7 @@
                <Cursor fx:constant="HAND" />
             </cursor>
          </Button>
-            <Button fx:id="eventButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#eventPage" prefHeight="50.0" prefWidth="148.0" styleClass="sideBar-button" stylesheets="@style.css" text="Event">
+            <Button fx:id="eventButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#eventPage" prefHeight="50.0" prefWidth="148.0" styleClass="sideBar-button" stylesheets="@../../../css/style.css" text="Event">
                 <font>
                     <Font size="15.0" />
                 </font>
@@ -119,7 +119,7 @@
                     <Cursor fx:constant="HAND" />
                 </cursor>
             </Button>
-            <Button fx:id="addOrderButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#addOrderPage" prefHeight="50.0" prefWidth="168.0" styleClass="sideBar-button" stylesheets="@style.css" text="Add Order">
+            <Button fx:id="addOrderButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#addOrderPage" prefHeight="50.0" prefWidth="168.0" styleClass="sideBar-button" stylesheets="@../../../css/style.css" text="Add Order">
                 <font>
                     <Font size="15.0" />
                 </font>
@@ -135,7 +135,7 @@
                     <Cursor fx:constant="HAND" />
                 </cursor>
             </Button>
-         <Button fx:id="orderViewButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#orderViewPage" prefHeight="50.0" prefWidth="178.0" styleClass="sideBar-button" stylesheets="@style.css" text="Order View">
+         <Button fx:id="orderViewButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#orderViewPage" prefHeight="50.0" prefWidth="178.0" styleClass="sideBar-button" stylesheets="@../../../css/style.css" text="Order View">
             <font>
                <Font size="15.0" />
             </font>
@@ -153,7 +153,7 @@
                <Cursor fx:constant="HAND" />
             </cursor>
          </Button>
-         <Button fx:id="orderHistoryButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#orderHistoryPage" prefHeight="50.0" prefWidth="178.0" styleClass="sideBar-button" stylesheets="@style.css" text="Order History">
+         <Button fx:id="orderHistoryButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#orderHistoryPage" prefHeight="50.0" prefWidth="178.0" styleClass="sideBar-button" stylesheets="@../../../css/style.css" text="Order History">
             <font>
                <Font size="15.0" />
             </font>
@@ -171,7 +171,7 @@
                <Cursor fx:constant="HAND" />
             </cursor>
          </Button>
-            <Button fx:id="inventoryButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#inventoryPage" prefHeight="50.0" prefWidth="165.0" styleClass="sideBar-button" stylesheets="@style.css" text="Inventory">
+            <Button fx:id="inventoryButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#inventoryPage" prefHeight="50.0" prefWidth="165.0" styleClass="sideBar-button" stylesheets="@../../../css/style.css" text="Inventory">
                 <font>
                     <Font size="15.0" />
                 </font>
@@ -187,7 +187,7 @@
                     <Cursor fx:constant="HAND" />
                 </cursor>
             </Button>
-         <Button fx:id="distributorButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#distributorPage" prefHeight="50.0" prefWidth="178.0" styleClass="sideBar-button" stylesheets="@style.css" text="Distributor">
+         <Button fx:id="distributorButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#distributorPage" prefHeight="50.0" prefWidth="178.0" styleClass="sideBar-button" stylesheets="@../../../css/style.css" text="Distributor">
             <font>
                <Font size="15.0" />
             </font>
@@ -210,7 +210,7 @@
                     <Insets />
                 </VBox.margin>
             </Line>
-            <Button fx:id="logoutButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#logoutClick" prefHeight="55.0" prefWidth="157.0" styleClass="sideBar-button" stylesheets="@style.css" text="Logout">
+            <Button fx:id="logoutButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#logoutClick" prefHeight="55.0" prefWidth="157.0" styleClass="sideBar-button" stylesheets="@../../../css/style.css" text="Logout">
                 <font>
                     <Font size="15.0" />
                 </font>

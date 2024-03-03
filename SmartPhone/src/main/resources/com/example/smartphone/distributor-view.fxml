@@ -59,7 +59,7 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <Button fx:id="addButton" alignment="CENTER" layoutX="854.0" layoutY="168.0" mnemonicParsing="false" onAction="#addDistributorToDatabase" prefHeight="35.0" prefWidth="90.0" styleClass="button-add" stylesheets="@style.css" text="Add" textFill="WHITE">
+                <Button fx:id="addButton" alignment="CENTER" layoutX="854.0" layoutY="168.0" mnemonicParsing="false" onAction="#addDistributorToDatabase" prefHeight="35.0" prefWidth="90.0" styleClass="button-add" stylesheets="@../../../css/style.css" text="Add" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -74,7 +74,7 @@
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Button>
-                <Button alignment="CENTER" layoutX="751.0" layoutY="168.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="35.0" prefWidth="90.0" styleClass="button-clean" stylesheets="@style.css" text="Reset" textFill="WHITE">
+                <Button alignment="CENTER" layoutX="751.0" layoutY="168.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="35.0" prefWidth="90.0" styleClass="button-clean" stylesheets="@../../../css/style.css" text="Reset" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -89,7 +89,7 @@
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Button>
-                <Button fx:id="updateButton" alignment="CENTER" layoutX="956.0" layoutY="168.0" mnemonicParsing="false" onAction="#updateDistributorToDatabase" prefHeight="35.0" prefWidth="100.0" styleClass="button-update" stylesheets="@style.css" text="Update" textFill="WHITE">
+                <Button fx:id="updateButton" alignment="CENTER" layoutX="956.0" layoutY="168.0" mnemonicParsing="false" onAction="#updateDistributorToDatabase" prefHeight="35.0" prefWidth="100.0" styleClass="button-update" stylesheets="@../../../css/style.css" text="Update" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -108,7 +108,7 @@
         </AnchorPane>
         <VBox layoutX="20.0" layoutY="333.0" prefHeight="465.0" prefWidth="1086.0">
             <children>
-                <TableView fx:id="distributorTableView" prefHeight="421.0" prefWidth="1086.0" stylesheets="@style.css">
+                <TableView fx:id="distributorTableView" prefHeight="421.0" prefWidth="1086.0" stylesheets="@../../../css/style.css">
                     <columns>
                         <TableColumn fx:id="orderNumberTableColumn" prefWidth="36.800018310546875" text="#" />
                         <TableColumn fx:id="idTableColumn" prefWidth="50.0" text="ID" visible="false" />
@@ -144,7 +144,7 @@
             </font>
         </Label>
         <ComboBox fx:id="searchComboBox" layoutX="990.0" layoutY="297.0" prefHeight="27.0" prefWidth="115.0" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
-        <Button fx:id="filterBirthdayButton" alignment="CENTER" layoutX="20.0" layoutY="295.0" mnemonicParsing="false" onAction="#filterByBirthdayAction" prefHeight="32.0" prefWidth="186.0" styleClass="button-filter-birthday" stylesheets="@style.css" text="Birthdays For Today" textFill="WHITE">
+        <Button fx:id="filterBirthdayButton" alignment="CENTER" layoutX="20.0" layoutY="295.0" mnemonicParsing="false" onAction="#filterByBirthdayAction" prefHeight="32.0" prefWidth="186.0" styleClass="button-filter-birthday" stylesheets="@../../../css/style.css" text="Birthdays For Today" textFill="WHITE">
             <graphic>
                 <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -159,7 +159,7 @@
                 <Font name="System Bold" size="14.0" />
             </font>
         </Button>
-        <Button fx:id="sendBirthdayMailButton" alignment="CENTER" layoutX="219.0" layoutY="295.0" mnemonicParsing="false" onAction="#sendBirthdayMailAction" prefHeight="31.0" prefWidth="186.0" styleClass="button-send-mail-birthday" stylesheets="@style.css" text="Send Birthday Mail" textFill="WHITE">
+        <Button fx:id="sendBirthdayMailButton" alignment="CENTER" layoutX="219.0" layoutY="295.0" mnemonicParsing="false" onAction="#sendBirthdayMailAction" prefHeight="31.0" prefWidth="186.0" styleClass="button-send-mail-birthday" stylesheets="@../../../css/style.css" text="Send Birthday Mail" textFill="WHITE">
             <graphic>
                 <ImageView fitHeight="21.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                     <image>
