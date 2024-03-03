@@ -476,6 +476,9 @@ public class PhoneController {
         priceTextField.clear();
         taxTextField.clear();
         phoneTextField.clear();
+        sellingPriceTextField.clear();
+        phoneTextField.clear();
+        quantityTextField.clear();
         distributorComboBox.setValue(null);
         phoneImageView.setImage(null);
         quantityTextField.clear();
