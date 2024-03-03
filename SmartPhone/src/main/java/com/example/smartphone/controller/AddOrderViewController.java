@@ -82,6 +82,8 @@ public class AddOrderViewController {
 
     @FXML
     private TableColumn<Customer, Integer> customerIdTableColumn;
+    @FXML
+    private TableColumn<Phone, String> PhoneTableColumn;
 
     @FXML
     private Button addCustomerButton;
@@ -499,6 +501,20 @@ public class AddOrderViewController {
     private void setupTable() {
         phoneObservableList = getListPhone();
         idTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        PhoneTableColumn.setCellValueFactory(new PropertyValueFactory<>("phoneName"));
+
+        PhoneTableColumn.setCellFactory(col -> new TableCell<Phone, String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item);
+                }
+            }
+        });
         priceTableColumn.setCellValueFactory(new PropertyValueFactory<>("sellingPrice"));
         distributorTableColumn.setCellValueFactory(new PropertyValueFactory<>("distributor"));
         orderNumberTableColumn.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(phoneTableView.getItems().indexOf(param.getValue()) + 1 + (currentPage - 1) * itemsPerPage));
@@ -739,7 +755,7 @@ public class AddOrderViewController {
         orderFormPage.setDisable(true);
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demojavafxproject/add-new-customer-form.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/smartphone/customer-view.fxml"));
             Parent root = loader.load();
 
             Stage addCustomerFormStage = new Stage();
