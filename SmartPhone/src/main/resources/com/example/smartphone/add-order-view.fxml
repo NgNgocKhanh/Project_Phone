@@ -58,10 +58,9 @@
                         <Insets left="35.0" />
                     </padding>
                 </TextField>
-                <TextField fx:id="orderQuantityTextField" alignment="CENTER" layoutX="850.0" layoutY="509.0" prefHeight="26.0" prefWidth="166.0" />
                 <VBox layoutX="18.0" layoutY="254.0" prefHeight="424.0" prefWidth="670.0">
                     <children>
-                        <TableView fx:id="carTableView" prefHeight="405.0" prefWidth="622.0" stylesheets="@style.css">
+                        <TableView fx:id="phoneTableView" prefHeight="405.0" prefWidth="622.0" stylesheets="@style.css">
                             <columns>
                                 <TableColumn fx:id="idTableColumn" prefWidth="47.199981689453125" text="ID" visible="false" />
                                 <TableColumn fx:id="orderNumberTableColumn" prefWidth="101.0" text="#" />
@@ -75,7 +74,7 @@
                 </VBox>
                 <StackPane layoutX="679.0" layoutY="279.0" prefHeight="216.0" prefWidth="378.0">
                     <children>
-                        <ImageView fx:id="carImageView" fitHeight="214.0" fitWidth="371.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="phoneImageView" fitHeight="214.0" fitWidth="371.0" pickOnBounds="true" preserveRatio="true" />
                     </children>
                 </StackPane>
                 <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="720.0" layoutY="512.0" prefHeight="20.0" prefWidth="70.0" text="Quantity">
@@ -90,7 +89,7 @@
                 </Label>
                 <TextField fx:id="totalAmoutTextField" editable="false" layoutX="810.0" layoutY="542.0" prefHeight="26.0" prefWidth="246.0" />
                 <ComboBox fx:id="orderStatusComboBox" layoutX="703.0" layoutY="620.0" prefHeight="35.0" prefWidth="149.0" promptText="Status" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
-                <TextField fx:id="carIdTextField" layoutX="789.0" layoutY="15.0" visible="false" />
+                <TextField fx:id="phoneIdTextField" layoutX="789.0" layoutY="15.0" visible="false" />
                 <ComboBox fx:id="paymentStatusComboBox" layoutX="888.0" layoutY="576.0" prefHeight="30.0" prefWidth="166.0" promptText="Payment Status" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
                 <ComboBox fx:id="paymentComboBox" layoutX="703.0" layoutY="576.0" prefHeight="30.0" prefWidth="165.0" promptText="Payment" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
                 <Button fx:id="addButton" alignment="CENTER" layoutX="963.0" layoutY="620.0" mnemonicParsing="false" onAction="#addToDatabase" prefHeight="35.0" prefWidth="90.0" styleClass="button-add" stylesheets="@style.css" text="Add" textFill="WHITE">
@@ -144,11 +143,6 @@
                         <Insets left="35.0" />
                     </padding>
                 </TextField>
-                <ImageView fitHeight="20.0" fitWidth="28.0" layoutX="705.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@images/search-black.png" />
-                    </image>
-                </ImageView>
                 <ComboBox fx:id="searchCustomerComboBox" layoutX="911.0" layoutY="50.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
                 <Button fx:id="addCustomerButton" alignment="CENTER" layoutX="882.0" layoutY="169.0" mnemonicParsing="false" onMouseClicked="#addNewCustomerPage" prefHeight="35.0" prefWidth="177.0" styleClass="button-export" stylesheets="@style.css" text="Add new customer" textFill="WHITE">
                     <graphic>
@@ -181,6 +175,7 @@
                     </font>
                 </Label>
                 <TextField fx:id="customerIdTextField" layoutX="704.0" layoutY="174.0" visible="false" />
+            <TextField fx:id="orderQuantityTextField" layoutX="854.0" layoutY="509.0" prefHeight="27.0" prefWidth="159.0" />
             </children>
         </AnchorPane>
     </children>
