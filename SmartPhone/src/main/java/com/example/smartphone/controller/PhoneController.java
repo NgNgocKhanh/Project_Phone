@@ -168,11 +168,11 @@ public class PhoneController {
 
     private ObservableList<Phone> getListPhone() {
         ObservableList<Phone> observableList = FXCollections.observableArrayList();
-        String sql = "SELECT p.phoneId, p.price, p.sellingPrice, d.distributorName, p.image, i.quantityInStock, i.phoneName\n" +
+        String sql = "SELECT p.phoneId, p.price, p.sellingPrice, d.distributorName, p.image, i.quantityInStock, p.phoneName\n" +
                 "FROM phone AS p\n" +
                 "LEFT JOIN distributor AS d ON p.distributorId = d.distributorId\n" +
                 "LEFT JOIN phone_inventory AS i ON i.phoneId = p.phoneId\n" +
-                "ORDER BY p.quantity\n";
+                "ORDER BY p.quantity;";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -441,7 +441,8 @@ public class PhoneController {
                 e.printStackTrace();
             }
 
-            Image image = new Image("file:" + destinationFilePath);
+            Image image =new Image(destinationFilePath);
+            ;
             phoneImageView.setImage(image);
         }
     }
@@ -474,6 +475,7 @@ public class PhoneController {
         setIdAdd(); // set new value for id field
         priceTextField.clear();
         taxTextField.clear();
+        phoneTextField.clear();
         distributorComboBox.setValue(null);
         phoneImageView.setImage(null);
         quantityTextField.clear();
@@ -495,7 +497,7 @@ public class PhoneController {
                     distributorComboBox.setValue(String.valueOf(newValue.getDistributor()));
                     quantityTextField.setText(String.valueOf(newValue.getQuantity()));
                     sellingPriceTextField.setText(String.valueOf(newValue.getSellingPrice()));
-
+                    phoneTextField.setText(String.valueOf(newValue.getPhoneName()));
                     File imageFile = new File(newValue.getImg());
                     Image image = null;
                     try {
@@ -521,10 +523,10 @@ public class PhoneController {
     private boolean isFilledFields() {
         if (
                 priceTextField.getText().isEmpty()
-                || quantityTextField.getText().isEmpty()
+                        || quantityTextField.getText().isEmpty()
 //                || GetData.path == null
 //                || GetData.path.equals("")
-                || distributorComboBox.getItems().isEmpty()) {
+                        || distributorComboBox.getItems().isEmpty()) {
             // alert error if required fields no filled
             GetData.showWarningAlert("Warning message", "Please fill all required fields!");
             return false;
