@@ -98,6 +98,8 @@ public class PhoneController {
 
     @FXML
     private Button updateButton;
+    @FXML
+    private TextField phoneTextField;
 
 
     @FXML
@@ -196,8 +198,20 @@ public class PhoneController {
     private void setupTable() {
         phoneObservableList = getListPhone();
         priceTableColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-        phoneTableColumn.setCellFactory(new PropertyValueFactory<>("phoneName"));
+        phoneTableColumn.setCellValueFactory(new PropertyValueFactory<>("phoneName"));
 
+        phoneTableColumn.setCellFactory(col -> new TableCell<Phone, String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item);
+                }
+            }
+        });
         distributorTableColumn.setCellValueFactory(new PropertyValueFactory<>("distributor"));
         sellingPriceTableColumn.setCellValueFactory(new PropertyValueFactory<>("sellingPrice"));
         orderNumberTableColumn.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(phoneTableView.getItems().indexOf(param.getValue()) + 1 + (currentPage - 1) * itemsPerPage));
@@ -416,7 +430,7 @@ public class PhoneController {
 
         // if file is not null then get path of this file
         if (file != null) {
-            String destinationFilePath = "src/main/resources/com/example/demojavafxproject/images/" + file.getName(); // Replace this with the actual destination folder path
+            String destinationFilePath = "src/main/resources/com/example/smartphone/image_phone/" + file.getName(); // Replace this with the actual destination folder path
 
             GetData.path = destinationFilePath;
 
@@ -478,7 +492,7 @@ public class PhoneController {
                 if (newValue != null) {
                     idTextField.setText(String.valueOf(newValue.getPhone_id()));
                     priceTextField.setText(String.valueOf(newValue.getPrice()));
-                    distributorComboBox.setValue(String.valueOf(newValue.getDistributorComboBox()));
+                    distributorComboBox.setValue(String.valueOf(newValue.getDistributor()));
                     quantityTextField.setText(String.valueOf(newValue.getQuantity()));
                     sellingPriceTextField.setText(String.valueOf(newValue.getSellingPrice()));
 
