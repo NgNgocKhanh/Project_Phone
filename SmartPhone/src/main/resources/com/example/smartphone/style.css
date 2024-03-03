@@ -1,0 +1,243 @@
+.button {
+    -fx-background-color:linear-gradient(to bottom, #494949 50%,  #232323 50%);
+    -fx-text-fill: #fff;
+}
+
+.button:hover {
+    -fx-background-color:  linear-gradient(to bottom, #232323 50%,  #494949 50%);
+    -fx-text-fill: #fff;
+}
+
+.dashboard-box {
+    -fx-border-width: 0.3;
+}
+
+.background-blue {
+    -fx-background-color: #232323;
+    -fx-text-fill: #fff;
+}
+
+.sideBar-button {
+    -fx-background-color: #232323;
+    -fx-text-fill: #fff;
+}
+
+.sideBar-button:hover {
+    -fx-background-color: #515151;
+}
+
+.button-update {
+    -fx-background-color: linear-gradient(to bottom, #9D44C0 50%, #4D2DB7 50%);
+    -fx-text-fill: #fff;
+}
+
+.button-update:hover {
+    -fx-background-color: linear-gradient(to bottom, #4D2DB7 50%, #9D44C0 50%);
+}
+
+.button-add {
+    -fx-background-color: linear-gradient(to bottom, #82CD47 50%, #0bbf2d 50%);
+    -fx-text-fill: #fff;
+}
+
+.button-add:hover {
+    -fx-background-color: linear-gradient(to bottom, #0bbf2d 50%, #82CD47 50%);
+}
+
+.button-clean {
+    -fx-background-color: linear-gradient(to bottom, #ffa708 50%, #ff8708 50%);
+    -fx-text-fill: #fff;
+}
+
+.button-clean:hover {
+    -fx-background-color: linear-gradient(to bottom, #ff8708 50%, #ffa708 50%);
+}
+
+.button-export{
+    -fx-background-color: linear-gradient(to bottom,  #107c41 50%, #185c37 50%);
+    -fx-text-fill: #fff;
+}
+.button-export:hover{
+ -fx-background-color: linear-gradient(to bottom, #185c37 50%,  #107c41 50%);
+    -fx-text-fill: #fff;
+}
+
+.column-header-background {
+    -fx-background-color: #232323;
+    /* Blue background color */
+
+}
+
+.table-view .column-header,
+.table-view .column-header .filler,
+.table-view .column-header-background .filler {
+    -fx-background-color: #232323;
+
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #fff;
+    -fx-alignment: CENTER-LEFT;
+}
+
+
+
+.comboBox:hover {
+    -fx-background-color: #515151;
+}
+
+
+/* Set the text color to white */
+.combo-box .list-cell {
+    -fx-text-fill: white;
+    -fx-background-color: #232323;
+    -fx-padding: 5 0 5 50;
+    -fx-graphic-text-gap: 12;
+    -fx-font-size: 15;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: #515151;
+}
+
+.combo-box {
+    -fx-background-color: #232323;
+    -fx-pref-width: 250px;
+    -fx-pref-height: 40px;
+}
+
+.combo-box:hover {
+    -fx-background-color: #515151;
+}
+
+/* Custom style for prompt text */
+.combo-box .prompt-text {
+    -fx-padding: 0 0 0 40;
+    /* Add left padding for the prompt text to accommodate the image */
+    -fx-graphic: url("../images/cart-white.png");
+    /* Set the image for the prompt text (../images/ trỏ ra ngoài thư mục css) */
+    -fx-graphic-text-gap: 10;
+}
+
+
+.close {
+    -fx-text-fill: #000;
+
+}
+
+.close:hover {
+    -fx-text-fill: red;
+}
+
+.closeButton {
+    -fx-background-radius: 0;
+    -fx-background-color: #f4f4f4;
+    -fx-text-fill: #000;
+
+}
+
+.closeButton:hover {
+    -fx-background-color: #ff0000;
+    -fx-text-fill: #fff;
+}
+
+.minimizeButton {
+    -fx-background-radius: 0;
+    -fx-background-color: #f4f4f4;
+    -fx-text-fill: #000;
+
+}
+
+.minimizeButton:hover {
+    -fx-background-color: #ddd;
+    -fx-text-fill: #000;
+}
+
+.delete-button{
+    -fx-background-color: linear-gradient(to bottom, #FF0032 50%,#DC0000 50%);
+    -fx-text-fill: #fff;
+}
+.delete-button:hover{
+    -fx-background-color: linear-gradient(to bottom, #DC0000 50%,#FF0032 50%);
+}
+
+.red-row {
+    -fx-background-color: red;
+}
+
+.red-row .table-cell {
+    -fx-text-fill: white;
+}
+
+.button-filter-birthday{
+ -fx-background-color: linear-gradient(to bottom, #E8A0BF 50%,#BA90C6 50%);
+}
+.button-filter-birthday:hover{
+ -fx-background-color: linear-gradient(to bottom, #BA90C6 50%, #E8A0BF 50%);
+}
+.button-send-mail-birthday{
+ -fx-background-color: linear-gradient(to bottom, #73d7c7 50%, #33BBC5 50%);
+}
+.button-send-mail-birthday:hover{
+ -fx-background-color: linear-gradient(to bottom, #33BBC5 50%,#73d7c7 50%);
+}
+
+.cancel-button{
+    -fx-background-color: #fff;
+    -fx-text-fill: #000;
+     -fx-border-color: #ddd;
+     -fx-border-radius: 4px;
+}
+.cancel-button:hover{
+    -fx-background-color: #edeff2;
+    -fx-text-fill: #000;
+
+}
+.update-button{
+    -fx-background-color: linear-gradient(to bottom, #494949 50%,  #232323 50%);
+    -fx-text-fill: #fff;
+     -fx-border-radius: 4px;
+}
+
+.update-button:hover{
+    -fx-background-color:  linear-gradient(to bottom, #232323 50%,  #494949 50%);
+    -fx-text-fill: #fff;
+}
+
+.formula{
+    -fx-background-color: #fff;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #000000;
+      -fx-padding: 5px 10px;
+}
+
+.button-setting{
+    -fx-background-color: linear-gradient(to bottom, #5A96E3 50%,  #0A6EBD 50%);
+    -fx-text-fill: #fff;
+}
+
+.button-setting:hover{
+    -fx-background-color: linear-gradient(to bottom, #0A6EBD 50%,  #5A96E3 50%);
+    -fx-text-fill: #fff;
+}
+
+.level1{
+-fx-text-fill: #009a66;
+}
+
+.level2{
+-fx-text-fill: #3566cd;
+}
+
+.level3{
+-fx-text-fill: #EBB02D;
+}
+
+.level4{
+-fx-text-fill: #ff6500;
+}
+
+.level5{
+-fx-text-fill: #cb0032;
+}
