@@ -169,11 +169,13 @@ public class PhoneController {
 
     private ObservableList<Phone> getListPhone() {
         ObservableList<Phone> observableList = FXCollections.observableArrayList();
-        String sql = "SELECT p.phoneId, p.price, p.sellingPrice, d.distributorName, p.image, i.quantityInStock, p.phoneName\n" +
-                "FROM phone AS p\n" +
-                "LEFT JOIN distributor AS d ON p.distributorId = d.distributorId\n" +
-                "LEFT JOIN phone_inventory AS i ON i.phoneId = p.phoneId\n" +
-                "ORDER BY p.quantity;";
+        String sql = "SELECT p.phoneId, p.phoneName, p.image, p.price, p.sellingPrice, d.distributorName, c.email, c.phoneNumber, i.quantityInStock \n" +
+                "FROM phone AS p \n" +
+                "JOIN distributor AS d ON p.distributorId = d.distributorId \n" +
+                "JOIN phone_inventory AS i ON p.phoneId = i.phoneId \n" +
+                "JOIN customer AS c ON p.phoneId = c.customerId \n" +
+                "ORDER BY p.sellingPrice \n" +
+                "LIMIT 0, 1000;\n";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
