@@ -24,6 +24,7 @@ import javafx.util.Callback;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
@@ -98,6 +99,8 @@ public class PhoneController {
 
     @FXML
     private Button updateButton;
+    @FXML
+    private TextField phoneTextField;
 
 
     @FXML
@@ -166,11 +169,11 @@ public class PhoneController {
 
     private ObservableList<Phone> getListPhone() {
         ObservableList<Phone> observableList = FXCollections.observableArrayList();
-        String sql = "SELECT p.phoneId, p.price, p.sellingPrice, d.distributorName, p.image, i.quantityInStock, i.phoneName\n" +
+        String sql = "SELECT p.phoneId, p.price, p.sellingPrice, d.distributorName, p.image, i.quantityInStock, p.phoneName\n" +
                 "FROM phone AS p\n" +
                 "LEFT JOIN distributor AS d ON p.distributorId = d.distributorId\n" +
                 "LEFT JOIN phone_inventory AS i ON i.phoneId = p.phoneId\n" +
-                "ORDER BY p.quantity\n";
+                "ORDER BY p.quantity;";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -196,8 +199,20 @@ public class PhoneController {
     private void setupTable() {
         phoneObservableList = getListPhone();
         priceTableColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-        phoneTableColumn.setCellFactory(new PropertyValueFactory<>("phoneName"));
+        phoneTableColumn.setCellValueFactory(new PropertyValueFactory<>("phoneName"));
 
+        phoneTableColumn.setCellFactory(col -> new TableCell<Phone, String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item);
+                }
+            }
+        });
         distributorTableColumn.setCellValueFactory(new PropertyValueFactory<>("distributor"));
         sellingPriceTableColumn.setCellValueFactory(new PropertyValueFactory<>("sellingPrice"));
         orderNumberTableColumn.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(phoneTableView.getItems().indexOf(param.getValue()) + 1 + (currentPage - 1) * itemsPerPage));
@@ -416,7 +431,7 @@ public class PhoneController {
 
         // if file is not null then get path of this file
         if (file != null) {
-            String destinationFilePath = "src/main/resources/com/example/demojavafxproject/images/" + file.getName(); // Replace this with the actual destination folder path
+            String destinationFilePath = "src/main/resources/com/example/smartphone/image_phone/" + file.getName(); // Replace this with the actual destination folder path
 
             GetData.path = destinationFilePath;
 
@@ -427,7 +442,8 @@ public class PhoneController {
                 e.printStackTrace();
             }
 
-            Image image = new Image("file:" + destinationFilePath);
+            Image image =new Image(destinationFilePath);
+            ;
             phoneImageView.setImage(image);
         }
     }
@@ -460,10 +476,13 @@ public class PhoneController {
         setIdAdd(); // set new value for id field
         priceTextField.clear();
         taxTextField.clear();
+        phoneTextField.clear();
+        sellingPriceTextField.clear();
+        phoneTextField.clear();
+        quantityTextField.clear();
         distributorComboBox.setValue(null);
         phoneImageView.setImage(null);
-        quantityTextField.clear();
-        sellingPriceTextField.clear();
+        sellingPriceTextField.clear(); // Clear sellingPriceTextField
         GetData.path = "";
 
         actionStatusLabel.setText("Adding New Phone");
@@ -478,21 +497,28 @@ public class PhoneController {
                 if (newValue != null) {
                     idTextField.setText(String.valueOf(newValue.getPhone_id()));
                     priceTextField.setText(String.valueOf(newValue.getPrice()));
-                    distributorComboBox.setValue(String.valueOf(newValue.getDistributorComboBox()));
+                    distributorComboBox.setValue(String.valueOf(newValue.getDistributor()));
                     quantityTextField.setText(String.valueOf(newValue.getQuantity()));
                     sellingPriceTextField.setText(String.valueOf(newValue.getSellingPrice()));
+                    phoneTextField.setText(String.valueOf(newValue.getPhoneName()));
+                    String imagePath = "/com/example/smartphone/image_phone/" + newValue.getImg();
+                    URL imageUrl = getClass().getResource(imagePath);
 
-                    File imageFile = new File(newValue.getImg());
-                    Image image = null;
-                    try {
-                        image = new Image(imageFile.getAbsolutePath());
-                        phoneImageView.setImage(image);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        image = null;
+                    if (imageUrl != null) {
+                        try {
+                            Image image = new Image(imageUrl.toExternalForm());
+                            phoneImageView.setImage(image);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            phoneImageView.setImage(null);
+                            GetData.showWarningAlert("Warning message", "Failed to load image. Please make sure that the image file exists and try again!");
+                        }
+                    } else {
                         phoneImageView.setImage(null);
-                        GetData.showWarningAlert("Warning message", "Image not found. \nMake sure that image file exists and try again!");
+                        GetData.showWarningAlert("Warning message", "Image not found. Please make sure that the image file exists and try again!");
                     }
+
+
 
                     addButton.setDisable(true);
                     updateButton.setDisable(false);
@@ -507,10 +533,10 @@ public class PhoneController {
     private boolean isFilledFields() {
         if (
                 priceTextField.getText().isEmpty()
-                || quantityTextField.getText().isEmpty()
+                        || quantityTextField.getText().isEmpty()
 //                || GetData.path == null
 //                || GetData.path.equals("")
-                || distributorComboBox.getItems().isEmpty()) {
+                        || distributorComboBox.getItems().isEmpty()) {
             // alert error if required fields no filled
             GetData.showWarningAlert("Warning message", "Please fill all required fields!");
             return false;
