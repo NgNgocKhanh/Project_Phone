@@ -13,6 +13,7 @@ public class Phone {
     private double price;
     private double sellingPrice;
     private int quantity;
+    private String distributorComboBox;
 
     public int getQuantity() {
         return quantity;
@@ -62,11 +63,12 @@ public class Phone {
         this.sellingPrice = sellingPrice;
     }
 
-    public Phone(int phone_id, String phoneName, String img, double price, double sellingPrice) {
+    public Phone(int phone_id, String phoneName, String img, double price, double sellingPrice, String distributorComboBox) {
         this.phone_id = phone_id;
         this.phoneName = phoneName;
         this.img = img;
         this.price = price;
         this.sellingPrice = sellingPrice;
+        this.distributorComboBox = distributorComboBox;
     }
 }
