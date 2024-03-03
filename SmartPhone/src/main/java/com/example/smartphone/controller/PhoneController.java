@@ -482,8 +482,7 @@ public class PhoneController {
         quantityTextField.clear();
         distributorComboBox.setValue(null);
         phoneImageView.setImage(null);
-        quantityTextField.clear();
-        sellingPriceTextField.clear();
+        sellingPriceTextField.clear(); // Clear sellingPriceTextField
         GetData.path = "";
 
         actionStatusLabel.setText("Adding New Phone");
