@@ -341,34 +341,49 @@ public class DistributorController {
      */
     private void deleteDistributorFromDatabase(int id) {
 
-            try {
-                // Xóa tất cả các sản phẩm liên quan đến nhà cung cấp
-                String deleteOrdersQuery = "UPDATE phone SET distributorId = NULL WHERE distributorId =  " + id;
-                Statement deletePhonesStatement = connection.createStatement();
-                int rowsDeleted = deletePhonesStatement.executeUpdate(deleteOrdersQuery);
+        try {
+            // Check if the distributor has associated phones
+            String checkPhonesQuery = "SELECT COUNT(*) FROM phone WHERE distributorId = ?";
+            try (PreparedStatement checkPhonesStatement = connection.prepareStatement(checkPhonesQuery)) {
+                checkPhonesStatement.setInt(1, id);
+                ResultSet resultSet = checkPhonesStatement.executeQuery();
+                resultSet.next();
+                int phoneCount = resultSet.getInt(1);
 
-                // Sau khi xóa sản phẩm, xóa nhà cung cấp
-                if (rowsDeleted > 0) {
-                    String deleteCustomerQuery = "DELETE FROM distributor WHERE distributorId = " + id;
-                    Statement deletedDistributorStatement = connection.createStatement();
-                    int rowsAffected = deletedDistributorStatement.executeUpdate(deleteCustomerQuery);
-
-                    if (rowsAffected > 0) {
-                        GetData.showSuccessAlert("Success message", "Deleted successfully!");
-                        setupTable();
-                        resetForm();
-                    }
-                } else {
+                if (phoneCount > 0) {
                     GetData.showErrorAlert("Error message", "Distributor has phones and cannot be deleted!");
+                } else {
+                    // No associated phones, proceed with deletion
+                    String deletePhonesQuery = "UPDATE phone SET distributorId = NULL WHERE distributorId = ?";
+                    try (PreparedStatement deletePhonesStatement = connection.prepareStatement(deletePhonesQuery)) {
+                        deletePhonesStatement.setInt(1, id);
+                        int rowsDeleted = deletePhonesStatement.executeUpdate();
+
+                            String deleteDistributorQuery = "DELETE FROM distributor WHERE distributorId = ?";
+                            try (PreparedStatement deleteDistributorStatement = connection.prepareStatement(deleteDistributorQuery)) {
+                                deleteDistributorStatement.setInt(1, id);
+                                int rowsAffected = deleteDistributorStatement.executeUpdate();
+
+                                if (rowsAffected > 0) {
+                                    GetData.showSuccessAlert("Success message", "Deleted successfully!");
+                                    setupTable();
+                                    resetForm();
+                                }
+                            }
+
+                    }
                 }
-            } catch (Exception e) {
-                GetData.showErrorAlert("Error message", "Cannot delete!");
-                e.printStackTrace();
             }
+        } catch (Exception e) {
+            GetData.showErrorAlert("Error message", "Cannot delete!");
+            e.printStackTrace();
         }
+    }
 
 
-        /**
+
+
+    /**
          * Resets the form by clearing the input fields and enabling the add button.
          * This method resets the form by clearing the input fields, enabling the add button, and updating the action status label.
          */

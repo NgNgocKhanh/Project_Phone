@@ -439,15 +439,15 @@ public class EmployeeController {
      * @param id The ID of the distributor to be deleted.
      */
     private void deleteEmployeeFromDatabase(int id) {
-        String updateInvoiceQuery = "UPDATE invoice SET employeeId = NULL WHERE employeeId = ?";
+//        String updateInvoiceQuery = "UPDATE invoice SET employeeId = NULL WHERE employeeId = ?";
         String updateOrderQuery = "UPDATE `order` SET employeeId = NULL WHERE employeeID = ?";
         String deleteEmployeeQuery = "DELETE FROM employee WHERE employeeId = ?";
 
         try {
             // Update invoice
-            try (PreparedStatement updateInvoiceStatement = connection.prepareStatement(updateInvoiceQuery)) {
-                updateInvoiceStatement.setInt(1, id);
-                int rowUpdateInvoiceAffected = updateInvoiceStatement.executeUpdate();
+//            try (PreparedStatement updateInvoiceStatement = connection.prepareStatement(updateInvoiceQuery)) {
+//                updateInvoiceStatement.setInt(1, id);
+//                int rowUpdateInvoiceAffected = updateInvoiceStatement.executeUpdate();
 
                 // Update order
                 try (PreparedStatement updateOrderStatement = connection.prepareStatement(updateOrderQuery)) {
@@ -455,7 +455,7 @@ public class EmployeeController {
                     int rowUpdateOrderAffected = updateOrderStatement.executeUpdate();
 
                     // Delete employee
-                    if (rowUpdateInvoiceAffected > 0 && rowUpdateOrderAffected > 0) {
+//                    if (rowUpdateInvoiceAffected > 0 && rowUpdateOrderAffected > 0) {
                         try (PreparedStatement deleteEmployeeStatement = connection.prepareStatement(deleteEmployeeQuery)) {
                             deleteEmployeeStatement.setInt(1, id);
                             int rowAffected = deleteEmployeeStatement.executeUpdate();
@@ -466,9 +466,9 @@ public class EmployeeController {
                                 resetForm();
                             }
                         }
-                    }
+//                    }
                 }
-            }
+//            }
         } catch (Exception e) {
             GetData.showErrorAlert("Error message", "Cannot delete!");
             e.printStackTrace();
