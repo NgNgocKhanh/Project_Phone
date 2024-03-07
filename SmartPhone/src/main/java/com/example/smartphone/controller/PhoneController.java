@@ -261,7 +261,6 @@ public class PhoneController {
             row.setOnMouseExited(event -> Tooltip.uninstall(row, row.getTooltip()));
             return row;
         });
-
         // create a TableCell to contain delete button
         // this Callback function is used to create a TableCell for each row
         Callback<TableColumn<Phone, String>, TableCell<Phone, String>> columnTableCellCallback = (param) -> {
@@ -510,7 +509,7 @@ public class PhoneController {
                         e.printStackTrace();
                         image = null;
                         phoneImageView.setImage(null);
-                        GetData.showWarningAlert("Warning message", "Image not found. \nMake sure that image file exists and try again!");
+                        GetData.showWarningAlert("Cảnh báo", "Không thể tải ảnh: " + imageFile.getAbsolutePath());
 
                     }
 

@@ -203,10 +203,10 @@ public class AddOrderViewController {
             TableRow<Phone> row = new TableRow<>();
             row.itemProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue != null && newValue.getQuantity() == 0) {
-                    row.getStyleClass().add("red-row");
+                    row.getStyleClass().add("white-row");
                     row.setDisable(true); // Disable row selection for rows with quantity 0
                 } else {
-                    row.getStyleClass().remove("red-row");
+                    row.getStyleClass().remove("white-row");
                     row.setDisable(false); // Enable row selection for other rows
                 }
             });
