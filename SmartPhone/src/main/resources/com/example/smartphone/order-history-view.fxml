@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="orderViewPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1130.0" style="-fx-background-color: #ececec;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smartphone.controller.OrderHistoryController">
+    <children>
+        <Pane prefHeight="62.0" prefWidth="1130.0" style="-fx-background-color: #fff;">
+            <children>
+                <Label layoutY="14.0" prefHeight="35.0" prefWidth="238.0" text="ORDER HISTORY">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                    <padding>
+                        <Insets left="30.0" />
+                    </padding>
+                </Label>
+            </children>
+        </Pane>
+        <VBox layoutX="20.0" layoutY="242.0" prefHeight="558.0" prefWidth="1086.0">
+            <children>
+                <TableView fx:id="orderTableView" prefHeight="590.0" prefWidth="1055.0" stylesheets="@../../../css/style.css">
+                    <columns>
+                        <TableColumn fx:id="checkBoxTableColumn" prefWidth="30.399993896484375">
+                            <graphic>
+                                <CheckBox fx:id="selectAllCheckBox" mnemonicParsing="false" text="CheckBox" />
+                            </graphic></TableColumn>
+                        <TableColumn fx:id="orderNumberTableColumn" prefWidth="47.199981689453125" text="#" />
+                        <TableColumn fx:id="orderIdTableColumn" prefWidth="62.399993896484375" text="OrderID" visible="false" />
+                        <TableColumn fx:id="orderDateTableColumn" minWidth="6.399932861328125" prefWidth="93.60003662109375" text="OrderDate" />
+                        <TableColumn fx:id="customerTableColumn" minWidth="6.399932861328125" prefWidth="118.39997863769531" text="Customer" />
+                        <TableColumn fx:id="phoneNameTableColumn" prefWidth="98.39996337890625" text="Phone Name" />
+                        <TableColumn fx:id="quantityTableColumn" prefWidth="32.79998779296875" text="Qty." />
+                        <TableColumn fx:id="totalAmountTableColumn" prefWidth="104.79998779296875" text="TotalAmount" />
+                        <TableColumn fx:id="paymentTableColumn" prefWidth="85.60003662109375" text="Payment" />
+                        <TableColumn fx:id="paymentStatusTableColumn" prefWidth="103.199951171875" text="PaymentStatus" />
+                        <TableColumn fx:id="orderStatusTableColumn" prefWidth="95.199951171875" text="OrderStatus" />
+                    </columns>
+                </TableView>
+                <Pagination fx:id="paginationPagination" prefHeight="41.0" prefWidth="930.0" />
+            </children>
+        </VBox>
+        <TextField fx:id="searchKeywordTextField" layoutX="787.0" layoutY="207.0" prefHeight="26.0" prefWidth="214.0" promptText="Search keyword..." style="-fx-background-color: #fff; -fx-border-color: #ddd;">
+            <padding>
+                <Insets left="30.0" />
+            </padding>
+        </TextField>
+        <ImageView fitHeight="20.0" fitWidth="25.0" layoutX="795.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@image_icons/search-black.png" />
+            </image>
+        </ImageView>
+        <Label fx:id="totalLabel" layoutX="593.0" layoutY="207.0" prefHeight="26.0" prefWidth="127.0" text="Total: 10000">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="727.0" layoutY="207.0" prefHeight="26.0" prefWidth="60.0" text="Search">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <ComboBox fx:id="searchComboBox" layoutX="1002.0" layoutY="207.0" prefHeight="27.0" prefWidth="104.0" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
+        <AnchorPane layoutX="21.0" layoutY="95.0" prefHeight="90.0" prefWidth="240.0" style="-fx-background-color: linear-gradient(to bottom, #bef2e4, #def4e5); -fx-border-color: #329b57;" styleClass="dashboard-box" stylesheets="@../../../css/style.css">
+            <children>
+                <Label layoutX="19.0" layoutY="6.0" text="NEW ORDER" textFill="#329b57">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="totalNewOrderLabel" layoutX="19.0" layoutY="37.0" text="Total orders: 100" textFill="#329b57">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label fx:id="totalNewOrderAmountLabel" layoutX="19.0" layoutY="57.0" text="Total amount: 1000" textFill="#329b57">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="866.0" layoutY="95.0" prefHeight="90.0" prefWidth="240.0" style="-fx-background-color: linear-gradient(to bottom, #f9cacb, #f0d9d7); -fx-border-color: #d97173;" styleClass="dashboard-box" stylesheets="@../../../css/style.css">
+            <children>
+                <Label layoutX="20.0" layoutY="6.0" text="COMPLETED" textFill="#d97173">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="totalCompletedOrderLabel" layoutX="19.0" layoutY="37.0" text="Total orders: 100" textFill="#d97173">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label fx:id="totalCompletedAmountLabel" layoutX="19.0" layoutY="57.0" text="Total amount: 1000" textFill="#d97173">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="585.0" layoutY="95.0" prefHeight="90.0" prefWidth="240.0" style="-fx-background-color: linear-gradient(to bottom, #f9e3cc, #f5e9db); -fx-border-color: #cd7014;" styleClass="dashboard-box" stylesheets="@../../../css/style.css">
+            <children>
+                <Label layoutX="19.0" layoutY="6.0" text="SHIPPING" textFill="#cd7014">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="totalShippingOrderLabel" layoutX="19.0" layoutY="37.0" text="Total orders: 100" textFill="#cd7014">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label fx:id="totalShippingAmountLabel" layoutX="19.0" layoutY="57.0" text="Total amount: 1000" textFill="#cd7014">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="302.0" layoutY="95.0" prefHeight="90.0" prefWidth="240.0" style="-fx-background-color: linear-gradient(to bottom, #c9eff9, #e0f3f8); -fx-border-color: #289fbe;" styleClass="dashboard-box" stylesheets="@../../../css/style.css">
+            <children>
+                <Label layoutX="20.0" layoutY="6.0" text="CONFIRMED" textFill="#289fbe">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="totalConfirmedOrderLabel" layoutX="19.0" layoutY="37.0" text="Total orders: 100" textFill="#289fbe">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label fx:id="totalConfirmedAmountLabel" layoutX="19.0" layoutY="57.0" text="Total amount: 1000" textFill="#289fbe">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <Label layoutX="21.0" layoutY="207.0" prefHeight="26.0" prefWidth="118.0" text="Filter by status:">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <ComboBox fx:id="filterStatusComboBox" layoutX="139.0" layoutY="204.0" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
+        <Button fx:id="resetButton" layoutX="286.0" layoutY="204.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="27.0" prefWidth="94.0" styleClass="button-clean" stylesheets="@../../../css/style.css" text="Refresh" textFill="WHITE">
+            <graphic>
+                <ImageView fitHeight="22.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@image_icons/rotate-white.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></Button>
+        <Button fx:id="exportButton" layoutX="388.0" layoutY="205.0" mnemonicParsing="false" onAction="#exportToFileExcel" prefHeight="30.0" prefWidth="154.0" styleClass="button-export" stylesheets="@../../../css/style.css" text="Export To Excel" textFill="WHITE">
+            <graphic>
+                <ImageView fitHeight="20.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@image_icons/download-white.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></Button>
+    </children>
+</AnchorPane>
