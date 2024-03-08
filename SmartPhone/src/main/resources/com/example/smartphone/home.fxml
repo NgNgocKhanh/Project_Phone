@@ -134,23 +134,7 @@
                 <cursor>
                     <Cursor fx:constant="HAND" />
                 </cursor>
-            <font>
-               <Font size="15.0" />
-            </font>
-            <graphic>
-               <ImageView fitHeight="24.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@image_icons/cart-white.png" />
-                  </image>
-               </ImageView>
-            </graphic>
-            <padding>
-               <Insets left="25.0" />
-            </padding>
-            <cursor>
-               <Cursor fx:constant="HAND" />
-            </cursor>
-         </Button>
+            </Button>
          <Button fx:id="orderHistoryButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#orderHistoryPage" prefHeight="50.0" prefWidth="178.0" styleClass="sideBar-button" stylesheets="@../../../css/style.css" text="Order History">
             <font>
                <Font size="15.0" />
