@@ -111,12 +111,7 @@ public class AddOrderViewController {
     private TableColumn<Phone, Integer> idTableColumn;
 
     @FXML
-    private TableColumn<Phone, String>
-            phoneColumnTable;
-
-    @FXML
-    private Button minimizeButton;
-
+    private TableColumn<Phone, String> phoneColumnTable;
     @FXML
     private TableColumn<Phone, String> modelTableColumn;
 
@@ -170,13 +165,6 @@ public class AddOrderViewController {
     private final int itemsPerPage = 15;
     private final int itemsPerCustomerPage = 3;
 //    private int customerId;
-
-    @FXML
-    void minimize(ActionEvent event) {
-        Stage stage = (Stage) minimizeButton.getScene().getWindow();
-        stage.setIconified(true);
-    }
-
     private boolean isValidPhoneNumber(String phoneNumber) {
         return phoneNumber.matches("\\d{10}");
     }
