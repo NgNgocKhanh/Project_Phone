@@ -1,4 +1,4 @@
-package com.example.demojavafxproject.controller;
+package com.example.smartphone.controller;
 
 import dao.JDBCConnect;
 import javafx.application.Platform;
@@ -17,13 +17,13 @@ import java.time.format.TextStyle;
 import java.util.Comparator;
 import java.util.Locale;
 
-public class DashboardController {
+public class DashboardViewController {
     DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
     Connection connection = JDBCConnect.getJDBCConnection();
     private double x = 0, y = 0;
 
     @FXML
-    private Label totalCarsLabel;
+    private Label totalPhonesLabel;
 
     @FXML
     private Label totalCustomersLabel;
@@ -60,20 +60,20 @@ public class DashboardController {
 
 
     /**
-     * Displays the total number of cars in the dashboard.
-     * It queries the database to get the total count of cars and updates the corresponding label.
+     * Displays the total number of phones in the dashboard.
+     * It queries the database to get the total count of phones and updates the corresponding label.
      */
-    private void displayTotalCar() {
-        //query total cars
-        String query = "SELECT COUNT(*) AS totalCars FROM car;";
+    private void displayTotalphone() {
+        //query total phones
+        String query = "SELECT COUNT(*) AS totalPhones FROM phone;";
 
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
-                int total = resultSet.getInt("totalCars");
-                totalCarsLabel.setText(String.valueOf(total));
+                int total = resultSet.getInt("totalPhones");
+                totalPhonesLabel.setText(String.valueOf(total));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -418,7 +418,7 @@ public class DashboardController {
         totalRevenueLabel.setText("Total Revenue " + monthName + ":");
         totalOrdersMonthLabel.setText("Total Orders " + monthName + ":");
 
-        displayTotalCar();
+        displayTotalphone();
         displayTotalCustomer();
         displayTotalEmployee();
         displayTotalOrder();
