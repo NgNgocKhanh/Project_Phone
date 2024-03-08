@@ -77,14 +77,13 @@ public class SceneController {
     public void loginButtonOnAction(ActionEvent event) throws SQLException, IOException {
         login(event);
     }
-
+    Connection connection = JDBCConnect.getJDBCConnection();
     @FXML
-    public void login(ActionEvent event) throws SQLException, IOException {
-        Connection con = JDBCConnect.getJDBCConnection();
+    void login(ActionEvent event) {
         if (isFilledFields()) {
             try {
                 String sql = "SELECT employeeId FROM employee WHERE username = ? AND roleId = ?";
-                PreparedStatement preparedStatement = con.prepareStatement(sql);
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setString(1, tfUsernameLogin.getText());
                 Map<Integer, String> roleMap = getRoleMap();
                 String selectedRole = roleComboBox.getValue();
@@ -92,9 +91,10 @@ public class SceneController {
 
                 preparedStatement.setInt(2, selectedId);
 
+
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
-                    int empId = resultSet.getInt("employeeId");
+                    GetData.empId = resultSet.getInt("employeeId");
 
                     String storedHashedPassword = getHashedPassword(tfUsernameLogin.getText(), selectedId);
                     String enteredPassword = tfPasswordLogin.getText();
@@ -102,20 +102,19 @@ public class SceneController {
                     if (storedHashedPassword != null && compareHashes(enteredPassword, storedHashedPassword)) {
                         GetData.username = tfUsernameLogin.getText();
                         GetData.role = roleComboBox.getValue();
-                        GetData.showConfirmationAlert("Login", "Login Successfully");
-                        btnCon.getScene().getWindow().hide();
+                        GetData.showSuccessAlert("Login", "Login Successfully");
+                        l.getScene().getWindow().hide();
 
+                        // Open the main app window
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/smartphone/home.fxml"));
                         Parent root = loader.load();
                         HomeController homeController = loader.getController();
                         homeController.initialize();  // Initialize the main app controller
 
-                        Stage homeControllerr = new Stage();
-                        homeControllerr.setScene(new Scene(root));
-                        homeControllerr.initStyle(StageStyle.TRANSPARENT);
-                        homeControllerr.setMaximized(true);
-                        homeControllerr.show();
-
+                        Stage mainAppStage = new Stage();
+                        mainAppStage.setScene(new Scene(root));
+                        mainAppStage.initStyle(StageStyle.TRANSPARENT);
+                        mainAppStage.show();
                     } else {
                         GetData.showErrorAlert("Login failed!", "Username or password is wrong");
                     }
@@ -125,6 +124,7 @@ public class SceneController {
             }
         }
     }
+
 
     private String getHashedPassword(String username, int roleId) throws SQLException {
         Connection con = JDBCConnect.getJDBCConnection();

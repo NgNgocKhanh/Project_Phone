@@ -18,7 +18,7 @@ public class Login extends Application {
         String fxmlFileName = "login.fxml";
 
         // Create a File manhobject for the FXML file
-        File fxmlFile    = new File("src/main/resources/com/example/SmartPhone/" + fxmlFileName);
+        File fxmlFile = new File("src/main/resources/com/example/SmartPhone/" + fxmlFileName);
 
         // Get the absolute path of the FXML file
         String absolutePath = fxmlFile.getAbsolutePath();

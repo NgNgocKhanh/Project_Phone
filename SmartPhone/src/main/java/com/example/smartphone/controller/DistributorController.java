@@ -340,38 +340,19 @@ public class DistributorController {
      * @param id The ID of the distributor to be deleted.
      */
     private void deleteDistributorFromDatabase(int id) {
-
+        String updateQuery = "UPDATE phone SET distributorId = NULL WHERE distributorId = " + id;
         try {
-            // Check if the distributor has associated phones
-            String checkPhonesQuery = "SELECT COUNT(*) FROM phone WHERE distributorId = ?";
-            try (PreparedStatement checkPhonesStatement = connection.prepareStatement(checkPhonesQuery)) {
-                checkPhonesStatement.setInt(1, id);
-                ResultSet resultSet = checkPhonesStatement.executeQuery();
-                resultSet.next();
-                int phoneCount = resultSet.getInt(1);
+            Statement updateStatement = connection.createStatement();
+            int updateRowAffected = updateStatement.executeUpdate(updateQuery);
+            if (updateRowAffected > 0) {
+                String sql = "DELETE FROM distributor WHERE distributorId = " + id;
+                Statement deleteStatement = connection.createStatement();
+                int deleteRowAffected = deleteStatement.executeUpdate(sql);
+                if (deleteRowAffected > 0) {
+                    GetData.showSuccessAlert("Success message", "Deleted successfully!");
 
-                if (phoneCount > 0) {
-                    GetData.showErrorAlert("Error message", "Distributor has phones and cannot be deleted!");
-                } else {
-                    // No associated phones, proceed with deletion
-                    String deletePhonesQuery = "UPDATE phone SET distributorId = NULL WHERE distributorId = ?";
-                    try (PreparedStatement deletePhonesStatement = connection.prepareStatement(deletePhonesQuery)) {
-                        deletePhonesStatement.setInt(1, id);
-                        int rowsDeleted = deletePhonesStatement.executeUpdate();
-
-                            String deleteDistributorQuery = "DELETE FROM distributor WHERE distributorId = ?";
-                            try (PreparedStatement deleteDistributorStatement = connection.prepareStatement(deleteDistributorQuery)) {
-                                deleteDistributorStatement.setInt(1, id);
-                                int rowsAffected = deleteDistributorStatement.executeUpdate();
-
-                                if (rowsAffected > 0) {
-                                    GetData.showSuccessAlert("Success message", "Deleted successfully!");
-                                    setupTable();
-                                    resetForm();
-                                }
-                            }
-
-                    }
+                    setupTable();
+                    resetForm();
                 }
             }
         } catch (Exception e) {
@@ -379,7 +360,6 @@ public class DistributorController {
             e.printStackTrace();
         }
     }
-
 
 
 
