@@ -134,8 +134,6 @@
                 <cursor>
                     <Cursor fx:constant="HAND" />
                 </cursor>
-            </Button>
-         <Button fx:id="orderViewButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onMouseClicked="#orderViewPage" prefHeight="50.0" prefWidth="178.0" styleClass="sideBar-button" stylesheets="@../../../css/style.css" text="Order View">
             <font>
                <Font size="15.0" />
             </font>

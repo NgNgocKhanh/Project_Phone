@@ -616,8 +616,6 @@ public class PhoneController {
                     preparedStatement.setString(2, String.valueOf(selectedDistributorKey));
                     preparedStatement.setString(3, GetData.path);
                     preparedStatement.setString(4, sellingPriceTextField.getText());
-                    preparedStatement.setString(5, idTextField.getText());
-
                     int rowAffected = preparedStatement.executeUpdate();
                     // if updated success then alert
                     if (rowAffected > 0) {
