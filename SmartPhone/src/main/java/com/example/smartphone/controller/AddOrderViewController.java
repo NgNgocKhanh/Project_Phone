@@ -733,7 +733,7 @@ public class AddOrderViewController {
         orderFormPage.setDisable(true);
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/smartphone/add-new-customer-form.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/smartphone/customer-view.fxml"));
             Parent root = loader.load();
 
             Stage addCustomerFormStage = new Stage();
