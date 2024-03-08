@@ -287,7 +287,6 @@ public class AddOrderViewController {
         return statusMap;
     }
 
-
     private void addStatusComboBox() {
         Map<Integer, String> statusMap = getStatusMap();
         orderStatusComboBox.getItems().addAll(statusMap.values());

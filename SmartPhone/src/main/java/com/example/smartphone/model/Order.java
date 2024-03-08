@@ -39,6 +39,8 @@ public class Order {
         this.totalAmount = totalAmount;
         this.orderStatus = orderStatus;
     }
+    public Order(int orderId, int customerId, String customerName, String orderDate, double totalAmount, int orderStatusId, String orderStatus, int employeeId, String employeeName, double price, int quantity, int paymentId, String paymentType, int paymentStatusId, String paymentStatus) {
+    }
 
     public Order(int orderId, int customerId, String customerName, String orderDate, double totalAmount, int statusId, String orderStatus, int employeeId, String employeeName, int phoneId,  double phonePrice, int orderQuantity, int paymentId, String paymentType, int paymentStatusId, String paymentStatus) {
         this.orderId = orderId;
