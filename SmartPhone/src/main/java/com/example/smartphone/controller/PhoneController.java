@@ -130,9 +130,9 @@ public class PhoneController {
             TableRow<Phone> row = new TableRow<>();
             row.itemProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue != null && newValue.getQuantity() == 0) {
-                    row.getStyleClass().add("red-row");
+                    row.getStyleClass().add("white-row");
                 } else {
-                    row.getStyleClass().remove("red-row");
+                    row.getStyleClass().remove("white-row");
                 }
             });
             return row;
@@ -261,7 +261,6 @@ public class PhoneController {
             row.setOnMouseExited(event -> Tooltip.uninstall(row, row.getTooltip()));
             return row;
         });
-
         // create a TableCell to contain delete button
         // this Callback function is used to create a TableCell for each row
         Callback<TableColumn<Phone, String>, TableCell<Phone, String>> columnTableCellCallback = (param) -> {
@@ -477,14 +476,12 @@ public class PhoneController {
         searchKeywordTextField.clear();
         setIdAdd(); // set new value for id field
         priceTextField.clear();
-        taxTextField.clear();
         phoneTextField.clear();
         sellingPriceTextField.clear();
         phoneTextField.clear();
         quantityTextField.clear();
         distributorComboBox.setValue(null);
         phoneImageView.setImage(null);
-        sellingPriceTextField.clear(); // Clear sellingPriceTextField
         GetData.path = "";
 
         actionStatusLabel.setText("Adding New Phone");
@@ -503,28 +500,22 @@ public class PhoneController {
                     quantityTextField.setText(String.valueOf(newValue.getQuantity()));
                     sellingPriceTextField.setText(String.valueOf(newValue.getSellingPrice()));
                     phoneTextField.setText(String.valueOf(newValue.getPhoneName()));
-                    String imagePath = "/com/example/smartphone/image_phone/" + newValue.getImg();
-                    URL imageUrl = getClass().getResource(imagePath);
-
-                    if (imageUrl != null) {
-                        try {
-                            Image image = new Image(imageUrl.toExternalForm());
-                            phoneImageView.setImage(image);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            phoneImageView.setImage(null);
-                            GetData.showWarningAlert("Warning message", "Failed to load image. Please make sure that the image file exists and try again!");
-                        }
-                    } else {
+                    File imageFile = new File(newValue.getImg());
+                    Image image = null;
+                    try {
+                        image = new Image(imageFile.getAbsolutePath());
+                        phoneImageView.setImage(image);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        image = null;
                         phoneImageView.setImage(null);
-                        GetData.showWarningAlert("Warning message", "Image not found. Please make sure that the image file exists and try again!");
+                        GetData.showWarningAlert("Cảnh báo", "Không thể tải ảnh: " + imageFile.getAbsolutePath());
+
                     }
-
-
 
                     addButton.setDisable(true);
                     updateButton.setDisable(false);
-                    actionStatusLabel.setText("Updating Phone");
+                    actionStatusLabel.setText("Updating Car");
                 } else {
                     resetForm();
                 }

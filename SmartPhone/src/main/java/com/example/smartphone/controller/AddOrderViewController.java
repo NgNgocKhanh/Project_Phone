@@ -1,6 +1,4 @@
 package com.example.smartphone.controller;
-
-import com.example.smartphone.controller.GetData;
 import com.example.smartphone.model.Customer;
 import com.example.smartphone.model.Phone;
 import dao.JDBCConnect;
@@ -82,8 +80,6 @@ public class AddOrderViewController {
 
     @FXML
     private TableColumn<Customer, Integer> customerIdTableColumn;
-    @FXML
-    private TableColumn<Phone, String> PhoneTableColumn;
 
     @FXML
     private Button addCustomerButton;
@@ -105,8 +101,6 @@ public class AddOrderViewController {
 
     @FXML
     private TableView<Phone> phoneTableView;
-
-
     @FXML
     private TableColumn<Phone, String> distributorTableColumn;
 
@@ -117,7 +111,11 @@ public class AddOrderViewController {
     private TableColumn<Phone, Integer> idTableColumn;
 
     @FXML
-    private TableColumn<Phone, String> makeTableColumn;
+    private TableColumn<Phone, String> 
+phoneColumnTable;
+
+    @FXML
+    private Button minimizeButton;
 
     @FXML
     private TableColumn<Phone, String> modelTableColumn;
@@ -145,10 +143,6 @@ public class AddOrderViewController {
 
     @FXML
     private TextField searchKeywordTextField;
-
-    @FXML
-    private TableColumn<Phone, Double> taxTableColumn;
-
     @FXML
     private TextField totalAmoutTextField;
 
@@ -177,6 +171,12 @@ public class AddOrderViewController {
     private final int itemsPerCustomerPage = 3;
 //    private int customerId;
 
+    @FXML
+    void minimize(ActionEvent event) {
+        Stage stage = (Stage) minimizeButton.getScene().getWindow();
+        stage.setIconified(true);
+    }
+
     private boolean isValidPhoneNumber(String phoneNumber) {
         return phoneNumber.matches("\\d{10}");
     }
@@ -203,10 +203,10 @@ public class AddOrderViewController {
             TableRow<Phone> row = new TableRow<>();
             row.itemProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue != null && newValue.getQuantity() == 0) {
-                    row.getStyleClass().add("red-row");
+                    row.getStyleClass().add("White-row");
                     row.setDisable(true); // Disable row selection for rows with quantity 0
                 } else {
-                    row.getStyleClass().remove("red-row");
+                    row.getStyleClass().remove("White-row");
                     row.setDisable(false); // Enable row selection for other rows
                 }
             });
@@ -255,9 +255,9 @@ public class AddOrderViewController {
             ResultSet resultSet = statement.executeQuery(sql);
 
             if (resultSet.next()) {
-                int phoneIncrease = resultSet.getInt("orderId") + 1;
-                orderIdLabel.setText("OrderID: " + phoneIncrease);
-                return phoneIncrease;
+                int phoneIdIncrease = resultSet.getInt("orderId") + 1;
+                orderIdLabel.setText("OrderID: " + phoneIdIncrease);
+                return phoneIdIncrease;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -380,7 +380,7 @@ public class AddOrderViewController {
     }
 
     /**
-     * Sets up the car table with data from the database and adds filtering functionality.
+     * Sets up the phone table with data from the database and adds filtering functionality.
      */
     private void setupCustomerTable() {
         customerObservableList = getCustomerList();
@@ -460,19 +460,17 @@ public class AddOrderViewController {
     }
 
     /**
-     * Retrieves a list of all cars from the database.
+     * Retrieves a list of all phones from the database.
      *
-     * @return An ObservableList containing Car objects.
+     * @return An ObservableList containing phone objects.
      */
-    private ObservableList<Phone> getListPhone() {
+    private ObservableList<Phone> getListphone() {
         ObservableList<Phone> observableList = FXCollections.observableArrayList();
-        String sql = "SELECT p.phoneId, p.phoneName, p.image, p.price, p.sellingPrice, d.distributorName, c.email, c.phoneNumber, i.quantityInStock \n" +
-                "FROM phone AS p \n" +
-                "JOIN distributor AS d ON p.distributorId = d.distributorId \n" +
-                "JOIN phone_inventory AS i ON p.phoneId = i.phoneId \n" +
-                "JOIN customer AS c ON p.phoneId = c.customerId \n" +
-                "ORDER BY p.sellingPrice \n" +
-                "LIMIT 0, 1000;\n";
+        String sql = "SELECT p.phoneId, p.phoneName ,p.price, p.sellingPrice, d.distributorName, p.image, i.quantityInStock " +
+                "FROM phone AS p " +
+                "JOIN distributor AS d ON p.distributorId = d.distributorId " +
+                "JOIN phone_inventory AS i ON p.phoneId = i.phoneId " +
+                "ORDER BY p.phoneName";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -480,15 +478,16 @@ public class AddOrderViewController {
             while (resultSet.next()) {
                 // iterate through the resultSet from db and add to list
                 int id = resultSet.getInt("phoneId");
+                String name = resultSet.getString("phoneName");
                 double price = resultSet.getDouble("price");
-                String phoneName = resultSet.getString("phoneName");
+                String distributorName = resultSet.getString("distributorName");
                 String image = resultSet.getString("image");
-                String distributorComboboxx = resultSet.getString("distributorName");
                 int quantity = resultSet.getInt("quantityInStock");
                 double sellingPrice = resultSet.getDouble("sellingPrice");
 
                 // add to list
-                observableList.add(new Phone(id,  phoneName, image, price, sellingPrice, distributorComboboxx));}
+                observableList.add(new Phone(id, name, image, price, sellingPrice, quantity,distributorName));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -496,30 +495,17 @@ public class AddOrderViewController {
     }
 
     /**
-     * Sets up the car table with data from the database and adds filtering functionality.
+     * Sets up the phone table with data from the database and adds filtering functionality.
      */
     private void setupTable() {
-        phoneObservableList = getListPhone();
+        phoneObservableList = getListphone();
         idTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        PhoneTableColumn.setCellValueFactory(new PropertyValueFactory<>("phoneName"));
-
-        PhoneTableColumn.setCellFactory(col -> new TableCell<Phone, String>() {
-            @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-
-                if (empty || item == null) {
-                    setText(null);
-                } else {
-                    setText(item);
-                }
-            }
-        });
+        phoneColumnTable.setCellValueFactory(new PropertyValueFactory<>("phoneName"));
         priceTableColumn.setCellValueFactory(new PropertyValueFactory<>("sellingPrice"));
         distributorTableColumn.setCellValueFactory(new PropertyValueFactory<>("distributor"));
         orderNumberTableColumn.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(phoneTableView.getItems().indexOf(param.getValue()) + 1 + (currentPage - 1) * itemsPerPage));
 
-        // create FilteredList to filter and search car by searchKeyword
+        // create FilteredList to filter and search phone by searchKeyword
         FilteredList<Phone> filteredList = new FilteredList<>(phoneObservableList, b -> true); // b->true : means all elements in the list will be included in the filteredList
 
         // listen to changes in the searchKeyword to update the tableView
@@ -541,7 +527,7 @@ public class AddOrderViewController {
     }
 
     /**
-     * Updates the car table data based on the current pagination page.
+     * Updates the phone table data based on the current pagination page.
      *
      * @param pageIndex The index of the current pagination page.
      */
@@ -552,7 +538,7 @@ public class AddOrderViewController {
     }
 
     /**
-     * Sets up the pagination control and links it to the car table.
+     * Sets up the pagination control and links it to the phone table.
      */
     private void setupPagination() {
         int totalPages = (phoneObservableList.size() / itemsPerPage) + (phoneObservableList.size() % itemsPerPage > 0 ? 1 : 0);
@@ -564,9 +550,9 @@ public class AddOrderViewController {
     }
 
     /**
-     * Updates the pagination control based on the filtered car list.
+     * Updates the pagination control based on the filtered phone list.
      *
-     * @param filteredList The FilteredList containing the filtered cars.
+     * @param filteredList The FilteredList containing the filtered phones.
      */
     private void updatePagination(FilteredList<Phone> filteredList) {
         int totalItems = filteredList.size();
@@ -665,6 +651,9 @@ public class AddOrderViewController {
         }
     }
 
+    /**
+     * Listens for the selected phone in the phone table and updates the phoneIdTextField and phoneImageView accordingly.
+     */
     private void selectedRecord() {
         // catch select row event
         phoneTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Phone>() {
@@ -672,7 +661,7 @@ public class AddOrderViewController {
             public void changed(ObservableValue<? extends Phone> observableValue, Phone oldValue, Phone newValue) {
                 if (newValue != null) {
                     phoneIdTextField.setText(String.valueOf(newValue.getPhone_id()));
-                    totalAmoutTextField.setText(String.valueOf((newValue.getSellingPrice() + newValue.getSellingPrice() * newValue.getQuantity() / 100) * Integer.parseInt(orderQuantityTextField.getText())));
+                    totalAmoutTextField.setText(String.valueOf((newValue.getSellingPrice() + newValue.getSellingPrice() * newValue.getPrice() / 100) * Integer.parseInt(orderQuantityTextField.getText())));
                     File imageFile = new File(newValue.getImg());
                     Image image = null;
                     try {
@@ -682,7 +671,7 @@ public class AddOrderViewController {
                         e.printStackTrace();
                         image = null;
                         phoneImageView.setImage(null);
-                        GetData.showWarningAlert("Warning message", "Image not found. \nMake sure that image file exists and try again!");
+                        GetData.showWarningAlert("Warning message", imageFile.getAbsolutePath());
                     }
                 } else {
                     phoneImageView.setImage(null);
@@ -755,7 +744,7 @@ public class AddOrderViewController {
         orderFormPage.setDisable(true);
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/smartphone/customer-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/smartphone/add-new-customer-form.fxml"));
             Parent root = loader.load();
 
             Stage addCustomerFormStage = new Stage();

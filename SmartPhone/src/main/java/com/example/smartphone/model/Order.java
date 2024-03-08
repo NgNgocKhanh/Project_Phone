@@ -29,7 +29,6 @@ public class Order {
     private String paymentType;
     private int paymentStatusId;
     private String paymentStatus;
-
     private CheckBox selectCheckBox;
 
 

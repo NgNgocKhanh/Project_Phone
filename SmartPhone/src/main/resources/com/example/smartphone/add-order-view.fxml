@@ -31,7 +31,7 @@
                     </padding>
                 </Label>
                 <Label fx:id="employeeNameLabel" alignment="CENTER_RIGHT" layoutX="589.0" layoutY="40.0" prefHeight="17.0" prefWidth="527.0" text="Processing by: Ninh Viet Phuong" />
-                <Label fx:id="orderDateLabel" layoutX="34.0" layoutY="41.0" prefHeight="17.0" prefWidth="150.0" text="Date: 03/04/2004" />
+                <Label fx:id="orderDateLabel" layoutX="34.0" layoutY="41.0" prefHeight="17.0" prefWidth="150.0" text="Date: 21/3/2004" />
                 <Label fx:id="orderIdLabel" layoutX="228.0" layoutY="13.0" text="OrderID: " visible="false">
                     <font>
                         <Font name="System Bold" size="18.0" />
@@ -47,26 +47,33 @@
                     </font>
                 </Label>
                 <Line endX="857.0" layoutX="226.0" layoutY="28.0" startX="-92.59999084472656" />
-                <Label layoutX="18.0" layoutY="213.0" prefHeight="27.0" prefWidth="78.0" text="Phone Info">
+                <Label layoutX="24.0" layoutY="214.0" prefHeight="26.0" prefWidth="56.0" text="Phone
+                 Info">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </Label>
-                <Line endX="858.800048828125" layoutX="226.0" layoutY="227.0" startX="-121.0" />
-                <TextField fx:id="searchKeywordTextField" layoutX="697.0" layoutY="236.0" prefHeight="35.0" prefWidth="363.0" promptText="Searching for car's make" style="-fx-background-color: #f4f4f4;">
+                <Line endX="858.800048828125" layoutX="226.0" layoutY="227.0" startX="-135.1999969482422" />
+                <TextField fx:id="searchKeywordTextField" layoutX="697.0" layoutY="236.0" prefHeight="35.0" prefWidth="363.0" promptText="Searching for phone's make" style="-fx-background-color: #f4f4f4;">
                     <padding>
                         <Insets left="35.0" />
                     </padding>
                 </TextField>
+                <TextField fx:id="orderQuantityTextField" alignment="CENTER" layoutX="850.0" layoutY="509.0" prefHeight="26.0" prefWidth="166.0" />
+                <ImageView fitHeight="20.0" fitWidth="28.0" layoutX="703.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@image_icons/search-black.png" />
+                    </image>
+                </ImageView>
                 <VBox layoutX="18.0" layoutY="254.0" prefHeight="424.0" prefWidth="670.0">
                     <children>
                         <TableView fx:id="phoneTableView" prefHeight="405.0" prefWidth="622.0" stylesheets="@style.css">
                             <columns>
                                 <TableColumn fx:id="idTableColumn" prefWidth="47.199981689453125" text="ID" visible="false" />
-                                <TableColumn fx:id="orderNumberTableColumn" prefWidth="101.0" text="#" />
-                                <TableColumn fx:id="PhoneTableColumn" prefWidth="189.0" text="Phone Name" />
-                                <TableColumn fx:id="priceTableColumn" prefWidth="192.0" text="SellingPrice" />
-                                <TableColumn fx:id="distributorTableColumn" prefWidth="134.0" text="Distributor" />
+                                <TableColumn fx:id="orderNumberTableColumn" prefWidth="99.0" text="#" />
+                                <TableColumn fx:id="phoneColumnTable" prefWidth="174.0" text="Phone" />
+                                <TableColumn fx:id="priceTableColumn" prefWidth="188.0" text="SellingPrice" />
+                                <TableColumn fx:id="distributorTableColumn" prefWidth="208.0" text="Distributor" />
                             </columns>
                         </TableView>
                         <Pagination fx:id="paginationPagination" prefHeight="44.0" prefWidth="554.0" />
@@ -143,6 +150,11 @@
                         <Insets left="35.0" />
                     </padding>
                 </TextField>
+                <ImageView fitHeight="20.0" fitWidth="28.0" layoutX="705.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@image_icons/search-black.png" />
+                    </image>
+                </ImageView>
                 <ComboBox fx:id="searchCustomerComboBox" layoutX="911.0" layoutY="50.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
                 <Button fx:id="addCustomerButton" alignment="CENTER" layoutX="882.0" layoutY="169.0" mnemonicParsing="false" onMouseClicked="#addNewCustomerPage" prefHeight="35.0" prefWidth="177.0" styleClass="button-export" stylesheets="@style.css" text="Add new customer" textFill="WHITE">
                     <graphic>
@@ -175,7 +187,6 @@
                     </font>
                 </Label>
                 <TextField fx:id="customerIdTextField" layoutX="704.0" layoutY="174.0" visible="false" />
-            <TextField fx:id="orderQuantityTextField" layoutX="854.0" layoutY="509.0" prefHeight="27.0" prefWidth="159.0" />
             </children>
         </AnchorPane>
     </children>
