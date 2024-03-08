@@ -14,9 +14,6 @@ public class Phone {
     private double sellingPrice;
     private int quantity;
     private String distributor;
-    public int getQuantity() {
-        return quantity;
-=====
 
     public Phone(int phone_id, String phoneName, String img, double price, double sellingPrice, int quantity, String distributor) {
         this.phone_id = phone_id;
@@ -25,6 +22,15 @@ public class Phone {
         this.price = price;
         this.sellingPrice = sellingPrice;
         this.quantity = quantity;
+        this.distributor = distributor;
+    }
+
+    public Phone(int phone_id, String phoneName, String img, double price, double sellingPrice, String distributor) {
+        this.phone_id = phone_id;
+        this.phoneName = phoneName;
+        this.img = img;
+        this.price = price;
+        this.sellingPrice = sellingPrice;
         this.distributor = distributor;
     }
 
@@ -67,25 +73,6 @@ public class Phone {
     public void setSellingPrice(double sellingPrice) {
         this.sellingPrice = sellingPrice;
     }
-    public Phone(int phone_id, String phoneName, String img, double price, double sellingPrice, String distributor) {
-        this.phone_id = phone_id;
-        this.phoneName = phoneName;
-        this.img = img;
-        this.price = price;
-        this.sellingPrice = sellingPrice;
-        this.distributor = distributor;
-    }
-
-    public Phone(int phone_id, String phoneName, String img, double price, double sellingPrice, int quantity , String distributor) {
-        this.phone_id = phone_id;
-        this.phoneName = phoneName;
-        this.img = img;
-        this.price = price;
-        this.quantity = quantity;
-        this.sellingPrice = sellingPrice;
-        this.distributor = distributor;
-    }
-
 
     public int getQuantity() {
         return quantity;
@@ -101,18 +88,5 @@ public class Phone {
 
     public void setDistributor(String distributor) {
         this.distributor = distributor;
-    }
-
-    @Override
-    public String toString() {
-        return "Phone{" +
-                "phone_id=" + phone_id +
-                ", phoneName='" + phoneName + '\'' +
-                ", img='" + img + '\'' +
-                ", price=" + price +
-                ", sellingPrice=" + sellingPrice +
-                ", quantity=" + quantity +
-                ", distributor='" + distributor + '\'' +
-                '}';
     }
 }

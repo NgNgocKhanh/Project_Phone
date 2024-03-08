@@ -500,16 +500,18 @@ public class PhoneController {
                     quantityTextField.setText(String.valueOf(newValue.getQuantity()));
                     sellingPriceTextField.setText(String.valueOf(newValue.getSellingPrice()));
                     phoneTextField.setText(String.valueOf(newValue.getPhoneName()));
-                    File imageFile = new File(newValue.getImg());
+                    File imageFile = new File("C:\\Users\\devil\\IdeaProjects\\Project_Phone\\SmartPhone\\"+newValue.getImg());
+                    System.out.println("image"+imageFile.getAbsolutePath());
                     Image image = null;
                     try {
-                        image = new Image(imageFile.getAbsolutePath());
+                        image = new Image(imageFile.toURI().toString());
                         phoneImageView.setImage(image);
+                        System.out.println("alo"+image);
                     } catch (Exception e) {
                         e.printStackTrace();
-                        image = null;
-                        phoneImageView.setImage(null);
-                        GetData.showWarningAlert("Cảnh báo", "Không thể tải ảnh: " + imageFile.getAbsolutePath());
+                        image = new Image(imageFile.getAbsolutePath());
+                        phoneImageView.setImage(image);
+                        GetData.showWarningAlert("\"Warning message", "Image not found. \\nMake sure that image file exists and try again!");
 
                     }
 
@@ -529,7 +531,7 @@ public class PhoneController {
                         || quantityTextField.getText().isEmpty()
 //                || GetData.path == null
 //                || GetData.path.equals("")
-                        || distributorComboBox.getItems().isEmpty()) {
+                        || distributorComboBox.getItems().isEmpty() ||sellingPriceTextField.getText().isEmpty()) {
             // alert error if required fields no filled
             GetData.showWarningAlert("Warning message", "Please fill all required fields!");
             return false;
@@ -571,8 +573,7 @@ public class PhoneController {
                 preparedStatement.setString(2, String.valueOf(selectedDistributorKey));
 
                 preparedStatement.setString(3, GetData.path);
-                preparedStatement.setString(4, idTextField.getText());
-
+                preparedStatement.setString(4, sellingPriceTextField.getText());
                 // execute
                 int rowsAffected = preparedStatement.executeUpdate();
 
@@ -681,33 +682,39 @@ public class PhoneController {
 
 
     private void deletePhoneFromDatbase(int id) {
-        String updateInventoryQuery = "UPDATE phone_inventory SET phoneId = NULL WHERE phoneId =" + id;
-        String updateOrderQuery = "UPDATE `order` SET phoneId = NULL WHERE phoneId = "+ id;
-
         try {
-            Statement updateInventoryStatement = connection.createStatement();
-            int rowUpdateInventoryAffected = updateInventoryStatement.executeUpdate(updateInventoryQuery);
+            // Tạo câu lệnh SQL để cập nhật tồn kho về 0 cho điện thoại được xóa
+            String updateInventorySQL = "UPDATE phone_inventory SET quantityInStock = 0 WHERE phoneId = " + id;
 
-            Statement updateOrderStatement = connection.createStatement();
-            int rowUpdateOrderAffected = updateOrderStatement.executeUpdate(updateOrderQuery);
+            // Tạo câu lệnh SQL để xóa điện thoại từ bảng phone
+            String deletePhoneSQL = "DELETE FROM phone WHERE phoneId = " + id;
 
-            if(rowUpdateInventoryAffected > 0 && rowUpdateOrderAffected>0){
-                String sql = "DELETE FROM phone WHERE phoneId = " + id;
-                Statement statement = connection.createStatement();
-                int rowAffected = statement.executeUpdate(sql);
-                if (rowAffected > 0) {
+            // Tạo và thực thi câu lệnh SQL để cập nhật tồn kho
+            Statement updateStatement = connection.createStatement();
+            int rowUpdateAffected = updateStatement.executeUpdate(updateInventorySQL);
+
+            // Kiểm tra xem cập nhật tồn kho đã thành công không
+            if (rowUpdateAffected > 0) {
+                // Nếu cập nhật thành công, tiếp tục thực hiện xóa điện thoại từ bảng phone
+                Statement deleteStatement = connection.createStatement();
+                int rowDeleteAffected = deleteStatement.executeUpdate(deletePhoneSQL);
+
+                // Kiểm tra xem xóa điện thoại đã thành công không
+                if (rowDeleteAffected > 0) {
+                    // Nếu xóa thành công, hiển thị thông báo và cập nhật bảng
                     GetData.showSuccessAlert("Success message", "Deleted successfully!");
-
                     setupTable();
                     resetForm();
                 }
-
+            } else {
+                // Nếu không thể cập nhật tồn kho, hiển thị thông báo lỗi
+                GetData.showErrorAlert("Error message", "Failed to update inventory!");
             }
-        }catch (Exception e){
-            GetData.showErrorAlert("Error message", "Cannot delete!");
+        } catch (Exception e) {
+            // Nếu xảy ra lỗi, hiển thị thông báo lỗi và in ra stack trace
+            GetData.showErrorAlert("Error message", "Cannot delete phone!");
             e.printStackTrace();
         }
     }
-
 
 }

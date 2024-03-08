@@ -15,10 +15,10 @@ import java.util.ResourceBundle;
 
 public class LoginController{
     @FXML
-    private Label welcomeText;
+    private Label usernameLabel;
     @FXML
     protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to Store Phone !");
+        usernameLabel.setText("Welcome to Store Phone !");
     }
 
 }

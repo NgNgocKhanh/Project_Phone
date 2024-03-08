@@ -21,14 +21,6 @@ public class HomeController {
 
 
     private static String username;
-
-    public String getUsername() {
-        return usernameLabel.getText();
-    }
-
-    public static void setUsername(String username) {
-        HomeController.username = username;
-    }
     @FXML
     private Label usernameLabel;
     public void initialize() {
@@ -38,6 +30,7 @@ public class HomeController {
     private Button logoutButton;
     @FXML
     public BorderPane fullBorderPane;
+
     @FXML
     private Button phoneButton;
     @FXML
@@ -83,6 +76,7 @@ public class HomeController {
             }
         }
     }
+
     @FXML
     void dashboardPage(MouseEvent event){
         loadPage("dashboard-view");
@@ -112,11 +106,6 @@ public class HomeController {
     void eventPage(MouseEvent event) {
         loadPage("event-view");
         setActiveButton(eventButton);
-    }
-    @FXML
-    void orderViewPage(MouseEvent event){
-        loadPage("order-view");
-        setActiveButton(orderViewButton);
     }
     @FXML
     void orderHistoryPage(MouseEvent event){

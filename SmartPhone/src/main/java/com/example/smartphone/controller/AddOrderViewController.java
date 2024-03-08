@@ -649,16 +649,18 @@ public class AddOrderViewController {
                 if (newValue != null) {
                     phoneIdTextField.setText(String.valueOf(newValue.getPhone_id()));
                     totalAmoutTextField.setText(String.valueOf((newValue.getSellingPrice() + newValue.getSellingPrice() * newValue.getPrice() / 100) * Integer.parseInt(orderQuantityTextField.getText())));
-                    File imageFile = new File(newValue.getImg());
+                    File imageFile = new File("C:\\Users\\devil\\IdeaProjects\\Project_Phone\\SmartPhone\\"+newValue.getImg());
+                    System.out.println("image"+imageFile.getAbsolutePath());
                     Image image = null;
                     try {
-                        image = new Image(imageFile.getAbsolutePath());
+                        image = new Image(imageFile.toURI().toString());
                         phoneImageView.setImage(image);
+                        System.out.println("alo"+image);
                     } catch (Exception e) {
                         e.printStackTrace();
-                        image = null;
-                        phoneImageView.setImage(null);
-                        GetData.showWarningAlert("Warning message", imageFile.getAbsolutePath());
+                        image = new Image(imageFile.getAbsolutePath());
+                        phoneImageView.setImage(image);
+//                        GetData.showWarningAlert("Warning message", imageFile.getAbsolutePath());
                     }
                 } else {
                     phoneImageView.setImage(null);

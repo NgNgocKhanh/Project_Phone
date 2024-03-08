@@ -41,7 +41,7 @@ import java.util.stream.Collectors;
 public class OrderHistoryController {
 
     @FXML
-    private TableColumn<Order, String> phoneMakeTableColumn;
+    private TableColumn<Order, String> phoneNameTableColumn;
 
     @FXML
     private TableColumn<Order, String> phoneModelTableColumn;
@@ -92,8 +92,6 @@ public class OrderHistoryController {
     @FXML
     private TextField searchKeywordTextField;
 
-    @FXML
-    private TableColumn<Order, String> sellerTableColumn;
 
     @FXML
     private TableColumn<Order, Double> totalAmountTableColumn;
@@ -388,7 +386,7 @@ public class OrderHistoryController {
                 String paymentStatus = resultSet.getString("paymentStatus");
 
                 // add to list
-              observableList.add(new Order(orderId, customerId, customerName, orderDate, totalAmount, orderStatusId, orderStatus, employeeId, employeeName, price, quantity, paymentId, paymentType, paymentStatusId, paymentStatus));
+              observableList.add(new Order(orderId, customerId, customerName, orderDate, totalAmount, orderStatusId, orderStatus, employeeId, employeeName, phonePrice, orderQuantity, paymentId, paymentType, paymentStatusId, paymentStatus));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -429,8 +427,7 @@ public class OrderHistoryController {
         customerTableColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         totalAmountTableColumn.setCellValueFactory(new PropertyValueFactory<>("totalAmount"));
         orderStatusTableColumn.setCellValueFactory(new PropertyValueFactory<>("orderStatus"));
-        sellerTableColumn.setCellValueFactory(new PropertyValueFactory<>("employeeName"));
-        phoneMakeTableColumn.setCellValueFactory(new PropertyValueFactory<>("phoneName"));
+        phoneNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("phoneName"));
 
         quantityTableColumn.setCellValueFactory(new PropertyValueFactory<>("orderQuantity"));
         paymentTableColumn.setCellValueFactory(new PropertyValueFactory<>("paymentType"));
