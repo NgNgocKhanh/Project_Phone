@@ -2,10 +2,10 @@ package com.example.smartphone.model;
 import lombok.*;
 
 @Data
-@NoArgsConstructor
 @Getter
 @Setter
 @ToString
+
 public class Phone {
     private int phone_id;
     private String phoneName;
@@ -16,10 +16,16 @@ public class Phone {
     private String distributor;
     public int getQuantity() {
         return quantity;
-    }
+=====
 
-    public void setQuantity(int quantity) {
+    public Phone(int phone_id, String phoneName, String img, double price, double sellingPrice, int quantity, String distributor) {
+        this.phone_id = phone_id;
+        this.phoneName = phoneName;
+        this.img = img;
+        this.price = price;
+        this.sellingPrice = sellingPrice;
         this.quantity = quantity;
+        this.distributor = distributor;
     }
 
     public int getPhone_id() {
@@ -80,4 +86,33 @@ public class Phone {
         this.distributor = distributor;
     }
 
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getDistributor() {
+        return distributor;
+    }
+
+    public void setDistributor(String distributor) {
+        this.distributor = distributor;
+    }
+
+    @Override
+    public String toString() {
+        return "Phone{" +
+                "phone_id=" + phone_id +
+                ", phoneName='" + phoneName + '\'' +
+                ", img='" + img + '\'' +
+                ", price=" + price +
+                ", sellingPrice=" + sellingPrice +
+                ", quantity=" + quantity +
+                ", distributor='" + distributor + '\'' +
+                '}';
+    }
 }

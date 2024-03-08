@@ -74,7 +74,7 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <StackPane layoutX="769.0" layoutY="15.0" prefHeight="146.0" prefWidth="290.0">
+            <StackPane layoutX="787.0" layoutY="14.0" prefHeight="146.0" prefWidth="290.0">
                <children>
                   <ImageView fx:id="phoneImageView" fitHeight="145.0" fitWidth="287.0" pickOnBounds="true" preserveRatio="true" />
                </children>

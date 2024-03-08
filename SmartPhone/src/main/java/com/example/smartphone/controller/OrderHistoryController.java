@@ -41,10 +41,10 @@ import java.util.stream.Collectors;
 public class OrderHistoryController {
 
     @FXML
-    private TableColumn<Order, String> carMakeTableColumn;
+    private TableColumn<Order, String> phoneMakeTableColumn;
 
     @FXML
-    private TableColumn<Order, String> carModelTableColumn;
+    private TableColumn<Order, String> phoneModelTableColumn;
 
 
 
@@ -271,7 +271,7 @@ public class OrderHistoryController {
      * Adds search options to the searchComboBox.
      */
     private void addSearchByToComboBox() {
-        searchComboBox.getItems().addAll("Customer", "Seller", "Make", "Model", "Price", "Status", "Date", "Amount");
+        searchComboBox.getItems().addAll("Customer", "Seller", "Price", "Status", "Date", "Amount");
         searchComboBox.setValue("Customer");
     }
 
@@ -375,20 +375,20 @@ public class OrderHistoryController {
                 String orderDate = resultSet.getString("orderDate");
                 double totalAmount = resultSet.getDouble("totalAmount");
                 int orderStatusId = resultSet.getInt("statusId");
-                String orderStatus = resultSet.getString("statusName");
+                String orderStatus = resultSet.getString(   "statusName");
                 int employeeId = resultSet.getInt("employeeId");
                 String employeeName = resultSet.getString("employeeName");
-                int carId = resultSet.getInt("phoneId");
-                String make = resultSet.getString("phoneName");
-                double price = resultSet.getDouble("price");
-                int quantity = resultSet.getInt("quantity");
+                int phoneId = resultSet.getInt("phoneId");
+                int statusId = resultSet.getInt("statusId");
+                double phonePrice = resultSet.getDouble("price");
+                int orderQuantity = resultSet.getInt("quantity");
                 int paymentId = resultSet.getInt("paymentId");
                 String paymentType = resultSet.getString("paymentType");
                 int paymentStatusId = resultSet.getInt("paymentStatusId");
                 String paymentStatus = resultSet.getString("paymentStatus");
 
                 // add to list
-                observableList.add(new Order(orderId, customerId, customerName, orderDate, totalAmount, orderStatusId, orderStatus, employeeId, employeeName, price, quantity, paymentId, paymentType, paymentStatusId, paymentStatus));
+              observableList.add(new Order(orderId, customerId, customerName, orderDate, totalAmount, orderStatusId, orderStatus, employeeId, employeeName, price, quantity, paymentId, paymentType, paymentStatusId, paymentStatus));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -430,7 +430,7 @@ public class OrderHistoryController {
         totalAmountTableColumn.setCellValueFactory(new PropertyValueFactory<>("totalAmount"));
         orderStatusTableColumn.setCellValueFactory(new PropertyValueFactory<>("orderStatus"));
         sellerTableColumn.setCellValueFactory(new PropertyValueFactory<>("employeeName"));
-        carMakeTableColumn.setCellValueFactory(new PropertyValueFactory<>("phoneName"));
+        phoneMakeTableColumn.setCellValueFactory(new PropertyValueFactory<>("phoneName"));
 
         quantityTableColumn.setCellValueFactory(new PropertyValueFactory<>("orderQuantity"));
         paymentTableColumn.setCellValueFactory(new PropertyValueFactory<>("paymentType"));
