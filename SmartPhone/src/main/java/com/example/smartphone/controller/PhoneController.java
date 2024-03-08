@@ -191,7 +191,7 @@ public class PhoneController {
                 double sellingPrice = resultSet.getDouble("sellingPrice");
 
                 // add to list
-                observableList.add(new Phone(id,  phoneName, image, price, sellingPrice, distributorComboboxx));}
+                observableList.add(new Phone(id, phoneName, image, price, sellingPrice, distributorComboboxx));}
         } catch (Exception e) {
             e.printStackTrace();
         }

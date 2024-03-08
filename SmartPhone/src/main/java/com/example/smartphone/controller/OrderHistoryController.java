@@ -388,7 +388,7 @@ public class OrderHistoryController {
                 String paymentStatus = resultSet.getString("paymentStatus");
 
                 // add to list
-                observableList.add(new Order(orderId, customerId, customerName, orderDate, totalAmount, orderStatusId, orderStatus, employeeId, employeeName, carId, make, price, tax, quantity, paymentId, paymentType, paymentStatusId, paymentStatus));
+                observableList.add(new Order(orderId, customerId, customerName, orderDate, totalAmount, orderStatusId, orderStatus, employeeId, employeeName, price, quantity, paymentId, paymentType, paymentStatusId, paymentStatus));
             }
         } catch (Exception e) {
             e.printStackTrace();
