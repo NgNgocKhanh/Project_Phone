@@ -380,7 +380,7 @@ public class AddOrderViewController {
     }
 
     /**
-     * Sets up the car table with data from the database and adds filtering functionality.
+     * Sets up the phone table with data from the database and adds filtering functionality.
      */
     private void setupCustomerTable() {
         customerObservableList = getCustomerList();
@@ -460,9 +460,9 @@ public class AddOrderViewController {
     }
 
     /**
-     * Retrieves a list of all cars from the database.
+     * Retrieves a list of all phone from the database.
      *
-     * @return An ObservableList containing Car objects.
+     * @return An ObservableList containing phone objects.
      */
     private ObservableList<Phone> getListPhone() {
         ObservableList<Phone> observableList = FXCollections.observableArrayList();
@@ -496,7 +496,7 @@ public class AddOrderViewController {
     }
 
     /**
-     * Sets up the car table with data from the database and adds filtering functionality.
+     * Sets up the phone table with data from the database and adds filtering functionality.
      */
     private void setupTable() {
         phoneObservableList = getListPhone();
@@ -519,7 +519,7 @@ public class AddOrderViewController {
         distributorTableColumn.setCellValueFactory(new PropertyValueFactory<>("distributor"));
         orderNumberTableColumn.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(phoneTableView.getItems().indexOf(param.getValue()) + 1 + (currentPage - 1) * itemsPerPage));
 
-        // create FilteredList to filter and search car by searchKeyword
+        // create FilteredList to filter and search phone by searchKeyword
         FilteredList<Phone> filteredList = new FilteredList<>(phoneObservableList, b -> true); // b->true : means all elements in the list will be included in the filteredList
 
         // listen to changes in the searchKeyword to update the tableView
@@ -541,7 +541,8 @@ public class AddOrderViewController {
     }
 
     /**
-     * Updates the car table data based on the current pagination page.
+     * Updates the phone
+ table data based on the current pagination page.
      *
      * @param pageIndex The index of the current pagination page.
      */
@@ -552,7 +553,8 @@ public class AddOrderViewController {
     }
 
     /**
-     * Sets up the pagination control and links it to the car table.
+     * Sets up the pagination control and links it to the phone
+ table.
      */
     private void setupPagination() {
         int totalPages = (phoneObservableList.size() / itemsPerPage) + (phoneObservableList.size() % itemsPerPage > 0 ? 1 : 0);
@@ -564,9 +566,11 @@ public class AddOrderViewController {
     }
 
     /**
-     * Updates the pagination control based on the filtered car list.
+     * Updates the pagination control based on the filtered phone
+ list.
      *
-     * @param filteredList The FilteredList containing the filtered cars.
+     * @param filteredList The FilteredList containing the filtered phone
+s.
      */
     private void updatePagination(FilteredList<Phone> filteredList) {
         int totalItems = filteredList.size();

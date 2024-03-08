@@ -53,7 +53,7 @@
                     </font>
                 </Label>
                 <Line endX="858.800048828125" layoutX="226.0" layoutY="227.0" startX="-121.0" />
-                <TextField fx:id="searchKeywordTextField" layoutX="697.0" layoutY="236.0" prefHeight="35.0" prefWidth="363.0" promptText="Searching for car's make" style="-fx-background-color: #f4f4f4;">
+                <TextField fx:id="searchKeywordTextField" layoutX="697.0" layoutY="236.0" prefHeight="35.0" prefWidth="363.0" promptText="Searching for phone's make" style="-fx-background-color: #f4f4f4;">
                     <padding>
                         <Insets left="35.0" />
                     </padding>

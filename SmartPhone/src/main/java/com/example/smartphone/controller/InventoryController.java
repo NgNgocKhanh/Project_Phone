@@ -97,7 +97,7 @@ public class InventoryController implements Initializable {
 
     private HBox createCarInfoHBox(int index, ResultSet resultSet, int inventoryId) throws SQLException {
         HBox carInfoHBox = new HBox(0);
-        carInfoHBox.getStyleClass().add("custom-car-info-hbox"); // Apply a style class to the HBox
+        carInfoHBox.getStyleClass().add("custom-phone-info-hbox"); // Apply a style class to the HBox
         carInfoHBox.setAlignment(Pos.CENTER_LEFT);
         carInfoHBox.setPrefHeight(35);
 
