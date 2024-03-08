@@ -112,7 +112,7 @@ public class AddOrderViewController {
 
     @FXML
     private TableColumn<Phone, String> 
-phoneTableColumn;
+phoneColumnTable;
 
     @FXML
     private Button minimizeButton;
@@ -203,10 +203,10 @@ phoneTableColumn;
             TableRow<Phone> row = new TableRow<>();
             row.itemProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue != null && newValue.getQuantity() == 0) {
-                    row.getStyleClass().add("red-row");
+                    row.getStyleClass().add("White-row");
                     row.setDisable(true); // Disable row selection for rows with quantity 0
                 } else {
-                    row.getStyleClass().remove("red-row");
+                    row.getStyleClass().remove("White-row");
                     row.setDisable(false); // Enable row selection for other rows
                 }
             });
@@ -478,6 +478,7 @@ phoneTableColumn;
             while (resultSet.next()) {
                 // iterate through the resultSet from db and add to list
                 int id = resultSet.getInt("phoneId");
+                String name = resultSet.getString("phoneName");
                 double price = resultSet.getDouble("price");
                 String distributorName = resultSet.getString("distributorName");
                 String image = resultSet.getString("image");
@@ -485,7 +486,7 @@ phoneTableColumn;
                 double sellingPrice = resultSet.getDouble("sellingPrice");
 
                 // add to list
-                observableList.add(new Phone(id, price, distributorName, image, quantity, sellingPrice));
+                observableList.add(new Phone(id, name, image, price, sellingPrice, quantity,distributorName));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -499,7 +500,7 @@ phoneTableColumn;
     private void setupTable() {
         phoneObservableList = getListphone();
         idTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        phoneTableColumn.setCellValueFactory(new PropertyValueFactory<>("phoneName"));
+        phoneColumnTable.setCellValueFactory(new PropertyValueFactory<>("phoneName"));
         priceTableColumn.setCellValueFactory(new PropertyValueFactory<>("sellingPrice"));
         distributorTableColumn.setCellValueFactory(new PropertyValueFactory<>("distributor"));
         orderNumberTableColumn.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(phoneTableView.getItems().indexOf(param.getValue()) + 1 + (currentPage - 1) * itemsPerPage));
@@ -670,7 +671,7 @@ phoneTableColumn;
                         e.printStackTrace();
                         image = null;
                         phoneImageView.setImage(null);
-                        GetData.showWarningAlert("Warning message", "Image not found. \n phone sure that image file exists and try again!");
+                        GetData.showWarningAlert("Warning message", imageFile.getAbsolutePath());
                     }
                 } else {
                     phoneImageView.setImage(null);
@@ -743,7 +744,7 @@ phoneTableColumn;
         orderFormPage.setDisable(true);
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demojavafxproject/add-new-customer-form.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/smartphone/add-new-customer-form.fxml"));
             Parent root = loader.load();
 
             Stage addCustomerFormStage = new Stage();

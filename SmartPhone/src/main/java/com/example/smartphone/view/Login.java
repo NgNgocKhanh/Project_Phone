@@ -13,7 +13,7 @@ import java.io.IOException;
 public class Login extends Application {
     private double xOffset = 0;
     private double   yOffset = 0;
-    @Override   
+    @Override
     public void start(Stage stage) throws IOException {
         String fxmlFileName = "login.fxml";
 
