@@ -30,6 +30,8 @@ public class SceneController {
     @FXML
     private Label loginMessageLabel;
     @FXML
+    private Label usernameLabel;
+    @FXML
     private ComboBox<String> roleComboBox;
 
     private Map<Integer, String> getRoleMap() {
