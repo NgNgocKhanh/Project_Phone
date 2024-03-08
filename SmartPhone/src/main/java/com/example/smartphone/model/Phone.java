@@ -14,8 +14,9 @@ public class Phone {
     private double sellingPrice;
     private int quantity;
     private String distributor;
-    public Phone(int id, String phoneName, String image, double price, double sellingPrice, String distributorComboboxx) {
-    }
+    public int getQuantity() {
+        return quantity;
+=====
 
     public Phone(int phone_id, String phoneName, String img, double price, double sellingPrice, int quantity, String distributor) {
         this.phone_id = phone_id;
@@ -66,6 +67,25 @@ public class Phone {
     public void setSellingPrice(double sellingPrice) {
         this.sellingPrice = sellingPrice;
     }
+    public Phone(int phone_id, String phoneName, String img, double price, double sellingPrice, String distributor) {
+        this.phone_id = phone_id;
+        this.phoneName = phoneName;
+        this.img = img;
+        this.price = price;
+        this.sellingPrice = sellingPrice;
+        this.distributor = distributor;
+    }
+
+    public Phone(int phone_id, String phoneName, String img, double price, double sellingPrice, int quantity , String distributor) {
+        this.phone_id = phone_id;
+        this.phoneName = phoneName;
+        this.img = img;
+        this.price = price;
+        this.quantity = quantity;
+        this.sellingPrice = sellingPrice;
+        this.distributor = distributor;
+    }
+
 
     public int getQuantity() {
         return quantity;

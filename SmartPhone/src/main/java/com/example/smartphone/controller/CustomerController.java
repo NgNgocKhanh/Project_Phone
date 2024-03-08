@@ -542,68 +542,6 @@ public class CustomerController {
         updatePagination(filteredList);
     }
 
-    @FXML
-    void sendBirthdayMailAction(ActionEvent event) {
-        ButtonType resultConfirm = GetData.showConfirmationAlert("Confirmation message", "Are you sure you want to send mail?");
-//        // if user confirm send mail then send mail
-        if (resultConfirm.equals(ButtonType.OK)) {
-            sendMail();
-        }
-    }
-
-    private void sendMail() {
-        String subject = "Happy Birthday!";
-        String sql = "SELECT email " +
-                "FROM customer " +
-                "WHERE DATE_FORMAT(dob, '%m-%d') = DATE_FORMAT(NOW(), '%m-%d');";
-
-        try {
-            Statement statement = connection.createStatement();
-            // Read the message template
-            String message = "<html>" +
-                    "<head>" +
-                    "    <style>" +
-                    "        .container {" +
-                    "            max-width: 600px;" +
-                    "            margin: 0 auto;" +
-                    "            padding: 20px;" +
-                    "            background-color: #ffffff;" +
-                    "            text-align: justify;" +
-                    "        }" +
-                    "    </style>" +
-                    "</head>" +
-                    "<body>" +
-                    "    <div class='container'>" +
-                    "        <img src=\"https://media.istockphoto.com/id/1410736450/vector/happy-birthday-beautiful-greeting-card-scratched-calligraphy-black-text-word-golden-line.jpg?b=1&s=612x612&w=0&k=20&c=C2cwLTDz2aFEyDjDkJpd7ZWoQvMkHhWJFKo3WlmT6uI=\" width=\"600px\">" +
-                    "        <div class='content'>" +
-                    "            <b>Hi you,</b>" +
-                    "            <p>A little birdie told us that today was your special day. On behalf of everyone at CarShop, we hope you" +
-                    "                have the best birthday ever.</p>" +
-                    "            <p>May your day be the start of a year filled with good luck, good health and much happiness. We look" +
-                    "                forward to continuing to help you achieve your wellness goals this year.</p>" +
-                    "            <p>Have an unforgettable birthday!</p>" +
-                    "            <p>Sincerely,</p>" +
-                    "            <p>Car Shop</p>" +
-                    "        </div>" +
-                    "    </div>" +
-                    "</body>" +
-                    "</html>";
-            ResultSet resultSet = statement.executeQuery(sql);
-            List<String> mailList = new ArrayList<>();
-            while (resultSet.next()) {
-                mailList.add(resultSet.getString("email"));
-            }
-
-            if (mailList.size() == 0) {
-                GetData.showWarningAlert("Warning message", "No customer whose birthday is today");
-            }
-
-            // Inside your sendMailEvent method
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     private boolean validatePhoneNumber() {
         String phoneNumber = phoneTextField.getText().trim();
         if (!Pattern.compile("^0\\d{9}$").matcher(phoneNumber).matches()) {
