@@ -660,7 +660,7 @@ public class AddOrderViewController {
                         e.printStackTrace();
                         image = new Image(imageFile.getAbsolutePath());
                         phoneImageView.setImage(image);
-//                        GetData.showWarningAlert("Warning message", imageFile.getAbsolutePath());
+                        GetData.showWarningAlert("Warning message", "Failed !");
                     }
                 } else {
                     phoneImageView.setImage(null);

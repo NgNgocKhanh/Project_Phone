@@ -432,11 +432,11 @@ public class PhoneController {
 
         // if file is not null then get path of this file
         if (file != null) {
-            String destinationFilePath = "src/main/resources/com/example/smartphone/image_phone/" + file.getName(); // Replace this with the actual destination folder path
+            String destinationFilePath = "C:\\Users\\devil\\IdeaProjects\\Project_Phone\\SmartPhone\\src/main/resources/com/example/smartphone/image_phone/" + file.getName(); // Replace this with the actual destination folder path
 
             GetData.path = destinationFilePath;
 
-            // Copy the selected image file to the new folder
+            // Copy the selected imasge file to the new folder
             try {
                 Files.copy(file.toPath(), Paths.get(destinationFilePath), StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
