@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 
 public class InventoryController implements Initializable {
     @FXML
-    private VBox carContainer;
+    private VBox phoneContainer;
 
 
     Connection connection = JDBCConnect.getJDBCConnection();
@@ -82,8 +82,8 @@ public class InventoryController implements Initializable {
             int index = offset + 1; // Adjust the index for the current page
             while (resultSet.next()) {
                 int inventoryId = resultSet.getInt("inventoryId");
-                HBox carInfoHBox = createCarInfoHBox(index, resultSet, inventoryId);
-                page.getChildren().addAll(carInfoHBox, new Separator());
+                HBox phoneInfoHBox = createPhoneInfoHBox(index, resultSet, inventoryId);
+                page.getChildren().addAll(phoneInfoHBox, new Separator());
                 index++;
             }
 
@@ -95,11 +95,11 @@ public class InventoryController implements Initializable {
     }
 
 
-    private HBox createCarInfoHBox(int index, ResultSet resultSet, int inventoryId) throws SQLException {
-        HBox carInfoHBox = new HBox(0);
-        carInfoHBox.getStyleClass().add("custom-phone-info-hbox"); // Apply a style class to the HBox
-        carInfoHBox.setAlignment(Pos.CENTER_LEFT);
-        carInfoHBox.setPrefHeight(35);
+    private HBox createPhoneInfoHBox(int index, ResultSet resultSet, int inventoryId) throws SQLException {
+        HBox phoneInfoHBox = new HBox(0);
+        phoneInfoHBox.getStyleClass().add("custom-phone-info-hbox"); // Apply a style class to the HBox
+        phoneInfoHBox.setAlignment(Pos.CENTER_LEFT);
+        phoneInfoHBox.setPrefHeight(35);
 
 
         Label indexLabel = new Label(String.valueOf(index));
@@ -178,13 +178,13 @@ public class InventoryController implements Initializable {
 
         });
 
-        carInfoHBox.getChildren().addAll(
+        phoneInfoHBox.getChildren().addAll(
                 indexLabel, makeLabel, modelLabel,
                 minusButton, quantityTextField, plusButton,
                 statusComboBox, updateButton
         );
 
-        return carInfoHBox;
+        return phoneInfoHBox;
     }
 
     private boolean isNumeric(String str) {
@@ -193,7 +193,7 @@ public class InventoryController implements Initializable {
 
 
     private void updateDatabase(int inventoryId, int newQuantity, String newStatus) throws SQLException {
-        String updateQuery = "UPDATE car_inventory SET quantityInStock = ?, status = ? WHERE inventoryId = ?";
+        String updateQuery = "UPDATE phone_inventory SET quantityInStock = ?, status = ? WHERE inventoryId = ?";
         try (PreparedStatement updateStatement = connection.prepareStatement(updateQuery)) {
             updateStatement.setInt(1, newQuantity);
             updateStatement.setString(2, newStatus);
@@ -234,6 +234,6 @@ public class InventoryController implements Initializable {
     }
 
     private TextField getQuantityTextField(int index) {
-        return (TextField) carContainer.lookup("#quantityTextField" + index);
+        return (TextField) phoneContainer.lookup("#quantityTextField" + index);
     }
 }

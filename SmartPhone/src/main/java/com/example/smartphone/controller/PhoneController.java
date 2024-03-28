@@ -198,26 +198,13 @@ public class PhoneController {
 
     private void setupTable() {
         phoneObservableList = getListPhone();
-        priceTableColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         phoneTableColumn.setCellValueFactory(new PropertyValueFactory<>("phoneName"));
-
-        phoneTableColumn.setCellFactory(col -> new TableCell<Phone, String>() {
-            @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-
-                if (empty || item == null) {
-                    setText(null);
-                } else {
-                    setText(item);
-                }
-            }
-        });
+        priceTableColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         distributorTableColumn.setCellValueFactory(new PropertyValueFactory<>("distributor"));
         sellingPriceTableColumn.setCellValueFactory(new PropertyValueFactory<>("sellingPrice"));
         orderNumberTableColumn.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(phoneTableView.getItems().indexOf(param.getValue()) + 1 + (currentPage - 1) * itemsPerPage));
 
-//        imageTableColumn.setCellValueFactory(new PropertyValueFactory<>("image"));
+//        imageTableColumn.se   tCellValueFactory(new PropertyValueFactory<>("image"));
         totalLabel.setText("Total: " + phoneObservableList.size());
 
         phoneTableView.setRowFactory(tableView -> {
@@ -276,7 +263,6 @@ public class PhoneController {
                         deleteButton.getStyleClass().add("delete-button");
                         deleteButton.setOnAction(event -> {
                             Phone phone = getTableView().getItems().get(getIndex());
-
                             ButtonType resultConfirm = GetData.showConfirmationAlert("Confirmation message", "Are you sure you want to delete?");
                             // if user confirm delete then delete
                             if (resultConfirm.equals(ButtonType.OK)) {
@@ -430,19 +416,18 @@ public class PhoneController {
 
         // if file is not null then get path of this file
         if (file != null) {
-            String destinationFilePath = "C:\\Users\\devil\\IdeaProjects\\Project_Phone\\SmartPhone\\src\\main\\resources\\com\\example\\smartphone\\image_phone\\" + file.getName(); // Replace this with the actual destination folder path
+            String destinationFilePath = "src/main/resources/com/example/smartphone/image_phone/" + file.getName(); // Replace this with the actual destination folder path
 
             GetData.path = destinationFilePath;
 
-            // Copy the selected imasge file to the new folder
+            // Copy the selected image file to the new folder
             try {
                 Files.copy(file.toPath(), Paths.get(destinationFilePath), StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            Image image =new Image(destinationFilePath);
-            ;
+            Image image = new Image("file:" + destinationFilePath);
             phoneImageView.setImage(image);
         }
     }
@@ -500,12 +485,12 @@ public class PhoneController {
                     File imageFile = new File(newValue.getImg());
                     Image image = null;
                     try {
-                        image = new Image(imageFile.toURI().toString());
+                        image = new Image(imageFile.getAbsolutePath());
                         phoneImageView.setImage(image);
                     } catch (Exception e) {
                         e.printStackTrace();
-                        image = new Image(imageFile.getAbsolutePath());
-                        phoneImageView.setImage(image);
+                        image = null;
+                        phoneImageView.setImage(null);
                         GetData.showWarningAlert("\"Warning message", "Image not found. \\nMake sure that image file exists and try again!");
 
                     }
@@ -670,7 +655,7 @@ public class PhoneController {
 
 
     private void deletePhoneFromDatbase(int id) {
-        String updateInventoryQuery = "UPDATE car_inventory SET phoneId = NULL WHERE phoneId =" + id;
+        String updateInventoryQuery = "UPDATE phone_inventory SET phoneId = NULL WHERE phoneId =" + id;
         String updateOrderQuery = "UPDATE `order` SET phoneId = NULL WHERE phoneId = "+ id;
 
         try {
