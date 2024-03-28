@@ -79,7 +79,7 @@
                   <ImageView fx:id="phoneImageView" fitHeight="145.0" fitWidth="287.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </StackPane>
-            <Button fx:id="addButton" alignment="CENTER" layoutX="865.0" layoutY="167.0" mnemonicParsing="false" onAction="#addPhoneDatabase" prefHeight="35.0" prefWidth="90.0" styleClass="button-add" stylesheets="@style.css" text="Add" textFill="WHITE">
+            <Button fx:id="addButton" alignment="CENTER" layoutX="865.0" layoutY="167.0" mnemonicParsing="false" onAction="#addPhoneToDatabase" prefHeight="35.0" prefWidth="90.0" styleClass="button-add" stylesheets="@style.css" text="Add" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -109,7 +109,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="updateButton" alignment="CENTER" layoutX="967.0" layoutY="167.0" mnemonicParsing="false" onAction="#addPhoneDatabase" prefHeight="35.0" prefWidth="99.0" styleClass="button-update" stylesheets="@style.css" text="Update" textFill="WHITE">
+            <Button fx:id="updateButton" alignment="CENTER" layoutX="967.0" layoutY="167.0" mnemonicParsing="false" onAction="#updatePhoneToDatabase" prefHeight="35.0" prefWidth="99.0" styleClass="button-update" stylesheets="@style.css" text="Update" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -145,7 +145,7 @@
                   <TableColumn fx:id="deleteTableColumn" prefWidth="71.199951171875" text="Action" />
                </columns>
             </TableView>
-            <Pagination fx:id="paginationPagination" prefHeight="37.0" prefWidth="1087.0" />
+            <Pagination fx:id="paginationPagination" prefHeight="37.0" prefWidth="187.0" />
          </children>
       </VBox>
       <TextField fx:id="searchKeywordTextField" layoutX="774.0" layoutY="298.0" prefHeight="26.0" prefWidth="221.0" promptText="Search keyword..." style="-fx-background-color: #fff; -fx-border-color: #ddd;">
