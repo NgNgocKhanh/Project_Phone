@@ -71,10 +71,9 @@ public class InventoryController implements Initializable {
 
         try {
             int offset = pageIndex * ITEMS_PER_PAGE; // Calculate the offset for the current page
-            String query = "SELECT i.inventoryId, c.name, c.price, i.quantityInStock, i.status " +
-                    "FROM phone_inventory i " +
-                    "JOIN phone c ON i.id = c.id " +
-                    "ORDER BY c.name " +
+            String query = "SELECT i.inventoryId, p.phoneName, p.price, i.quantityInStock, i.status \n" +
+                    "FROM phone_inventory i\n" +
+                    "JOIN phone p ON i.inventoryId = p.phoneId  " +
                     "LIMIT " + offset + ", " + ITEMS_PER_PAGE;
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
