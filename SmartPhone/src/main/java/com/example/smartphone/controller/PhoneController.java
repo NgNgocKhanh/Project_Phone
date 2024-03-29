@@ -583,7 +583,7 @@
             int selectedDistributorKey = getKeyFromValue(distributorMap, selectedDistributorValue);
 
             String sql = "UPDATE phone " +
-                    "SET name = ?, price = ?, distributorId = ?, image = ?,sellingPrice = ? " +
+                    "SET phoneName = ?, price = ?, distributorId = ?, image = ?,sellingPrice = ? " +
                     "WHERE id = ?";
 
             try {
@@ -653,8 +653,8 @@
 
 
         private void deletePhoneFromDatbase(int id) {
-            String updateInventoryQuery = "UPDATE phone_inventory SET id = NULL WHERE id =" + id;
-            String updateOrderQuery = "UPDATE `order` SET id = NULL WHERE id = "+ id;
+                String updateInventoryQuery = "UPDATE phone_inventory SET inventoryId = NULL WHERE inventoryId =" + id;
+            String updateOrderQuery = "UPDATE `order` SET orderId = NULL WHERE orderId = "+ id;
 
             try {
                 Statement updateInventoryStatement = connection.createStatement();
@@ -664,7 +664,7 @@
                 int rowUpdateOrderAffected = updateOrderStatement.executeUpdate(updateOrderQuery);
 
                 if(rowUpdateInventoryAffected > 0 && rowUpdateOrderAffected>0){
-                    String sql = "DELETE FROM phone WHERE id = " + id;
+                    String sql = "DELETE FROM phone WHERE phoneId = " + id;
 
                     Statement statement = connection.createStatement();
                     int rowAffected = statement.executeUpdate(sql);
