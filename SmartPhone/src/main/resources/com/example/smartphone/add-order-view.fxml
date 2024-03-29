@@ -47,14 +47,13 @@
                     </font>
                 </Label>
                 <Line endX="857.0" layoutX="226.0" layoutY="28.0" startX="-92.59999084472656" />
-                <Label layoutX="24.0" layoutY="214.0" prefHeight="26.0" prefWidth="56.0" text="Phone
-                 Info">
+                <Label layoutX="24.0" layoutY="214.0" prefHeight="26.0" prefWidth="56.0" text="Phone                  Info">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </Label>
                 <Line endX="858.800048828125" layoutX="226.0" layoutY="227.0" startX="-135.1999969482422" />
-                <TextField fx:id="searchKeywordTextField" layoutX="697.0" layoutY="236.0" prefHeight="35.0" prefWidth="363.0" promptText="Searching for phone's make" style="-fx-background-color: #f4f4f4;">
+                <TextField fx:id="searchKeywordTextField" layoutX="697.0" layoutY="236.0" prefHeight="35.0" prefWidth="363.0" promptText="Searching for phone's name" style="-fx-background-color: #f4f4f4;">
                     <padding>
                         <Insets left="35.0" />
                     </padding>
@@ -96,7 +95,7 @@
                 </Label>
                 <TextField fx:id="totalAmoutTextField" editable="false" layoutX="810.0" layoutY="542.0" prefHeight="26.0" prefWidth="246.0" />
                 <ComboBox fx:id="orderStatusComboBox" layoutX="703.0" layoutY="620.0" prefHeight="35.0" prefWidth="149.0" promptText="Status" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
-                <TextField fx:id="phoneIdTextField" layoutX="789.0" layoutY="15.0" visible="false" />
+                <TextField fx:id="idTextField" layoutX="789.0" layoutY="15.0" visible="false" />
                 <ComboBox fx:id="paymentStatusComboBox" layoutX="888.0" layoutY="576.0" prefHeight="30.0" prefWidth="166.0" promptText="Payment Status" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
                 <ComboBox fx:id="paymentComboBox" layoutX="703.0" layoutY="576.0" prefHeight="30.0" prefWidth="165.0" promptText="Payment" style="-fx-background-color: #fff; -fx-border-color: #ddd;" />
                 <Button fx:id="addButton" alignment="CENTER" layoutX="963.0" layoutY="620.0" mnemonicParsing="false" onAction="#addToDatabase" prefHeight="35.0" prefWidth="90.0" styleClass="button-add" stylesheets="@style.css" text="Add" textFill="WHITE">
@@ -137,7 +136,7 @@
                             <columns>
                                 <TableColumn fx:id="customerIdTableColumn" prefWidth="47.199981689453125" text="ID" visible="false" />
                                 <TableColumn fx:id="customerOrderNumberTableColumn" prefWidth="41.600006103515625" text="#" />
-                                <TableColumn fx:id="customerNameTableColumn" prefWidth="194.40003967285156" text="Name" />
+                                <TableColumn fx:id="customerphoneColumnTable" prefWidth="194.40003967285156" text="Name" />
                                 <TableColumn fx:id="customerPhoneTableColumn" prefWidth="170.39996337890625" text="Phone" />
                                 <TableColumn fx:id="customerEmailTableColumn" prefWidth="262.39996337890625" text="Email" />
                             </columns>
@@ -187,6 +186,11 @@
                     </font>
                 </Label>
                 <TextField fx:id="customerIdTextField" layoutX="704.0" layoutY="174.0" visible="false" />
+            <TextField fx:id="phoneIdTextField" layoutX="780.0" layoutY="12.0" prefHeight="27.0" prefWidth="166.0" promptText="Searching for customer" style="-fx-background-color: #f4f4f4;">
+               <padding>
+                  <Insets left="35.0" />
+               </padding>
+            </TextField>
             </children>
         </AnchorPane>
     </children>

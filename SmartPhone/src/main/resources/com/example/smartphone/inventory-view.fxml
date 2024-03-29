@@ -75,7 +75,7 @@
                   </Label>
                </children>
             </HBox>
-                <VBox fx:id="carContainer" layoutX="23.0" layoutY="40.0" prefHeight="669.0" prefWidth="1038.0">
+                <VBox fx:id="PhoneContainer" layoutX="23.0" layoutY="40.0" prefHeight="669.0" prefWidth="1038.0">
                     <children>
                         <Separator prefWidth="1038.0" />
                         <Pagination fx:id="pagination" VBox.vgrow="ALWAYS">

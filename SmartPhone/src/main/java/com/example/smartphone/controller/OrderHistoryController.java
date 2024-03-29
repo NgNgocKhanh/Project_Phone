@@ -1,6 +1,5 @@
 package com.example.smartphone.controller;
 
-
 import com.example.smartphone.model.Event;
 import com.example.smartphone.model.Order;
 import dao.JDBCConnect;
@@ -42,11 +41,8 @@ public class OrderHistoryController {
 
     @FXML
     private TableColumn<Order, String> phoneNameTableColumn;
-
     @FXML
-    private TableColumn<Order, String> phoneModelTableColumn;
-
-
+    private Button close;
 
     @FXML
     private TableColumn<Event, Integer> orderNumberTableColumn;
@@ -57,7 +53,8 @@ public class OrderHistoryController {
     @FXML
     private ComboBox<String> filterStatusComboBox;
 
-
+    @FXML
+    private Button minimizeButton;
 
     @FXML
     private TableColumn<Order, String> orderDateTableColumn;
@@ -92,6 +89,8 @@ public class OrderHistoryController {
     @FXML
     private TextField searchKeywordTextField;
 
+    @FXML
+    private TableColumn<Order, String> sellerTableColumn;
 
     @FXML
     private TableColumn<Order, Double> totalAmountTableColumn;
@@ -132,6 +131,17 @@ public class OrderHistoryController {
     private final int itemsPerPage = 20;
     private int currentPage = 1;
 
+    @FXML
+    void close(ActionEvent event) {
+        Stage stage = (Stage) close.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    void minimize(ActionEvent event) {
+        Stage stage = (Stage) minimizeButton.getScene().getWindow();
+        stage.setIconified(true);
+    }
 
     public void initialize() {
         setupTable();
@@ -269,7 +279,7 @@ public class OrderHistoryController {
      * Adds search options to the searchComboBox.
      */
     private void addSearchByToComboBox() {
-        searchComboBox.getItems().addAll("Customer", "Seller", "Price", "Status", "Date", "Amount");
+        searchComboBox.getItems().addAll("Customer", "Seller", "Make", "Model", "Price", "Status", "Date", "Amount");
         searchComboBox.setValue("Customer");
     }
 
@@ -305,10 +315,10 @@ public class OrderHistoryController {
                 headerRow.createCell(2).setCellValue("Order Date");
                 headerRow.createCell(3).setCellValue("Total Amount");
                 headerRow.createCell(4).setCellValue("Order Status");
-                headerRow.createCell(6).setCellValue("Phone Name");
-                headerRow.createCell(8).setCellValue("Order Quantity");
-                headerRow.createCell(9).setCellValue("Payment Type");
-                headerRow.createCell(10).setCellValue("Payment Status");
+                headerRow.createCell(5).setCellValue("Seller Name");
+                headerRow.createCell(6).setCellValue("Order Quantity");
+                headerRow.createCell(7).setCellValue("Payment Type");
+                headerRow.createCell(8).setCellValue("Payment Status");
 
                 // Fill data rows
                 int rowIndex = 1;
@@ -320,10 +330,10 @@ public class OrderHistoryController {
                     dataRow.createCell(3).setCellValue(order.getTotalAmount());
                     dataRow.createCell(4).setCellValue(order.getOrderStatus());
                     dataRow.createCell(5).setCellValue(order.getEmployeeName());
-                    dataRow.createCell(6).setCellValue(order.getPhoneId());
-                    dataRow.createCell(8).setCellValue(order.getOrderQuantity());
-                    dataRow.createCell(9).setCellValue(order.getPaymentType());
-                    dataRow.createCell(10).setCellValue(order.getPaymentStatus());
+                    dataRow.createCell(6).setCellValue(order.getName());
+                    dataRow.createCell(7).setCellValue(order.getOrderQuantity());
+                    dataRow.createCell(8).setCellValue(order.getPaymentType());
+                    dataRow.createCell(9).setCellValue(order.getPaymentStatus());
                 }
 
                 // Adjust column widths
@@ -353,12 +363,12 @@ public class OrderHistoryController {
      */
     private ObservableList<Order> getOrderObservableList() {
         ObservableList<Order> observableList = FXCollections.observableArrayList();
-        String sql = "SELECT o.orderId,c.customerId,c.customerName,o.orderDate,o.totalAmount,s.statusName,e.employeeId,e.employeeName,phone.phoneId,phone.phoneName,phone.price, o.quantity,o.statusId, s.statusName ,p.paymentId, p.paymentType,ps.paymentStatusId, ps.paymentStatus " +
+        String sql = "SELECT o.orderId,c.customerId,c.customerName,o.orderDate,o.totalAmount,s.statusName,e.employeeId,e.employeeName,car.phoneId,car.make,car.model, car.price, car.tax, o.quantity,o.statusId, s.statusName ,p.paymentId, p.paymentType,ps.paymentStatusId, ps.paymentStatus " +
                 "FROM `order` o " +
                 "JOIN customer c ON c.customerId  = o.customerId " +
                 "JOIN status s ON s.statusId  = o.statusId " +
                 "JOIN employee e ON e.employeeId = o.employeeId " +
-                "JOIN phone ON phone.phoneId = o.phoneId " +
+                "JOIN car ON car.phoneId = o.phoneId " +
                 "JOIN payment p ON o.paymentId = p.paymentId " +
                 "JOIN paymentStatus ps ON ps.paymentStatusId  = o.paymentStatusId " +
                 "ORDER BY o.orderId";
@@ -373,20 +383,20 @@ public class OrderHistoryController {
                 String orderDate = resultSet.getString("orderDate");
                 double totalAmount = resultSet.getDouble("totalAmount");
                 int orderStatusId = resultSet.getInt("statusId");
-                String orderStatus = resultSet.getString(   "statusName");
+                String orderStatus = resultSet.getString("statusName");
                 int employeeId = resultSet.getInt("employeeId");
                 String employeeName = resultSet.getString("employeeName");
                 int phoneId = resultSet.getInt("phoneId");
-                int statusId = resultSet.getInt("statusId");
-                double phonePrice = resultSet.getDouble("price");
-                int orderQuantity = resultSet.getInt("quantity");
+                String phoneName = resultSet.getString("make");
+                double price = resultSet.getDouble("price");
+                int quantity = resultSet.getInt("quantity");
                 int paymentId = resultSet.getInt("paymentId");
                 String paymentType = resultSet.getString("paymentType");
                 int paymentStatusId = resultSet.getInt("paymentStatusId");
                 String paymentStatus = resultSet.getString("paymentStatus");
 
                 // add to list
-              observableList.add(new Order(orderId, customerId, customerName, orderDate, totalAmount, orderStatusId, orderStatus, employeeId, employeeName, phonePrice, orderQuantity, paymentId, paymentType, paymentStatusId, paymentStatus));
+                observableList.add(new Order(orderId, customerId, customerName, orderDate, totalAmount, orderStatusId, orderStatus, employeeId, employeeName, phoneId, phoneName, price, quantity, paymentId, paymentType, paymentStatusId, paymentStatus));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -427,8 +437,8 @@ public class OrderHistoryController {
         customerTableColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         totalAmountTableColumn.setCellValueFactory(new PropertyValueFactory<>("totalAmount"));
         orderStatusTableColumn.setCellValueFactory(new PropertyValueFactory<>("orderStatus"));
+        sellerTableColumn.setCellValueFactory(new PropertyValueFactory<>("employeeName"));
         phoneNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("phoneName"));
-
         quantityTableColumn.setCellValueFactory(new PropertyValueFactory<>("orderQuantity"));
         paymentTableColumn.setCellValueFactory(new PropertyValueFactory<>("paymentType"));
         paymentStatusTableColumn.setCellValueFactory(new PropertyValueFactory<>("paymentStatus"));
@@ -477,8 +487,8 @@ public class OrderHistoryController {
 
                 if (searchBy.equals("customer") && order.getCustomerName().toLowerCase().contains(searchKeyword)) {
                     return true;
-
-
+                } else if (searchBy.equals("make") && order.getName().toLowerCase().contains(searchKeyword)) {
+                    return true;
                 } else if (searchBy.equals("seller") && order.getEmployeeName().toLowerCase().contains(searchKeyword)) {
                     return true;
                 } else if (searchBy.equals("date") && order.getOrderDate().toLowerCase().contains(searchKeyword)) {

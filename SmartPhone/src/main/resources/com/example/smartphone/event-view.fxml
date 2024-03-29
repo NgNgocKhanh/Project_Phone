@@ -146,7 +146,7 @@
                     <columns>
                         <TableColumn fx:id="orderNumberTableColumn" prefWidth="36.800018310546875" text="#" />
                         <TableColumn fx:id="idTableColumn" prefWidth="41.599971771240234" text="ID" visible="false" />
-                        <TableColumn fx:id="nameTableColumn" prefWidth="209.60004806518555" text="Name" />
+                        <TableColumn fx:id="phoneColumnTable" prefWidth="209.60004806518555" text="Name" />
                         <TableColumn fx:id="discountTableColumn" prefWidth="76.79998779296875" text="Discount(%)" />
                         <TableColumn fx:id="startDateTableColumn" prefWidth="100.0" text="StartDate" />
                         <TableColumn fx:id="startTimeTableColumn" prefWidth="100.0" text="StartTime" />

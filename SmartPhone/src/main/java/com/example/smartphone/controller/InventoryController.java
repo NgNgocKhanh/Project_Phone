@@ -71,10 +71,10 @@ public class InventoryController implements Initializable {
 
         try {
             int offset = pageIndex * ITEMS_PER_PAGE; // Calculate the offset for the current page
-            String query = "SELECT i.inventoryId, c.phoneName, c.price, i.quantityInStock, i.status " +
+            String query = "SELECT i.inventoryId, c.name, c.price, i.quantityInStock, i.status " +
                     "FROM phone_inventory i " +
-                    "JOIN phone c ON i.phoneId = c.phoneId " +
-                    "ORDER BY c.phoneName " +
+                    "JOIN phone c ON i.id = c.id " +
+                    "ORDER BY c.name " +
                     "LIMIT " + offset + ", " + ITEMS_PER_PAGE;
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -104,9 +104,9 @@ public class InventoryController implements Initializable {
 
         Label indexLabel = new Label(String.valueOf(index));
         indexLabel.setPrefWidth(40);
-        Label makeLabel = new Label(resultSet.getString("phoneName"));
-        makeLabel.setPrefWidth(215);
-        HBox.setMargin(makeLabel, new Insets(0, 0, 0, 20));
+        Label nameLabel = new Label(resultSet.getString("name"));
+        nameLabel.setPrefWidth(215);
+        HBox.setMargin(nameLabel, new Insets(0, 0, 0, 20));
         Label modelLabel = new Label(resultSet.getString("price"));
         modelLabel.setPrefWidth(215);
         HBox.setMargin(modelLabel, new Insets(0, 0, 0, 20));
@@ -179,7 +179,7 @@ public class InventoryController implements Initializable {
         });
 
         phoneInfoHBox.getChildren().addAll(
-                indexLabel, makeLabel, modelLabel,
+                indexLabel, nameLabel, modelLabel,
                 minusButton, quantityTextField, plusButton,
                 statusComboBox, updateButton
         );

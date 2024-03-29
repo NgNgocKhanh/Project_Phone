@@ -167,13 +167,12 @@
 
         private ObservableList<Phone> getListPhone() {
             ObservableList<Phone> observableList = FXCollections.observableArrayList();
-            String sql = "SELECT p.phoneId, p.phoneName, p.image, p.price, p.sellingPrice, d.distributorName, c.email, c.phoneNumber, i.quantityInStock \n" +
-                    "FROM phone AS p \n" +
-                    "JOIN distributor AS d ON p.distributorId = d.distributorId \n" +
-                    "JOIN phone_inventory AS i ON p.phoneId = i.phoneId \n" +
-                    "JOIN customer AS c ON p.phoneId = c.customerId \n" +
-                    "ORDER BY p.sellingPrice \n" +
-                    "LIMIT 0, 1000;\n";
+            String sql = "SELECT p.phoneId, p.name, p.image, p.price, p.sellingPrice, d.distributorName, i.quantityInStock\n" +
+                    "FROM phone AS p\n" +
+                    "JOIN distributor AS d ON p.distributorId = d.distributorId\n" +
+                    "JOIN phone_inventory AS i ON p.phoneId = i.phoneId\n" +
+                    "ORDER BY p.sellingPrice\n" +
+                    "LIMIT 1000;\n";
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 ResultSet resultSet = preparedStatement.executeQuery();
@@ -182,14 +181,14 @@
                     // iterate through the resultSet from db and add to list
                     int id = resultSet.getInt("phoneId");
                     double price = resultSet.getDouble("price");
-                    String phoneName = resultSet.getString("phoneName");
+                    String Name = resultSet.getString("phoneName");
                     String image = resultSet.getString("image");
                     String distributorComboboxx = resultSet.getString("distributorName");
                     int quantity = resultSet.getInt("quantityInStock");
                     double sellingPrice = resultSet.getDouble("sellingPrice");
 
                     // add to list
-                    observableList.add(new Phone(id, phoneName, image, price, sellingPrice, distributorComboboxx));}
+                    observableList.add(new Phone(id, Name, price, distributorComboboxx, image,sellingPrice));}
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -204,7 +203,7 @@
             sellingPriceTableColumn.setCellValueFactory(new PropertyValueFactory<>("sellingPrice"));
             orderNumberTableColumn.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(phoneTableView.getItems().indexOf(param.getValue()) + 1 + (currentPage - 1) * itemsPerPage));
 
-    //        imageTableColumn.se   tCellValueFactory(new PropertyValueFactory<>("image"));
+    //        imageTableColumn.se   tCellValueFactory(new ("image"));
             totalLabel.setText("Total: " + phoneObservableList.size());
 
             phoneTableView.setRowFactory(tableView -> {
@@ -215,9 +214,9 @@
 
                 row.setOnMouseEntered(event -> {
                     Phone phone = row.getItem();
-                    if (phone != null && phone.getImg() != null) {
+                    if (phone != null && phone.getImage() != null) {
                         Tooltip tooltip = new Tooltip();
-                        ImageView imageView = new ImageView(new Image(new File(phone.getImg()).toURI().toString()));
+                        ImageView imageView = new ImageView(new Image(new File(phone.getImage()).toURI().toString()));
 
                         // Set resizing properties
                         imageView.setPreserveRatio(true);
@@ -266,7 +265,7 @@
                                 ButtonType resultConfirm = GetData.showConfirmationAlert("Confirmation message", "Are you sure you want to delete?");
                                 // if user confirm delete then delete
                                 if (resultConfirm.equals(ButtonType.OK)) {
-                                    deletePhoneFromDatbase(phone.getPhone_id());
+                                    deletePhoneFromDatbase(phone.getId());
                                 }
                             });
                             setGraphic(deleteButton);
@@ -277,7 +276,6 @@
                 return deleteCell;
             };
             deleteTableColumn.setCellFactory(columnTableCellCallback);
-
             FilteredList<Phone> filteredList = new FilteredList<>(phoneObservableList, b -> true); // b->true : means all elements in the list will be included in the filteredList
 
             // listen to changes in the searchKeyword to update the tableView
@@ -292,7 +290,7 @@
                     String searchKeyword = newValue.toLowerCase();
                     String searchBy = searchComboBox.getValue().toLowerCase();
 
-                    if (searchBy.equals("PhoneName") && phone.getPhoneName().toLowerCase().contains(searchKeyword)) {
+                    if (searchBy.equals("name") && phone.getPhoneName().toLowerCase().contains(searchKeyword)) {
                         return true;
                     } else {
                         totalLabel.setText("Total: " + filteredList.size());
@@ -359,9 +357,9 @@
                 ResultSet resultSet = statement.executeQuery(sql);
 
                 while (resultSet.next()) {
-                    int phoneIdIncrease = resultSet.getInt("phoneId") + 1;
-                    idTextField.setText(String.valueOf(phoneIdIncrease));
-                    return phoneIdIncrease;
+                    int idIncrease = resultSet.getInt("id") + 1;
+                    idTextField.setText(String.valueOf(idIncrease));
+                    return idIncrease;
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -404,8 +402,8 @@
         }
 
         private void addSearchByToComboBox() {
-            searchComboBox.getItems().addAll("phoneName");
-            searchComboBox.setValue("phoneName");
+            searchComboBox.getItems().addAll("name");
+            searchComboBox.setValue("name");
         }
 
         @FXML
@@ -476,13 +474,13 @@
                 @Override
                 public void changed(ObservableValue<? extends Phone> observableValue, Phone oldValue, Phone newValue) {
                     if (newValue != null) {
-                        idTextField.setText(String.valueOf(newValue.getPhone_id()));
+                        idTextField.setText(String.valueOf(newValue.getId()));
                         priceTextField.setText(String.valueOf(newValue.getPrice()));
                         distributorComboBox.setValue(String.valueOf(newValue.getDistributor()));
                         quantityTextField.setText(String.valueOf(newValue.getQuantity()));
                         sellingPriceTextField.setText(String.valueOf(newValue.getSellingPrice()));
                         phoneTextField.setText(String.valueOf(newValue.getPhoneName()));
-                        File imageFile = new File(newValue.getImg());
+                        File imageFile = new File(newValue.getImage());
                         Image image = null;
                         try {
                             image = new Image(imageFile.getAbsolutePath());
@@ -491,7 +489,7 @@
                             e.printStackTrace();
                             image = null;
                             phoneImageView.setImage(null);
-                            GetData.showWarningAlert("\"Warning message", "Image not found. \\nMake sure that image file exists and try again!");
+                            GetData.showWarningAlert("\"Warning message", "Image not found. \\nname sure that image file exists and try again!");
 
                         }
 
@@ -521,7 +519,7 @@
         }
 
         private boolean addQuantityToDatabase() {
-            String sql = "INSERT INTO phone_inventory(phoneId,quantityInStock) VALUES (?,?);";
+            String sql = "INSERT INTO phone_inventory(id,quantityInStock) VALUES (?,?);";
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setString(1, idTextField.getText());
@@ -538,7 +536,7 @@
 
         }
         public void addPhoneToDatabase() {
-            String sql = "INSERT INTO phone(phoneName, price, distributorId, image, phoneId) VALUES (?,?,?,?,?);";
+            String sql = "INSERT INTO phone(name, price, distributorId, image, id) VALUES (?,?,?,?,?);";
 
             try {
                 // check required fields filled or not
@@ -585,8 +583,8 @@
             int selectedDistributorKey = getKeyFromValue(distributorMap, selectedDistributorValue);
 
             String sql = "UPDATE phone " +
-                    "SET phoneName = ?, price = ?, distributorId = ?, image = ?,sellingPrice = ? " +
-                    "WHERE phoneId = ?";
+                    "SET name = ?, price = ?, distributorId = ?, image = ?,sellingPrice = ? " +
+                    "WHERE id = ?";
 
             try {
                 if (isFilledFields() && validateFields()) {
@@ -655,8 +653,8 @@
 
 
         private void deletePhoneFromDatbase(int id) {
-            String updateInventoryQuery = "UPDATE phone_inventory SET phoneId = NULL WHERE phoneId =" + id;
-            String updateOrderQuery = "UPDATE `order` SET phoneId = NULL WHERE phoneId = "+ id;
+            String updateInventoryQuery = "UPDATE phone_inventory SET id = NULL WHERE id =" + id;
+            String updateOrderQuery = "UPDATE `order` SET id = NULL WHERE id = "+ id;
 
             try {
                 Statement updateInventoryStatement = connection.createStatement();
@@ -666,7 +664,7 @@
                 int rowUpdateOrderAffected = updateOrderStatement.executeUpdate(updateOrderQuery);
 
                 if(rowUpdateInventoryAffected > 0 && rowUpdateOrderAffected>0){
-                    String sql = "DELETE FROM phone WHERE phoneId = " + id;
+                    String sql = "DELETE FROM phone WHERE id = " + id;
 
                     Statement statement = connection.createStatement();
                     int rowAffected = statement.executeUpdate(sql);
