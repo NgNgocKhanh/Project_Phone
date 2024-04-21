@@ -28,10 +28,7 @@
     import java.nio.file.Files;
     import java.nio.file.Paths;
     import java.nio.file.StandardCopyOption;
-    import java.sql.Connection;
-    import java.sql.PreparedStatement;
-    import java.sql.ResultSet;
-    import java.sql.Statement;
+    import java.sql.*;
     import java.util.HashMap;
     import java.util.Map;
     import java.util.regex.Pattern;
@@ -128,9 +125,9 @@
                 TableRow<Phone> row = new TableRow<>();
                 row.itemProperty().addListener((observable, oldValue, newValue) -> {
                     if (newValue != null && newValue.getQuantity() == 0) {
-                        row.getStyleClass().add("white-row");
+                        row.getStyleClass().add("white");
                     } else {
-                        row.getStyleClass().remove("white-row");
+                        row.getStyleClass().remove("white");
                     }
                 });
                 return row;
@@ -167,7 +164,7 @@
 
         private ObservableList<Phone> getListPhone() {
             ObservableList<Phone> observableList = FXCollections.observableArrayList();
-            String sql = "SELECT p.phoneId, p.name, p.image, p.price, p.sellingPrice, d.distributorName, i.quantityInStock\n" +
+            String sql = "SELECT p.phoneId, p.phoneName, p.image, p.price, p.sellingPrice, d.distributorName, i.quantityInStock\n" +
                     "FROM phone AS p\n" +
                     "JOIN distributor AS d ON p.distributorId = d.distributorId\n" +
                     "JOIN phone_inventory AS i ON p.phoneId = i.phoneId\n" +
@@ -357,7 +354,7 @@
                 ResultSet resultSet = statement.executeQuery(sql);
 
                 while (resultSet.next()) {
-                    int idIncrease = resultSet.getInt("id") + 1;
+                    int idIncrease = resultSet.getInt("phoneId") + 1;
                     idTextField.setText(String.valueOf(idIncrease));
                     return idIncrease;
                 }
@@ -480,16 +477,18 @@
                         quantityTextField.setText(String.valueOf(newValue.getQuantity()));
                         sellingPriceTextField.setText(String.valueOf(newValue.getSellingPrice()));
                         phoneTextField.setText(String.valueOf(newValue.getPhoneName()));
-                        File imageFile = new File(newValue.getImage());
+                        File imageFile = new File("C:\\Users\\devil\\OneDrive\\Desktop\\Project_Phone\\SmartPhone\\" + newValue.getImage());
+
                         Image image = null;
                         try {
-                            image = new Image(imageFile.getAbsolutePath());
+                            image = new Image(imageFile.toURI().toString());
                             phoneImageView.setImage(image);
                         } catch (Exception e) {
                             e.printStackTrace();
                             image = null;
                             phoneImageView.setImage(null);
-                            GetData.showWarningAlert("\"Warning message", "Image not found. \\nname sure that image file exists and try again!");
+                            GetData.showWarningAlert(imageFile.getAbsolutePath().toString(), imageFile.getAbsolutePath().toString());
+//                            GetData.showWarningAlert("\"Warning message", "Image not found. \n name sure that image file exists and try again!");
 
                         }
 
@@ -649,34 +648,43 @@
                 return true;
             }
         }
-
-
-
         private void deletePhoneFromDatbase(int id) {
-                String updateInventoryQuery = "UPDATE phone_inventory SET inventoryId = NULL WHERE inventoryId =" + id;
-            String updateOrderQuery = "UPDATE `order` SET orderId = NULL WHERE orderId = "+ id;
+            String resetQuery = "ALTER TABLE phone AUTO_INCREMENT = 1";
+            String updateInventoryQuery = "UPDATE phone_inventory SET phoneId = NULL WHERE phoneId = ?";
+            String updateOrderQuery = "UPDATE `order` SET phoneId = NULL WHERE phoneId = ?";
+            String deletePhoneQuery = "DELETE FROM phone WHERE phoneId = ?";
 
             try {
-                Statement updateInventoryStatement = connection.createStatement();
-                int rowUpdateInventoryAffected = updateInventoryStatement.executeUpdate(updateInventoryQuery);
+                // Update phone_inventory
+                try (PreparedStatement updateInventoryStatement = connection.prepareStatement(updateInventoryQuery)) {
+                    updateInventoryStatement.setInt(1, id);
+                    int rowUpdateInventoryAffected = updateInventoryStatement.executeUpdate();
+                }
 
-                Statement updateOrderStatement = connection.createStatement();
-                int rowUpdateOrderAffected = updateOrderStatement.executeUpdate(updateOrderQuery);
+                // Update order
+                try (PreparedStatement updateOrderStatement = connection.prepareStatement(updateOrderQuery)) {
+                    updateOrderStatement.setInt(1, id);
+                    int rowUpdateOrderAffected = updateOrderStatement.executeUpdate();
+                }
 
-                if(rowUpdateInventoryAffected > 0 && rowUpdateOrderAffected>0){
-                    String sql = "DELETE FROM phone WHERE phoneId = " + id;
-
-                    Statement statement = connection.createStatement();
-                    int rowAffected = statement.executeUpdate(sql);
+                try (PreparedStatement preparedStatement = connection.prepareStatement(resetQuery)) {
+                    preparedStatement.setInt(1, id);
+                    int rowCount = preparedStatement.executeUpdate();
+                    System.out.println("Auto increment reset successful. Rows affected: " + rowCount);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                // Delete from phone
+                try (PreparedStatement deletePhoneStatement = connection.prepareStatement(deletePhoneQuery)) {
+                    deletePhoneStatement.setInt(1, id);
+                    int rowAffected = deletePhoneStatement.executeUpdate();
                     if (rowAffected > 0) {
                         GetData.showSuccessAlert("Success message", "Deleted successfully!");
-
                         setupTable();
                         resetForm();
                     }
-
                 }
-            }catch (Exception e){
+            } catch (SQLException e) {
                 GetData.showErrorAlert("Error message", "Cannot delete!");
                 e.printStackTrace();
             }
