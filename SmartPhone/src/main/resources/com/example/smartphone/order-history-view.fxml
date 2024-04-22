@@ -43,7 +43,7 @@
                         <TableColumn fx:id="orderIdTableColumn" prefWidth="62.399993896484375" text="OrderID" visible="false" />
                         <TableColumn fx:id="orderDateTableColumn" minWidth="6.399932861328125" prefWidth="93.60003662109375" text="OrderDate" />
                         <TableColumn fx:id="customerTableColumn" minWidth="6.399932861328125" prefWidth="118.39997863769531" text="Customer" />
-                        <TableColumn fx:id="phoneNameTableColumn" prefWidth="98.39996337890625" text="Phone Name" />
+                        <TableColumn fx:id="phoneColumnTable" prefWidth="98.39996337890625" text="Phone Name" />
                         <TableColumn fx:id="quantityTableColumn" prefWidth="32.79998779296875" text="Qty." />
                         <TableColumn fx:id="totalAmountTableColumn" prefWidth="104.79998779296875" text="TotalAmount" />
                         <TableColumn fx:id="paymentTableColumn" prefWidth="85.60003662109375" text="Payment" />

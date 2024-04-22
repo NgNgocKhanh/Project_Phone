@@ -73,7 +73,7 @@ public class EventController {
 
 
     @FXML
-    private TableColumn<Event, String> nameTableColumn;
+    private TableColumn<Event, String> phoneColumnTable;
 
     @FXML
     private TextField nameTextField;
@@ -188,7 +188,7 @@ public class EventController {
 
     /**
      * Retrieves a list of events from the database and returns it as an ObservableList.
-     * Each car in the list is represented by the Event model class.
+     * Each Phone in the list is represented by the Event model class.
      *
      * @return The ObservableList of event objects fetched from the database.
      */
@@ -220,14 +220,14 @@ public class EventController {
     }
 
     /**
-     * Sets up the car table with the data fetched from the database.
+     * Sets up the Phone table with the data fetched from the database.
      * It populates the table columns with cell factories and binds the data to the TableView.
-     * The method also configures the delete button cell in the table to handle deletion of cars.
+     * The method also configures the delete button cell in the table to handle deletion of Phones.
      */
     private void setupTable() {
         eventObservableList = getListEvent();
-        idTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        idTableColumn.setCellValueFactory(new PropertyValueFactory<>("phoneId"));
+        phoneColumnTable.setCellValueFactory(new PropertyValueFactory<>("phoneName"));
         discountTableColumn.setCellValueFactory(new PropertyValueFactory<>("discount"));
         startDateTableColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         startTimeTableColumn.setCellValueFactory(new PropertyValueFactory<>("startTime"));
@@ -329,7 +329,7 @@ public class EventController {
         actionTableColumn.setCellFactory(columnTableCellCallback);
 
 
-        // create FilteredList to filter and search car by searchKeyword
+        // create FilteredList to filter and search Phone by searchKeyword
         FilteredList<Event> filteredList = new FilteredList<>(eventObservableList, b -> true); // b->true : means all elements in the list will be included in the filteredList
 
         // listen to changes in the searchKeyword to update the tableView
@@ -394,7 +394,7 @@ public class EventController {
      * Updates the pagination control based on the filtered event list.
      * It adjusts the page count and current page index to reflect the filtered data.
      *
-     * @param filteredList The filtered list of cars based on the search keyword.
+     * @param filteredList The filtered list of Phones based on the search keyword.
      */
     private void updatePagination(FilteredList<Event> filteredList) {
         paginationPagination.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {

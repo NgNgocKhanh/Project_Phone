@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="centerAnchorPane" prefHeight="741.0" prefWidth="1130.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smartphone.controller.DashboardViewController">
+    <children>
+        <Pane prefHeight="62.0" prefWidth="1130.0" style="-fx-background-color: #fff;" AnchorPane.leftAnchor="0.0">
+            <children>
+                <Label layoutY="14.0" prefHeight="35.0" prefWidth="237.0" text="DASHBOARD">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                    <padding>
+                        <Insets left="30.0" />
+                    </padding>
+                </Label>
+            </children>
+        </Pane>
+        <AnchorPane layoutX="42.0" layoutY="112.0" prefHeight="90.0" prefWidth="222.0" style="-fx-background-color: linear-gradient(to bottom, #bef2e4, #def4e5)linear-gradient(to bottom, #bef2e4, #def4e5); -fx-border-color: #329b57;" styleClass="dashboard-box" stylesheets="@style.css">
+            <children>
+                <Label fx:id="totalPhonesLabel" layoutX="14.0" layoutY="28.0" prefHeight="35.0" prefWidth="58.0" text="180" textFill="#329b57">
+                    <font>
+                        <Font name="System Bold" size="28.0" />
+                    </font>
+                </Label>
+                <Label layoutX="17.0" layoutY="63.0" text="Total Phones" textFill="#329b57">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="80.0" fitWidth="90.0" layoutX="142.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@image_icons/phone_white.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="320.0" layoutY="112.0" prefHeight="90.0" prefWidth="222.0" style="-fx-background-color: linear-gradient(to bottom, #c9eff9, #e0f3f8); -fx-border-color: #289fbe;" styleClass="dashboard-box" stylesheets="@style.css">
+            <children>
+                <Label fx:id="totalCustomersLabel" layoutX="14.0" layoutY="28.0" prefHeight="35.0" prefWidth="58.0" text="180" textFill="#289fbe">
+                    <font>
+                        <Font name="System Bold" size="28.0" />
+                    </font>
+                </Label>
+                <Label layoutX="17.0" layoutY="63.0" text="Total Customers" textFill="#289fbe">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="80.0" fitWidth="90.0" layoutX="132.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@image_icons/users-blue.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="595.0" layoutY="112.0" prefHeight="90.0" prefWidth="222.0" style="-fx-background-color: linear-gradient(to bottom, #f9e3cc, #f5e9db); -fx-border-color: #cd7014;" styleClass="dashboard-box" stylesheets="@style.css">
+            <children>
+                <Label fx:id="totalEmployeeLabel" layoutX="14.0" layoutY="29.0" prefHeight="35.0" prefWidth="58.0" text="180" textFill="#cd7014">
+                    <font>
+                        <Font name="System Bold" size="28.0" />
+                    </font>
+                </Label>
+                <Label layoutX="17.0" layoutY="64.0" text="Total Employees" textFill="#cd7014">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="80.0" fitWidth="90.0" layoutX="132.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@image_icons/admin-orange.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="865.0" layoutY="112.0" prefHeight="90.0" prefWidth="222.0" style="-fx-background-color: linear-gradient(to bottom, #f9cacb, #f0d9d7); -fx-border-color: #d97173;" styleClass="dashboard-box" stylesheets="@style.css">
+            <children>
+                <Label fx:id="totalOrderLabel" layoutX="14.0" layoutY="28.0" prefHeight="35.0" prefWidth="58.0" text="180" textFill="#d97173">
+                    <font>
+                        <Font name="System Bold" size="28.0" />
+                    </font>
+                </Label>
+                <Label layoutX="17.0" layoutY="63.0" text="Total Orders" textFill="#d97173">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="80.0" fitWidth="90.0" layoutX="132.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@image_icons/truck-pink.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="16.0" layoutY="264.0" prefHeight="526.0" prefWidth="546.0" style="-fx-background-color: #fff;">
+            <children>
+                <LineChart fx:id="revenueStatisticsLineChart" layoutY="82.0" prefHeight="430.0" prefWidth="546.0">
+                    <xAxis>
+                        <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis side="LEFT" />
+                    </yAxis>
+                </LineChart>
+                <Label fx:id="totalRevenueLabel" layoutX="21.0" layoutY="26.0" text="Total Revenue:">
+                    <font>
+                        <Font name="System Bold" size="17.0" />
+                    </font>
+                </Label>
+                <Label fx:id="revenueLabel" alignment="CENTER_RIGHT" layoutX="265.0" layoutY="25.0" prefHeight="28.0" prefWidth="268.0">
+                    <font>
+                        <Font name="System Bold" size="19.0" />
+                    </font>
+                </Label>
+                <Label fx:id="compareRevenueLabel" alignment="CENTER_RIGHT" layoutX="149.0" layoutY="53.0" prefHeight="26.0" prefWidth="382.0">
+                    <font>
+                        <Font name="System Bold" size="17.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="570.0" layoutY="264.0" prefHeight="526.0" prefWidth="546.0" style="-fx-background-color: #fff;">
+            <children>
+                <BarChart fx:id="orderBarChart" layoutY="89.0" prefHeight="430.0" prefWidth="546.0">
+                    <xAxis>
+                        <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis side="LEFT" />
+                    </yAxis>
+                </BarChart>
+                <Label fx:id="totalOrdersMonthLabel" layoutX="29.0" layoutY="26.0" text="Total Orders:">
+                    <font>
+                        <Font name="System Bold" size="17.0" />
+                    </font>
+                </Label>
+                <Label fx:id="totalOrdersLabel" alignment="CENTER_RIGHT" layoutX="266.0" layoutY="25.0" prefHeight="28.0" prefWidth="268.0">
+                    <font>
+                        <Font name="System Bold" size="19.0" />
+                    </font>
+                </Label>
+                <Label fx:id="compareTotalOrderLabel" alignment="CENTER_RIGHT" layoutX="149.0" layoutY="51.0" prefHeight="26.0" prefWidth="382.0">
+                    <font>
+                        <Font name="System Bold" size="17.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

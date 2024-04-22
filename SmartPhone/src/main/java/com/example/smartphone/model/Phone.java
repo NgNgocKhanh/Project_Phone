@@ -1,61 +1,55 @@
 package com.example.smartphone.model;
+
 import lombok.*;
 
 @Data
+@ToString
 @Getter
 @Setter
-@ToString
 
 public class Phone {
-    private int phone_id;
+    private int id;
     private String phoneName;
-    private String img;
     private double price;
-    private double sellingPrice;
-    private int quantity;
     private String distributor;
+    private String image;
+    private int quantity;
+    private double sellingPrice;
 
-    public Phone(int phone_id, String phoneName, String img, double price, double sellingPrice, int quantity, String distributor) {
-        this.phone_id = phone_id;
+    public Phone(int id, String phoneName, double price, String distributor, String image, double sellingPrice) {
+        this.id = id;
         this.phoneName = phoneName;
-        this.img = img;
         this.price = price;
+        this.distributor = distributor;
+        this.image = image;
         this.sellingPrice = sellingPrice;
+    }
+
+    public Phone(int id, String phoneName, double price, String distributor, String image, int quantity, double sellingPrice) {
+        this.id = id;
+        this.phoneName = phoneName;
+        this.price = price;
+        this.distributor = distributor;
+        this.image = image;
         this.quantity = quantity;
-        this.distributor = distributor;
-    }
-
-    public Phone(int phone_id, String phoneName, String img, double price, double sellingPrice, String distributor) {
-        this.phone_id = phone_id;
-        this.phoneName = phoneName;
-        this.img = img;
-        this.price = price;
         this.sellingPrice = sellingPrice;
-        this.distributor = distributor;
     }
 
-    public int getPhone_id() {
-        return phone_id;
+
+    public int getId() {
+        return id;
     }
 
-    public void setPhone_id(int phone_id) {
-        this.phone_id = phone_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPhoneName() {
         return phoneName;
     }
 
-    public void setPhoneName(String phoneName) {
+    public void setName(String phoneName) {
         this.phoneName = phoneName;
-    }
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
     }
 
     public double getPrice() {
@@ -66,12 +60,20 @@ public class Phone {
         this.price = price;
     }
 
-    public double getSellingPrice() {
-        return sellingPrice;
+    public String getDistributor() {
+        return distributor;
     }
 
-    public void setSellingPrice(double sellingPrice) {
-        this.sellingPrice = sellingPrice;
+    public void setDistributor(String distributor) {
+        this.distributor = distributor;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public int getQuantity() {
@@ -82,11 +84,11 @@ public class Phone {
         this.quantity = quantity;
     }
 
-    public String getDistributor() {
-        return distributor;
+    public double getSellingPrice() {
+        return sellingPrice;
     }
 
-    public void setDistributor(String distributor) {
-        this.distributor = distributor;
+    public void setSellingPrice(double sellingPrice) {
+        this.sellingPrice = sellingPrice;
     }
 }

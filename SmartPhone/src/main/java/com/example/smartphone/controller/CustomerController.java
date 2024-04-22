@@ -69,7 +69,7 @@ public class CustomerController {
 
 
     @FXML
-    private TableColumn<Customer, String> nameTableColumn;
+    private TableColumn<Customer, String> phoneColumnTable;
 
     @FXML
     private TextField nameTextField;
@@ -173,8 +173,8 @@ public class CustomerController {
      */
     private void setupTable() {
         customerObservableList = getCustomerObservableList();
-        idTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        idTableColumn.setCellValueFactory(new PropertyValueFactory<>("phoneId"));
+        phoneColumnTable.setCellValueFactory(new PropertyValueFactory<>("phoneName"));
         dobTableColumn.setCellValueFactory(new PropertyValueFactory<>("dob"));
         phoneTableColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
         addressTableColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
