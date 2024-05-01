@@ -1,7 +1,6 @@
 package com.example.smartphone.controller;
-
-import com.example.smartphone.model.Phone;
 import com.example.smartphone.model.Customer;
+import com.example.smartphone.model.Phone;
 import dao.JDBCConnect;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ChangeListener;
@@ -22,9 +21,6 @@ import javafx.scene.effect.BoxBlur;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-
-
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -74,7 +70,7 @@ public class AddOrderViewController {
     private TableColumn<Customer, Integer> customerOrderNumberTableColumn;
 
     @FXML
-    private TableColumn<Customer, String> customerphoneColumnTable;
+    private TableColumn<Customer, String> customerNameTableColumn;
 
     @FXML
     private TableColumn<Customer, String> customerPhoneTableColumn;
@@ -105,10 +101,6 @@ public class AddOrderViewController {
 
     @FXML
     private TableView<Phone> phoneTableView;
-
-    @FXML
-    private Button closeButton;
-
     @FXML
     private TableColumn<Phone, String> distributorTableColumn;
 
@@ -120,9 +112,8 @@ public class AddOrderViewController {
 
     @FXML
     private TableColumn<Phone, String> phoneColumnTable;
-
     @FXML
-    private Button minimizeButton;
+    private TableColumn<Phone, String> modelTableColumn;
 
     @FXML
     private Label orderDateLabel;
@@ -147,7 +138,6 @@ public class AddOrderViewController {
 
     @FXML
     private TextField searchKeywordTextField;
-
     @FXML
     private TextField totalAmoutTextField;
 
@@ -175,19 +165,6 @@ public class AddOrderViewController {
     private final int itemsPerPage = 15;
     private final int itemsPerCustomerPage = 3;
 //    private int customerId;
-
-    @FXML
-    void close(ActionEvent event) {
-        Stage stage = (Stage) closeButton.getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
-    void minimize(ActionEvent event) {
-        Stage stage = (Stage) minimizeButton.getScene().getWindow();
-        stage.setIconified(true);
-    }
-
     private boolean isValidPhoneNumber(String phoneNumber) {
         return phoneNumber.matches("\\d{10}");
     }
@@ -214,10 +191,10 @@ public class AddOrderViewController {
             TableRow<Phone> row = new TableRow<>();
             row.itemProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue != null && newValue.getQuantity() == 0) {
-                    row.getStyleClass().add("red-row");
+                    row.getStyleClass().add("White-row");
                     row.setDisable(true); // Disable row selection for rows with quantity 0
                 } else {
-                    row.getStyleClass().remove("red-row");
+                    row.getStyleClass().remove("White-row");
                     row.setDisable(false); // Enable row selection for other rows
                 }
             });
@@ -297,7 +274,6 @@ public class AddOrderViewController {
         }
         return statusMap;
     }
-
 
     private void addStatusComboBox() {
         Map<Integer, String> statusMap = getStatusMap();
@@ -395,8 +371,8 @@ public class AddOrderViewController {
      */
     private void setupCustomerTable() {
         customerObservableList = getCustomerList();
-        customerIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("phoneName"));
-        customerphoneColumnTable.setCellValueFactory(new PropertyValueFactory<>("phoneName"));
+        customerIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        customerNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         customerPhoneTableColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
         customerEmailTableColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         customerOrderNumberTableColumn.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(customerTableView.getItems().indexOf(param.getValue()) + 1 + (currentCustomerPage - 1) * itemsPerCustomerPage));
@@ -475,9 +451,9 @@ public class AddOrderViewController {
      *
      * @return An ObservableList containing phone objects.
      */
-    private ObservableList<Phone> getListPhone() {
+    private ObservableList<Phone> getListphone() {
         ObservableList<Phone> observableList = FXCollections.observableArrayList();
-        String sql = "SELECT p.phoneId, p.phoneName, p.price, p.sellingPrice, d.distributorName, p.image, i.quantityInStock " +
+        String sql = "SELECT p.phoneId, p.phoneName ,p.price, p.sellingPrice, d.distributorName, p.image, i.quantityInStock " +
                 "FROM phone AS p " +
                 "JOIN distributor AS d ON p.distributorId = d.distributorId " +
                 "JOIN phone_inventory AS i ON p.phoneId = i.phoneId " +
@@ -488,8 +464,8 @@ public class AddOrderViewController {
 
             while (resultSet.next()) {
                 // iterate through the resultSet from db and add to list
-                int id = resultSet.getInt("Id");
-                String name = resultSet.getString("name");
+                int id = resultSet.getInt("phoneId");
+                String name = resultSet.getString("phoneName");
                 double price = resultSet.getDouble("price");
                 String distributorName = resultSet.getString("distributorName");
                 String image = resultSet.getString("image");
@@ -497,7 +473,7 @@ public class AddOrderViewController {
                 double sellingPrice = resultSet.getDouble("sellingPrice");
 
                 // add to list
-                observableList.add(new Phone(id, name, price, distributorName,  image, quantity, sellingPrice));
+                observableList.add(new Phone(id, name, image, price, sellingPrice, quantity,distributorName));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -509,8 +485,8 @@ public class AddOrderViewController {
      * Sets up the phone table with data from the database and adds filtering functionality.
      */
     private void setupTable() {
-        phoneObservableList = getListPhone();
-        idTableColumn.setCellValueFactory(new PropertyValueFactory<>("phoneId"));
+        phoneObservableList = getListphone();
+        idTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         phoneColumnTable.setCellValueFactory(new PropertyValueFactory<>("phoneName"));
         priceTableColumn.setCellValueFactory(new PropertyValueFactory<>("sellingPrice"));
         distributorTableColumn.setCellValueFactory(new PropertyValueFactory<>("distributor"));
@@ -638,18 +614,17 @@ public class AddOrderViewController {
 
         if (isFilledAllField()) {
 
-            String sql = "INSERT INTO `order`(customerId,phoneId,employeeId,orderDate,totalAmount,quantity,statusId,paymentId,paymentStatusId) VALUES (?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO `order`(customerId,phoneId,orderDate,totalAmount,quantity,statusId,paymentId,paymentStatusId) VALUES (?,?,?,?,?,?,?,?)";
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setString(1, customerIdTextField.getText());
                 preparedStatement.setString(2, phoneIdTextField.getText());
-                preparedStatement.setString(3, String.valueOf(GetData.empId));
-                preparedStatement.setString(4, currentDate);
-                preparedStatement.setString(5, totalAmoutTextField.getText());
-                preparedStatement.setString(6, orderQuantityTextField.getText());
-                preparedStatement.setString(7, String.valueOf(selectedStatusId));
-                preparedStatement.setInt(8, selectedPaymentId);
-                preparedStatement.setInt(9, selectedPaymentStatusId);
+                preparedStatement.setString(3, currentDate);
+                preparedStatement.setString(4, totalAmoutTextField.getText());
+                preparedStatement.setString(5, orderQuantityTextField.getText());
+                preparedStatement.setString(6, String.valueOf(selectedStatusId));
+                preparedStatement.setInt(7, selectedPaymentId);
+                preparedStatement.setInt(8, selectedPaymentStatusId);
 
                 preparedStatement.executeUpdate();
 
@@ -671,18 +646,20 @@ public class AddOrderViewController {
             @Override
             public void changed(ObservableValue<? extends Phone> observableValue, Phone oldValue, Phone newValue) {
                 if (newValue != null) {
-                    phoneIdTextField.setText(String.valueOf(newValue.getId()));
-                    totalAmoutTextField.setText(String.valueOf((newValue.getSellingPrice() + newValue.getSellingPrice()/ 100) * Integer.parseInt(orderQuantityTextField.getText())));
-                    File imageFile = new File(newValue.getImage());
+                    phoneIdTextField.setText(String.valueOf(newValue.getPhone_id()));
+                    totalAmoutTextField.setText(String.valueOf((newValue.getSellingPrice() + newValue.getSellingPrice() * newValue.getPrice() / 100) * Integer.parseInt(orderQuantityTextField.getText())));
+                    File imageFile = new File("C:\\25022024\\Project_Phone\\SmartPhone"+newValue.getImg());
+                    System.out.println("image"+imageFile.getAbsolutePath());
                     Image image = null;
                     try {
-                        image = new Image(imageFile.getAbsolutePath());
+                        image = new Image(imageFile.toURI().toString());
                         phoneImageView.setImage(image);
+
                     } catch (Exception e) {
                         e.printStackTrace();
-                        image = null;
-                        phoneImageView.setImage(null);
-                        GetData.showWarningAlert("Warning message", "Image not found. \nname sure that image file exists and try again!");
+                        image = new Image(imageFile.getAbsolutePath());
+                        phoneImageView.setImage(image);
+//                        GetData.showWarningAlert("Warning message", imageFile.getAbsolutePath());
                     }
                 } else {
                     phoneImageView.setImage(null);

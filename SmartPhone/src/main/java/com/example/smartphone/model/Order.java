@@ -13,7 +13,6 @@ import lombok.*;
 @ToString
 
 public class Order {
-    private String name;
     private int orderId;
     private int customerId;
     private String customerName;
@@ -23,7 +22,8 @@ public class Order {
     private String orderStatus;
     private int employeeId;
     private String employeeName;
-    private int id;
+    private int phoneId;
+    private String phoneName;
     private double phonePrice;
     private int orderQuantity;
     private int paymentId;
@@ -33,13 +33,14 @@ public class Order {
     private CheckBox selectCheckBox;
 
 
-    public Order(int id, int customerId, String customerName, String date, double amount, int orderStatusId, String status, int employeeId, String employeeName, int phoneId, String phoneName, double price, int quantity, int orderId, String orderDate, double totalAmount, String orderStatus) {
+    public Order(int orderId, String orderDate, double totalAmount, String orderStatus) {
         this.orderId = orderId;
         this.orderDate = orderDate;
         this.totalAmount = totalAmount;
         this.orderStatus = orderStatus;
     }
-    public Order(int orderId, int customerId, String customerName, String orderDate, double totalAmount, int statusId, String orderStatus, int employeeId, String employeeName, int id, double phonePrice, int orderQuantity, int paymentId, String paymentType, int paymentStatusId) {
+
+    public Order(int orderId, int customerId, String customerName, String orderDate, double totalAmount, int statusId, String orderStatus, int employeeId, String employeeName, double price, int orderQuantity, int paymentId, String paymentType, int paymentStatusId, String paymentStatus) {
         this.orderId = orderId;
         this.customerId = customerId;
         this.customerName = customerName;
@@ -49,12 +50,31 @@ public class Order {
         this.orderStatus = orderStatus;
         this.employeeId = employeeId;
         this.employeeName = employeeName;
+        this.phoneId = phoneId;
+        this.phonePrice = phonePrice;
         this.orderQuantity = orderQuantity;
         this.paymentId = paymentId;
         this.paymentType = paymentType;
         this.paymentStatusId = paymentStatusId;
+        this.paymentStatus = paymentStatus;
     }
-
+//                      orderId, customerId, customerName, orderDate, totalAmount, orderStatusId, orderStatus, phonePrice, orderQuantity, paymentId, paymentType, paymentStatusId, paymentStatus
+    public Order(int orderId, int customerId, String customerName, String orderDate, double totalAmount, int statusId, String orderStatus,String phoneName, double phonePrice, int orderQuantity, int paymentId, String paymentType, int paymentStatusId, String paymentStatus) {
+        this.orderId = orderId;
+        this.customerId = customerId;
+        this.customerName = customerName;
+        this.orderDate = orderDate;
+        this.totalAmount = totalAmount;
+        this.statusId = statusId;
+        this.orderStatus = orderStatus;
+        this.phoneName = phoneName;
+        this.phonePrice = phonePrice;
+        this.orderQuantity = orderQuantity;
+        this.paymentId = paymentId;
+        this.paymentType = paymentType;
+        this.paymentStatusId = paymentStatusId;
+        this.paymentStatus = paymentStatus;
+    }
 
     private final BooleanProperty selected = new SimpleBooleanProperty(false);
 
