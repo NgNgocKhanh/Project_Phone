@@ -614,18 +614,17 @@ public class AddOrderViewController {
 
         if (isFilledAllField()) {
 
-            String sql = "INSERT INTO `order`(customerId,phoneId,employeeId,orderDate,totalAmount,quantity,statusId,paymentId,paymentStatusId) VALUES (?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO `order`(customerId,phoneId,orderDate,totalAmount,quantity,statusId,paymentId,paymentStatusId) VALUES (?,?,?,?,?,?,?,?)";
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setString(1, customerIdTextField.getText());
                 preparedStatement.setString(2, phoneIdTextField.getText());
-                preparedStatement.setString(3, String.valueOf(GetData.empId));
-                preparedStatement.setString(4, currentDate);
-                preparedStatement.setString(5, totalAmoutTextField.getText());
-                preparedStatement.setString(6, orderQuantityTextField.getText());
-                preparedStatement.setString(7, String.valueOf(selectedStatusId));
-                preparedStatement.setInt(8, selectedPaymentId);
-                preparedStatement.setInt(9, selectedPaymentStatusId);
+                preparedStatement.setString(3, currentDate);
+                preparedStatement.setString(4, totalAmoutTextField.getText());
+                preparedStatement.setString(5, orderQuantityTextField.getText());
+                preparedStatement.setString(6, String.valueOf(selectedStatusId));
+                preparedStatement.setInt(7, selectedPaymentId);
+                preparedStatement.setInt(8, selectedPaymentStatusId);
 
                 preparedStatement.executeUpdate();
 
@@ -649,13 +648,13 @@ public class AddOrderViewController {
                 if (newValue != null) {
                     phoneIdTextField.setText(String.valueOf(newValue.getPhone_id()));
                     totalAmoutTextField.setText(String.valueOf((newValue.getSellingPrice() + newValue.getSellingPrice() * newValue.getPrice() / 100) * Integer.parseInt(orderQuantityTextField.getText())));
-                    File imageFile = new File("C:\\Users\\devil\\IdeaProjects\\Project_Phone\\SmartPhone\\"+newValue.getImg());
+                    File imageFile = new File("C:\\25022024\\Project_Phone\\SmartPhone"+newValue.getImg());
                     System.out.println("image"+imageFile.getAbsolutePath());
                     Image image = null;
                     try {
                         image = new Image(imageFile.toURI().toString());
                         phoneImageView.setImage(image);
-                        System.out.println("alo"+image);
+
                     } catch (Exception e) {
                         e.printStackTrace();
                         image = new Image(imageFile.getAbsolutePath());

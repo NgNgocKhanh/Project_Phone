@@ -353,12 +353,11 @@ public class OrderHistoryController {
      */
     private ObservableList<Order> getOrderObservableList() {
         ObservableList<Order> observableList = FXCollections.observableArrayList();
-        String sql = "SELECT o.orderId,c.customerId,c.customerName,o.orderDate,o.totalAmount,s.statusName,e.employeeId,e.employeeName,phone.phoneId,phone.phoneName,phone.price, o.quantity,o.statusId, s.statusName ,p.paymentId, p.paymentType,ps.paymentStatusId, ps.paymentStatus " +
+        String sql = "SELECT o.orderId,c.customerId,c.customerName,o.orderDate,o.totalAmount,s.statusName,e.phoneId,e.phoneName,e.price, o.quantity,o.statusId, s.statusName ,p.paymentId, p.paymentType,ps.paymentStatusId, ps.paymentStatus " +
                 "FROM `order` o " +
                 "JOIN customer c ON c.customerId  = o.customerId " +
                 "JOIN status s ON s.statusId  = o.statusId " +
-                "JOIN employee e ON e.employeeId = o.employeeId " +
-                "JOIN phone ON phone.phoneId = o.phoneId " +
+                "JOIN phone e ON e.phoneId = o.phoneId " +
                 "JOIN payment p ON o.paymentId = p.paymentId " +
                 "JOIN paymentStatus ps ON ps.paymentStatusId  = o.paymentStatusId " +
                 "ORDER BY o.orderId";
@@ -374,9 +373,8 @@ public class OrderHistoryController {
                 double totalAmount = resultSet.getDouble("totalAmount");
                 int orderStatusId = resultSet.getInt("statusId");
                 String orderStatus = resultSet.getString(   "statusName");
-                int employeeId = resultSet.getInt("employeeId");
-                String employeeName = resultSet.getString("employeeName");
                 int phoneId = resultSet.getInt("phoneId");
+                String phoneName = resultSet.getString("phoneName");
                 int statusId = resultSet.getInt("statusId");
                 double phonePrice = resultSet.getDouble("price");
                 int orderQuantity = resultSet.getInt("quantity");
@@ -386,7 +384,7 @@ public class OrderHistoryController {
                 String paymentStatus = resultSet.getString("paymentStatus");
 
                 // add to list
-              observableList.add(new Order(orderId, customerId, customerName, orderDate, totalAmount, orderStatusId, orderStatus, employeeId, employeeName, phonePrice, orderQuantity, paymentId, paymentType, paymentStatusId, paymentStatus));
+              observableList.add(new Order(orderId, customerId, customerName, orderDate, totalAmount, orderStatusId, orderStatus,phoneName, phonePrice, orderQuantity, paymentId, paymentType, paymentStatusId, paymentStatus));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -428,7 +426,6 @@ public class OrderHistoryController {
         totalAmountTableColumn.setCellValueFactory(new PropertyValueFactory<>("totalAmount"));
         orderStatusTableColumn.setCellValueFactory(new PropertyValueFactory<>("orderStatus"));
         phoneNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("phoneName"));
-
         quantityTableColumn.setCellValueFactory(new PropertyValueFactory<>("orderQuantity"));
         paymentTableColumn.setCellValueFactory(new PropertyValueFactory<>("paymentType"));
         paymentStatusTableColumn.setCellValueFactory(new PropertyValueFactory<>("paymentStatus"));

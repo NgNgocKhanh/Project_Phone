@@ -91,8 +91,6 @@ public class PhoneController {
     @FXML
     private TextField priceTextField;
 
-    @FXML
-    private TextField taxTextField;
 
     @FXML
     private TextField searchKeywordTextField;
@@ -169,13 +167,12 @@ public class PhoneController {
 
     private ObservableList<Phone> getListPhone() {
         ObservableList<Phone> observableList = FXCollections.observableArrayList();
-        String sql = "SELECT p.phoneId, p.phoneName, p.image, p.price, p.sellingPrice, d.distributorName, c.email, c.phoneNumber, i.quantityInStock \n" +
+        String sql = "SELECT p.phoneId, p.phoneName, p.image, p.price, p.sellingPrice, d.distributorName \n" +
                 "FROM phone AS p \n" +
                 "JOIN distributor AS d ON p.distributorId = d.distributorId \n" +
-                "JOIN phone_inventory AS i ON p.phoneId = i.phoneId \n" +
-                "JOIN customer AS c ON p.phoneId = c.customerId \n" +
                 "ORDER BY p.sellingPrice \n" +
                 "LIMIT 0, 1000;\n";
+
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -187,7 +184,6 @@ public class PhoneController {
                 String phoneName = resultSet.getString("phoneName");
                 String image = resultSet.getString("image");
                 String distributorComboboxx = resultSet.getString("distributorName");
-                int quantity = resultSet.getInt("quantityInStock");
                 double sellingPrice = resultSet.getDouble("sellingPrice");
 
                 // add to list
@@ -433,6 +429,7 @@ public class PhoneController {
         // if file is not null then get path of this file
         if (file != null) {
             String destinationFilePath = "src/main/resources/com/example/smartphone/image_phone/" + file.getName(); // Replace this with the actual destination folder path
+//            String destinationFilePath = "C:\\black\\Project_Phone\\SmartPhone\\src\\main\\resources\\com\\example\\smartphone\\image_phone\\" + file.getName(); // Replace this with the actual destination folder path
 
             GetData.path = destinationFilePath;
 
@@ -442,10 +439,6 @@ public class PhoneController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            Image image =new Image(destinationFilePath);
-            ;
-            phoneImageView.setImage(image);
         }
     }
 
@@ -500,13 +493,11 @@ public class PhoneController {
                     quantityTextField.setText(String.valueOf(newValue.getQuantity()));
                     sellingPriceTextField.setText(String.valueOf(newValue.getSellingPrice()));
                     phoneTextField.setText(String.valueOf(newValue.getPhoneName()));
-                    File imageFile = new File("C:\\Users\\devil\\IdeaProjects\\Project_Phone\\SmartPhone\\"+newValue.getImg());
-                    System.out.println("image"+imageFile.getAbsolutePath());
+                    File imageFile = new File("C:\\25022024\\Project_Phone\\SmartPhone\\"+newValue.getImg());
                     Image image = null;
                     try {
                         image = new Image(imageFile.toURI().toString());
                         phoneImageView.setImage(image);
-                        System.out.println("alo"+image);
                     } catch (Exception e) {
                         e.printStackTrace();
                         image = new Image(imageFile.getAbsolutePath());
@@ -558,22 +549,22 @@ public class PhoneController {
 
     }
     public void addPhoneDatabase() {
-        String sql = "INSERT INTO phone(price, distributorId, image, phoneId) VALUES (?,?,?,?);";
+        String sql = "INSERT INTO phone(phoneName,price, distributorId, image, quantity) VALUES (?,?,?,?,?);";
 
         try {
             // check required fields filled or not
-            if (isFilledFields() && validateFields()) {
+//            if (isFilledFields() && validateFields()) {
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                preparedStatement.setString(1, priceTextField.getText());
-
+                preparedStatement.setString(1, phoneTextField.getText());
+                preparedStatement.setString(2, priceTextField.getText());
                 Map<Integer, String> distributorMap = getDistributorMap();
                 String selectedDistributorValue = distributorComboBox.getValue(); // get the selected distributorName in ComboBox
                 int selectedDistributorKey = getKeyFromValue(distributorMap, selectedDistributorValue); // get selected distributorId
 
-                preparedStatement.setString(2, String.valueOf(selectedDistributorKey));
+                preparedStatement.setString(3, String.valueOf(selectedDistributorKey));
 
-                preparedStatement.setString(3, GetData.path);
-                preparedStatement.setString(4, sellingPriceTextField.getText());
+                preparedStatement.setString(4, GetData.path);
+                preparedStatement.setString(5, sellingPriceTextField.getText());
                 // execute
                 int rowsAffected = preparedStatement.executeUpdate();
 
@@ -588,7 +579,7 @@ public class PhoneController {
                     // alert error if adding data failed
                     GetData.showErrorAlert("Error message", "Failed to add phone record.");
                 }
-            }
+//            }
         } catch (Exception e) {
             e.printStackTrace();
             // alert error if an exception occurs
@@ -603,7 +594,7 @@ public class PhoneController {
         int selectedDistributorKey = getKeyFromValue(distributorMap, selectedDistributorValue);
 
         String sql = "UPDATE phone " +
-                "SET price = ?, distributorId = ?, image = ?,sellingPrice = ? " +
+                "SET phoneName = ?, price = ?, distributorId = ?, image = ?,sellingPrice = ? " +
                 "WHERE phoneId = ?";
 
         try {
@@ -612,10 +603,13 @@ public class PhoneController {
                 // if user confirm delete then delete
                 if (resultConfirm.equals(ButtonType.OK)) {
                     PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                    preparedStatement.setString(1, priceTextField.getText());
-                    preparedStatement.setString(2, String.valueOf(selectedDistributorKey));
-                    preparedStatement.setString(3, GetData.path);
-                    preparedStatement.setString(4, sellingPriceTextField.getText());
+                    preparedStatement.setString(1, phoneTextField.getText());
+                    preparedStatement.setString(2, priceTextField.getText());
+                    preparedStatement.setString(3, String.valueOf(selectedDistributorKey));
+                    preparedStatement.setString(4, GetData.path);
+                    preparedStatement.setString(5, sellingPriceTextField.getText());
+                    preparedStatement.setString(6, idTextField.getText());
+
                     int rowAffected = preparedStatement.executeUpdate();
                     // if updated success then alert
                     if (rowAffected > 0) {
@@ -632,7 +626,7 @@ public class PhoneController {
     }
 
     private boolean validateFields() {
-        if (!validateSellingPrice() || !validateQuantity() || !validateOriginalPrice() || !validateTax()) {
+        if (!validateSellingPrice() || !validateQuantity() || !validateOriginalPrice()) {
             return false;
         }
         return true;
@@ -667,22 +661,22 @@ public class PhoneController {
         }
     }
 
-    private boolean validateTax() {
-        double tax = Double.parseDouble(taxTextField.getText());
-        if (tax < 0) {
-            GetData.showWarningAlert("Validation Error", "VAT tax must be a number and greater than 0.");
-            return false;
-        } else {
-            return true;
-        }
-    }
+//    private boolean validateTax() {
+//        double tax = Double.parseDouble(taxTextField.getText()); // tằng này null
+//        if (tax < 0) {
+//            GetData.showWarningAlert("Validation Error", "VAT tax must be a number and greater than 0.");
+//            return false;
+//        } else {
+//            return true;
+//        }
+//    }
 
 
 
     private void deletePhoneFromDatbase(int id) {
         try {
             // Tạo câu lệnh SQL để cập nhật tồn kho về 0 cho điện thoại được xóa
-            String updateInventorySQL = "UPDATE phone_inventory SET quantityInStock = 0 WHERE phoneId = " + id;
+            String updateInventorySQL = "delete from phone_inventory WHERE phoneId = " + id;
 
             // Tạo câu lệnh SQL để xóa điện thoại từ bảng phone
             String deletePhoneSQL = "DELETE FROM phone WHERE phoneId = " + id;
@@ -704,7 +698,8 @@ public class PhoneController {
                     setupTable();
                     resetForm();
                 }
-            } else {
+            }
+        else {
                 // Nếu không thể cập nhật tồn kho, hiển thị thông báo lỗi
                 GetData.showErrorAlert("Error message", "Failed to update inventory!");
             }

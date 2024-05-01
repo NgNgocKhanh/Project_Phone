@@ -56,7 +56,7 @@
                </font>
             </Label>
             <TextField fx:id="priceTextField" layoutX="557.0" layoutY="53.0" prefHeight="26.0" prefWidth="230.0" />
-            <TextField fx:id="sellingPriceTextField" editable="false" layoutX="557.0" layoutY="117.0" prefHeight="26.0" prefWidth="230.0" />
+            <TextField fx:id="sellingPriceTextField" layoutX="557.0" layoutY="117.0" prefHeight="26.0" prefWidth="230.0" />
             <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="441.0" layoutY="120.0" prefHeight="20.0" prefWidth="90.0" text="Selling Price">
                <font>
                   <Font size="14.0" />
@@ -109,7 +109,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="updateButton" alignment="CENTER" layoutX="967.0" layoutY="167.0" mnemonicParsing="false" onAction="#addPhoneDatabase" prefHeight="35.0" prefWidth="99.0" styleClass="button-update" stylesheets="@style.css" text="Update" textFill="WHITE">
+            <Button fx:id="updateButton" alignment="CENTER" layoutX="967.0" layoutY="167.0" mnemonicParsing="false" onAction="#updatePhoneToDatabase" prefHeight="35.0" prefWidth="99.0" styleClass="button-update" stylesheets="@style.css" text="Update" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
