@@ -84,10 +84,10 @@ public class EmployeeController {
 
 
     @FXML
-    private TableColumn<Employee, String> nameTableColumn;
+    private TableColumn<Employee, String> phoneColumnTable;
 
     @FXML
-    private TableColumn<Employee, String> usernameTableColumn;
+    private TableColumn<Employee, String> userphoneColumnTable;
 
     @FXML
     private TextField nameTextField;
@@ -223,14 +223,14 @@ public class EmployeeController {
      */
     private void setupTable() {
         employeeObservableList = getEmployeeObservableList();
-        idTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        idTableColumn.setCellValueFactory(new PropertyValueFactory<>("phoneId"));
+        phoneColumnTable.setCellValueFactory(new PropertyValueFactory<>("phoneName"));
         roleTableColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
         phoneTableColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
         emailTableColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         basicSalaryTableColumn.setCellValueFactory(new PropertyValueFactory<>("salary"));
         addressTableColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
-        usernameTableColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        userphoneColumnTable.setCellValueFactory(new PropertyValueFactory<>("username"));
         joinDateTableColumn.setCellValueFactory(new PropertyValueFactory<>("joinDate"));
         birthdayTableColumn.setCellValueFactory(new PropertyValueFactory<>("birthday"));
         orderNumberTableColumn.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(employeeTableView.getItems().indexOf(param.getValue()) + 1 + (currentPage - 1) * itemsPerPage));
@@ -775,16 +775,16 @@ public class EmployeeController {
                     "</head>" +
                     "<body>" +
                     "    <div class='container'>" +
-                    "        <img src=\"https://media.istockphoto.com/id/1410736450/vector/happy-birthday-beautiful-greeting-card-scratched-calligraphy-black-text-word-golden-line.jpg?b=1&s=612x612&w=0&k=20&c=C2cwLTDz2aFEyDjDkJpd7ZWoQvMkHhWJFKo3WlmT6uI=\" width=\"600px\">" +
+                    "        <img src=\"https://media.istockphoto.com/id/1410736450/vector/happy-birthday-beautiful-greeting-Phoned-scratched-calligraphy-black-text-word-golden-line.jpg?b=1&s=612x612&w=0&k=20&c=C2cwLTDz2aFEyDjDkJpd7ZWoQvMkHhWJFKo3WlmT6uI=\" width=\"600px\">" +
                     "        <div class='content'>" +
                     "            <b>Hi you,</b>" +
-                    "            <p>A little birdie told us that today was your special day. On behalf of everyone at CarShop, we hope you" +
+                    "            <p>A little birdie told us that today was your special day. On behalf of everyone at PhoneShop, we hope you" +
                     "                have the best birthday ever.</p>" +
                     "            <p>May your day be the start of a year filled with good luck, good health and much happiness. We look" +
                     "                forward to continuing to help you achieve your wellness goals this year.</p>" +
                     "            <p>Have an unforgettable birthday!</p>" +
                     "            <p>Sincerely,</p>" +
-                    "            <p>Car Shop</p>" +
+                    "            <p>Phone Shop</p>" +
                     "        </div>" +
                     "    </div>" +
                     "</body>" +

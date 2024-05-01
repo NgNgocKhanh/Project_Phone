@@ -15,8 +15,8 @@ public class Login extends Application {
     public void start(Stage stage) throws IOException {
         String fxmlFileName = "login.fxml";
 
-        // Create a File manhobject for the FXML file
-        File fxmlFile = new File("src/main/resources/com/example/SmartPhone/" + fxmlFileName);
+        // Create a     File manhobject for the FXML file
+         File fxmlFile = new File("src/main/resources/com/example/SmartPhone/" + fxmlFileName);
 
         // Get the absolute path of the FXML file
         String absolutePath = fxmlFile.getAbsolutePath();

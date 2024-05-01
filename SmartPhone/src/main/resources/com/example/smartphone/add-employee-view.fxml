@@ -141,8 +141,8 @@
                     <columns>
                         <TableColumn fx:id="orderNumberTableColumn" prefWidth="36.800018310546875" text="#" />
                         <TableColumn fx:id="idTableColumn" prefWidth="42.39999008178711" text="ID" visible="false" />
-                        <TableColumn fx:id="nameTableColumn" prefWidth="121.60000228881836" text="Name" />
-                        <TableColumn fx:id="usernameTableColumn" prefWidth="114.40000915527344" text="Username" />
+                        <TableColumn fx:id="phoneColumnTable" prefWidth="121.60000228881836" text="Name" />
+                        <TableColumn fx:id="userphoneColumnTable" prefWidth="114.40000915527344" text="Username" />
                         <TableColumn fx:id="birthdayTableColumn" prefWidth="99.199951171875" text="Birthday" />
                         <TableColumn fx:id="roleTableColumn" prefWidth="74.4000244140625" text="Role" />
                         <TableColumn fx:id="phoneTableColumn" prefWidth="96.0" text="Phone" />

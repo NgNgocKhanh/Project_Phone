@@ -73,7 +73,7 @@ public class DistributorController {
     private TextField idTextField;
 
     @FXML
-    private TableColumn<Distributor, String> nameTableColumn;
+    private TableColumn<Distributor, String> phoneColumnTable;
 
     @FXML
     private TextField nameTextField;
@@ -168,8 +168,8 @@ public class DistributorController {
      */
     private void setupTable() {
         distributorObservableList = getDistributorObservableList();
-        idTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        idTableColumn.setCellValueFactory(new PropertyValueFactory<>("phoneId"));
+        phoneColumnTable.setCellValueFactory(new PropertyValueFactory<>("phoneName"));
         phoneTableColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
         addressTableColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
         emailTableColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -568,16 +568,16 @@ public class DistributorController {
                     "</head>" +
                     "<body>" +
                     "    <div class='container'>" +
-                    "        <img src=\"https://media.istockphoto.com/id/1410736450/vector/happy-birthday-beautiful-greeting-card-scratched-calligraphy-black-text-word-golden-line.jpg?b=1&s=612x612&w=0&k=20&c=C2cwLTDz2aFEyDjDkJpd7ZWoQvMkHhWJFKo3WlmT6uI=\" width=\"600px\">" +
+                    "        <img src=\"https://media.istockphoto.com/id/1410736450/vector/happy-birthday-beautiful-greeting-Phoned-scratched-calligraphy-black-text-word-golden-line.jpg?b=1&s=612x612&w=0&k=20&c=C2cwLTDz2aFEyDjDkJpd7ZWoQvMkHhWJFKo3WlmT6uI=\" width=\"600px\">" +
                     "        <div class='content'>" +
                     "            <b>Hi you,</b>" +
-                    "            <p>A little birdie told us that today was your special day. On behalf of everyone at CarShop, we hope you" +
+                    "            <p>A little birdie told us that today was your special day. On behalf of everyone at PhoneShop, we hope you" +
                     "                have the best birthday ever.</p>" +
                     "            <p>May your day be the start of a year filled with good luck, good health and much happiness. We look" +
                     "                forward to continuing to help you achieve your wellness goals this year.</p>" +
                     "            <p>Have an unforgettable birthday!</p>" +
                     "            <p>Sincerely,</p>" +
-                    "            <p>Car Shop</p>" +
+                    "            <p>Phone Shop</p>" +
                     "        </div>" +
                     "    </div>" +
                     "</body>" +

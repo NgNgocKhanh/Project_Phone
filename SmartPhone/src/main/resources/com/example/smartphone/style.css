@@ -114,7 +114,7 @@
 .combo-box .prompt-text {
     -fx-padding: 0 0 0 40;
     /* Add left padding for the prompt text to accommodate the image */
-    -fx-graphic: url("../images/cart-white.png");
+    -fx-graphic: url("../images/Phonet-white.png");
     /* Set the image for the prompt text (../images/ trỏ ra ngoài thư mục css) */
     -fx-graphic-text-gap: 10;
 }
@@ -161,11 +161,11 @@
     -fx-background-color: linear-gradient(to bottom, #DC0000 50%,#FF0032 50%);
 }
 
-.red-row {
+.white-row {
     -fx-background-color: red;
 }
 
-.red-row .table-cell {
+.white-row .table-cell {
     -fx-text-fill: white;
 }
 
